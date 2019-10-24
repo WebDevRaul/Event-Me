@@ -2,10 +2,11 @@ import styled from 'styled-components';
 
 const StyledButtonOne = styled.div`
   .button-one {
+    max-width: 160px;
     padding: 11px 21px;
+    margin: auto;
     letter-spacing: var(--Spacing);
     border-radius: var(--BorderRadius);
-    box-shadow: inset 0 0 0 2px var(--mainWhite);
     text-align: center;
     background: transparent;
     p {
@@ -14,23 +15,22 @@ const StyledButtonOne = styled.div`
     }
     &:hover {
       cursor: pointer;
-      box-shadow: inset 0 0 0 2px var(--Pcolor);
+      background: var(--Pcolor);
       & p {
-        color: var(--Pcolor);
+        color: var(--Scolor);
       }
     }
+  }
+  .box {
+    box-shadow: inset 0 0 0 2px var(--mainWhite);
   }
   .green {
     background: var(--Green);
   }
   .blue {
     background: var(--Blue);
-    box-shadow: inset 0 0 0 2px var(--Blue);
-  }
-  .inverted {
-    box-shadow: inset 0 0 0 2px var(--mainBlack);
-    p {
-      color: var(--mainBlack);
+    &:hover {
+      background: var(--Pcolor);
     }
   }
 `

@@ -7,7 +7,7 @@ const User = ({ onClick, onSignOut }) => {
   return (
     <>
       <li><Link to='/profile' onClick={onClick}>Profile</Link></li>
-      <li><span className='sign-out' onClick={onSignOut}><ButtonOne text='Sign Out' /></span></li>
+      <li><span className='sign-out' onClick={onSignOut}><ButtonOne text='Sign Out' isClass='box' /></span></li>
     </>
   )
 }

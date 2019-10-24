@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledListOfEvents = styled.div`
+const StyledListOfEvents = styled.section`
   .list-of-events {
     padding: 20px;
     .event {
@@ -21,6 +21,10 @@ const StyledListOfEvents = styled.div`
         div {
           margin: 0 14px;
         }
+      }
+      .members {
+        min-height: 50px;
+        background: var(--Background);
       }
       .footer {
         justify-content: space-between;

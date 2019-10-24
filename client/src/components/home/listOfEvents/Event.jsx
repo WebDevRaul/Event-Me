@@ -8,7 +8,7 @@ import Footer from './Footer';
 const Event = () => {
   return (
     <div className='event'>
-      <Header />
+      <Header  name='John Doe' />
       <Body />
       <Members />
       <Footer />

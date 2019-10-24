@@ -1,11 +1,12 @@
-import React from 'react'
+import React from 'react';
 
 const Body = () => {
   return (
-    <div>
-      body
+    <div className='body'>
+      <div>date</div>
+      <div>time</div>
     </div>
   )
 }
 
-export default Body
+export default Body;

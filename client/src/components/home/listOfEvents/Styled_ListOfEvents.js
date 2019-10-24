@@ -4,15 +4,31 @@ const StyledListOfEvents = styled.div`
   .list-of-events {
     padding: 20px;
     .event {
-      min-height: 300px;
       background-color: var(--mainWhite);
       border: 1px solid var(--Shadow);
       border-radius: var(--BorderRadius);
-      .header {
-        padding: 14px;
+      .header, .body, .members, .footer {
         display: flex;
-        h4 {
-          padding-left: 14px;
+        padding: 14px;
+        border-bottom: 1px solid var(--Shadow);
+      }
+      .header {
+        .info {
+          padding: 14px;
+        }
+      }
+      .body {
+        div {
+          margin: 0 14px;
+        }
+      }
+      .footer {
+        justify-content: space-between;
+        p {
+          margin-right: 20px;
+        }
+        div {
+          margin-top: auto;
         }
       }
     }

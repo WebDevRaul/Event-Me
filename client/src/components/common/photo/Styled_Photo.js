@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-const StyledImage = styled.image`
+const StyledPhoto = styled.div`
   img {
     border-radius: 50px;
   }
 `
 
-export default StyledImage;
+export default StyledPhoto;

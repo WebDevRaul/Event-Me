@@ -1,7 +1,8 @@
 :root {
   --Pcolor: rgb(145, 121, 40);
   --Scolor: rgb(252, 5, 5);
-  --Success: rgb(50,200, 50);
+  --Green: rgb(50,200, 50);
+  --Blue: rgb(32, 167, 172);
   --Shadow: rgba(34, 36, 38, 0.2);
   --mainWhite: #fff;
   --mainBlack: #222;

@@ -7,9 +7,9 @@ const StyledButtonOne = styled.div`
     border-radius: var(--BorderRadius);
     box-shadow: inset 0 0 0 2px var(--mainWhite);
     text-align: center;
-    background: ${({ isClass }) => isClass ? 'var(--Success)' : 'transparent' };
+    background: transparent;
     p {
-      margin-bottom: 0px;
+      margin: 0px !important;
       color: var(--mainWhite);
     }
     &:hover {
@@ -18,6 +18,19 @@ const StyledButtonOne = styled.div`
       & p {
         color: var(--Pcolor);
       }
+    }
+  }
+  .green {
+    background: var(--Green);
+  }
+  .blue {
+    background: var(--Blue);
+    box-shadow: inset 0 0 0 2px var(--Blue);
+  }
+  .inverted {
+    box-shadow: inset 0 0 0 2px var(--mainBlack);
+    p {
+      color: var(--mainBlack);
     }
   }
 `

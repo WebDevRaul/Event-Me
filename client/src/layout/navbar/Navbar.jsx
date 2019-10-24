@@ -36,7 +36,7 @@ const Navbar = () => {
           <ul className={classnames('nav-links', {'show-nav' : isOpen})} >
             <div className='events'>
               <li><Link to='/' onClick={onClick}>Events</Link></li>
-              <li><Link to='/create-event' onClick={onClick}><ButtonOne text='Create Event' isClass='yes' /></Link></li>
+              <li><Link to='/create-event' onClick={onClick}><ButtonOne text='Create Event' isClass='green' /></Link></li>
             </div>
             <div className='pages'>
               {isAuth ? <User onClick={onClick} onSignOut={onSignOut} /> : <Guest onClick={onClick} />}

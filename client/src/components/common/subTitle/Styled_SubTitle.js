@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-const StyledTitle = styled.h4`
+const StyledSubTitle = styled.p`
   margin-bottom: 0px;
 `
-export default StyledTitle;
+
+export default StyledSubTitle;

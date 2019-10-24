@@ -22,7 +22,6 @@ const StyledNavbar = styled.div`
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0 20px;
       li {
         display: flex;
         align-items: center;
@@ -42,6 +41,9 @@ const StyledNavbar = styled.div`
       }
       .pages {
         display: flex;
+        .button-one {
+          width: 125px;
+        }
       }
     }
   }
@@ -63,10 +65,21 @@ const StyledNavbar = styled.div`
         overflow: hidden;
         display: flex;
         flex-direction: column;
+        .events, .pages {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          .button-one {
+            width: 158px;
+          }
+          li {
+            height: 50px;
+          }
+        }
       }
       .show-nav {
-        /* 44px for each link */
-        height: 176px;
+        /* 50px for each link */
+        height: 200px;
       }
     }
   }

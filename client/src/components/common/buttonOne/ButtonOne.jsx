@@ -6,7 +6,9 @@ import StyledButtonOne from './Styled_ButtonOne';
 const ButtonOne = ({ text, isClass }) => {
   return (
     <StyledButtonOne isClass={isClass}>
-      <p>{text}</p>
+      <div className='button-one'>
+        <p>{text}</p>
+      </div>
     </StyledButtonOne>
   )
 };

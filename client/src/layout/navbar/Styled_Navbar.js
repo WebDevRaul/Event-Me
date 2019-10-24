@@ -4,7 +4,6 @@ import { bootstrap } from '../../utils/devices';
 const StyledNavbar = styled.div`
   .navbar {
     background: linear-gradient(135deg,#1d379e,#0a56c9 9%,#205dac 89%);
-    color: var(--mainWhite);
     .nav-wrapper {
       width: 100%;
       display: flex;
@@ -28,20 +27,6 @@ const StyledNavbar = styled.div`
       }
       .pages {
         display: flex;
-        li {
-          padding: 11px 21px;
-          letter-spacing: var(--Spacing);
-          border-radius: var(--BorderRadius);
-          box-shadow: inset 0 0 0 2px var(--mainWhite);
-          margin: 0 10px;
-          a, span {
-            color: var(--mainWhite);
-            &:hover {
-              color: var(--Scolor);
-              cursor: pointer;
-            }
-          }
-        }
       }
     }
   }

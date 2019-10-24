@@ -7,6 +7,8 @@ import Register from './pages/register/Register';
 import NotFound from './pages/notFound/NotFound';
 import Footer from './layout/footer/Footer';
 
+import './App.css';
+
 const App = () => {
   return (
     <Router>

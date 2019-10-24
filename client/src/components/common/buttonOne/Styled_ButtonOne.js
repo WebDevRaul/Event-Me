@@ -6,8 +6,8 @@ const StyledButtonOne = styled.div`
     letter-spacing: var(--Spacing);
     border-radius: var(--BorderRadius);
     box-shadow: inset 0 0 0 2px var(--mainWhite);
-    background: ${({ isClass }) => isClass ? 'var(--Success)' : 'transparent'};
     text-align: center;
+    background: ${({ isClass }) => isClass ? 'var(--Success)' : 'transparent' };
     p {
       margin-bottom: 0px;
       color: var(--mainWhite);

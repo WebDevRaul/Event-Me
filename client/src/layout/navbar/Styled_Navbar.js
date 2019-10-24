@@ -22,6 +22,21 @@ const StyledNavbar = styled.div`
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding: 0 20px;
+      li {
+        display: flex;
+        align-items: center;
+        margin: 0 10px;
+        a, span {
+          color: var(--mainWhite);
+          font-weight: 500;
+          letter-spacing: var(--Spacing);
+          &:hover {
+            cursor: pointer;
+            color: var(--Pcolor);
+          }
+        }
+      }
       .events {
         display: flex;
       }
@@ -51,7 +66,7 @@ const StyledNavbar = styled.div`
       }
       .show-nav {
         /* 44px for each link */
-        height: 132px;
+        height: 176px;
       }
     }
   }

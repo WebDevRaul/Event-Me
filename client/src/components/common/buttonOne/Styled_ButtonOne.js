@@ -5,17 +5,16 @@ const StyledButtonOne = styled.div`
   letter-spacing: var(--Spacing);
   border-radius: var(--BorderRadius);
   box-shadow: inset 0 0 0 2px var(--mainWhite);
-  margin: 0 10px;
-  background: ${({ isClass }) => isClass ? 'var(--Pcolor)' : 'transparent'};
+  background: ${({ isClass }) => isClass ? 'var(--Success)' : 'transparent'};
   p {
     margin-bottom: 0px;
     color: var(--mainWhite);
   }
   &:hover {
     cursor: pointer;
-    box-shadow: inset 0 0 0 2px var(--Scolor);
+    box-shadow: inset 0 0 0 2px var(--Pcolor);
     & p {
-      color: var(--Scolor);
+      color: var(--Pcolor);
     }
   }
 `

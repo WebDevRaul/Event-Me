@@ -21,7 +21,7 @@ const Navbar = () => {
 
   }
   
-  const isAuth = false;
+  const isAuth = true;
 
   return (
     <StyledNavbar>

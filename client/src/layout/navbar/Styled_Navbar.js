@@ -3,7 +3,7 @@ import { bootstrap } from '../../utils/devices';
 
 const StyledNavbar = styled.div`
   .navbar {
-    background: linear-gradient(135deg,#1d379e,#0a56c9 9%,#205dac 89%);
+    background: linear-gradient(135deg, #182a73 0%, #218aae 45%, #20a7ac 90%);
     .nav-wrapper {
       width: 100%;
       display: flex;
@@ -18,6 +18,7 @@ const StyledNavbar = styled.div`
         }
       }
     .nav-links {
+      padding-right: 5%;
       width: 80%;
       display: flex;
       justify-content: space-between;
@@ -36,11 +37,34 @@ const StyledNavbar = styled.div`
           }
         }
       }
+      .events, .pages {
+        &::after, ::before {
+          position: absolute;
+          content: "";
+          height: 100%;
+          width: 1px;
+          background: var(--Shadow);
+        }
+        &::before {
+          top: 0;
+          right: 0;
+        }
+        &::after {
+          top: 0;
+          left: 0;
+        }
+      }
       .events {
         display: flex;
+        position: relative;
+        padding:0 5px;
       }
       .pages {
         display: flex;
+        position: relative;
+        &::before {
+          right: 1%;
+        }
         .button-one {
           width: 125px;
         }
@@ -65,10 +89,17 @@ const StyledNavbar = styled.div`
         overflow: hidden;
         display: flex;
         flex-direction: column;
+        padding-right: 0px;
+        &::before {
+          background: black;
+        } 
         .events, .pages {
           display: flex;
           flex-direction: column;
           align-items: center;
+          &::before, ::after {
+            display: none;
+          }
           .button-one {
             width: 158px;
           }

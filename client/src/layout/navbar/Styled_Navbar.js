@@ -3,7 +3,7 @@ import { bootstrap } from '../../utils/devices';
 
 const StyledNavbar = styled.div`
   .navbar {
-    background: linear-gradient(135deg, #182a73 0%, #218aae 45%, #20a7ac 90%);
+    background: linear-gradient(135deg, #ff0000 0%, #ff5d48 45%, #ff9292 90%);
     .nav-wrapper {
       width: 100%;
       display: flex;

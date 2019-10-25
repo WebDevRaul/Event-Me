@@ -39,7 +39,7 @@ const Navbar = () => {
           </div>
           <ul className={classnames('nav-links', {'show-nav' : isOpen})} >
             <div className='events'>
-              <li><Link to='/' onClick={onClick}>Events</Link></li>
+              <li><Link to='/event-me' onClick={onClick}>Events</Link></li>
               <li><Link to='/create-event' onClick={onClick}><ButtonOne onClick={onCreateEvent} text='Create Event' isClass='green box' /></Link></li>
             </div>
             <div className='pages'>

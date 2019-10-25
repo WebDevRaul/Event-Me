@@ -5,7 +5,7 @@ import Photo from '../../common/photo/Photo';
 const Members = ({ members }) => {
   return (
     <div className='members'>
-      {members.map(({ id, photo, name }) => <Photo key={id} photo={photo} width='40px' height='40px' alt={name} />)}
+      {members && members.map(({ id, photo, name }) => <Photo key={id} photo={photo} width='40px' height='40px' alt={name} />)}
     </div>
   )
 }

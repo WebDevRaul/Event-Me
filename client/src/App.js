@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Landing from './pages/landing/Landing';
 import Navbar from './layout/navbar/Navbar';
 import Home from './pages/home/Home';
 import SignIn from './pages/signIn/SignIn';
@@ -13,15 +14,20 @@ const App = () => {
   return (
     <Router>
       <div className='app'>
-        <Navbar />
-        <Switch>
-          <Route exact path='/' component={Home} />
-          <Route exact path='/sign-in' component={SignIn} />
-          <Route exact path='/register' component={Register} />
-
-          <Route path='*' component={NotFound} />
-        </Switch>
-        <Footer />
+        <Route exact path='/' component={Landing} />
+        <Route  path='/(.+)' render={() => (
+          <>
+            <Navbar />
+            <Switch>
+              <Route exact path='/event-me' component={Home} />
+              <Route exact path='/sign-in' component={SignIn} />
+              <Route exact path='/register' component={Register} />
+    
+              <Route path='*' component={NotFound} />
+            </Switch>
+            <Footer />
+          </>
+        )} />
       </div>
     </Router>
   )

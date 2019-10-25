@@ -1,4 +1,5 @@
 import React from 'react';
+import data from '../data/TempData';
 
 import Event from './Event';
 
@@ -8,7 +9,7 @@ const ListOfEvents = () => {
   return (
     <StyledListOfEvents>
       <div className='list-of-events'>
-        <Event />
+        {data.map((event, index) => <Event key={index} event={event} />)}
       </div>
     </StyledListOfEvents>
   )

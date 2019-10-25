@@ -21,11 +21,11 @@ const RecentEvents = () => {
     <StyledRecentEvents>
       <ButtonOne text='Create Event' isClass='green' onClick={onCreateEvent} />
       <form noValidate>
-        <Input name='title' label='Event Title' value={title} onChange={onChange} onFocus={onFocus} type='text' error=''/>
-        <Input name='date' label='Event Date' value={date} onChange={onChange} onFocus={onFocus} type='text' error=''/>
-        <Input name='city' label='City' value={city} onChange={onChange} onFocus={onFocus} type='text' error=''/>
-        <Input name='location' label='Location' value={location} onChange={onChange} onFocus={onFocus} type='text' error=''/>
-        <Input name='hosted' label='Hosted By' value={hosted} onChange={onChange} onFocus={onFocus} type='text' error=''/>
+        <Input name='title' label='Event Title' value={title} onChange={onChange} onFocus={onFocus} error=''/>
+        <Input name='date' label='Event Date' value={date} onChange={onChange} onFocus={onFocus} type='date' error=''/>
+        <Input name='city' label='City' value={city} onChange={onChange} onFocus={onFocus} error=''/>
+        <Input name='location' label='Location' value={location} onChange={onChange} onFocus={onFocus} error=''/>
+        <Input name='hosted' label='Hosted By' value={hosted} onChange={onChange} onFocus={onFocus} error=''/>
         <div className='submit'>
           <ButtonOne isClass='green' text='Submit' type='submit' />
           <ButtonOne isClass='black' text='Cancel' />

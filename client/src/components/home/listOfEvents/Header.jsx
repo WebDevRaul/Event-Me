@@ -6,12 +6,12 @@ import Title from '../../common/title/Title';
 import Photo from '../../common/photo/Photo';
 import SubTitle from '../../common/subTitle/SubTitle';
 
-const Header = ({ name }) => {
+const Header = ({ name, title }) => {
   return (
     <div className='header'>
       <Photo photo={photo} width='80px' height='80px' alt='member' />
       <div className='info'>
-        <Title text='Event tile' />
+        <Title text={title} />
         <SubTitle text={`Hosted by ${name}`} />
       </div>
     </div>
@@ -19,7 +19,8 @@ const Header = ({ name }) => {
 };
 
 Header.propTypes = {
-  name: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired
 }
 
 export default Header;

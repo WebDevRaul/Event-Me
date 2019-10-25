@@ -4,6 +4,7 @@ const StyledListOfEvents = styled.section`
   .list-of-events {
     padding: 20px;
     .event {
+      margin: 20px 0;
       background-color: var(--mainWhite);
       border: 1px solid var(--Shadow);
       border-radius: var(--BorderRadius);
@@ -24,7 +25,7 @@ const StyledListOfEvents = styled.section`
       }
       .members {
         min-height: 50px;
-        background: var(--Background);
+        background: var(--Grey);
       }
       .footer {
         justify-content: space-between;

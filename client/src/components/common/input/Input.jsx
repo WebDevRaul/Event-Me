@@ -23,13 +23,17 @@ const Input = ({ name, label, value, onChange, onFocus, type, error }) => {
   )
 }
 
+Input.defaultProps = {
+  type: 'text'
+}
+
 Input.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   onFocus: PropTypes.func.isRequired,
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
   error: PropTypes.string
 }
 

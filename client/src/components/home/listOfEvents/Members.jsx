@@ -1,15 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Photo from '../../common/photo/Photo';
-import photo from '../../../assets/images/questionMark.jpg';
 
-const Members = () => {
+const Members = ({ members }) => {
   return (
     <div className='members'>
-      <Photo photo={photo} width='40px' height='40px' alt='member' />
-      <Photo photo={photo} width='40px' height='40px' alt='member' />
-      <Photo photo={photo} width='40px' height='40px' alt='member' />
+      {members.map(({ id, photo, name }) => <Photo key={id} photo={photo} width='40px' height='40px' alt={name} />)}
     </div>
   )
+}
+
+Members.propTypes = {
+  members: PropTypes.array
 }
 
 export default Members;

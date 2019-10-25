@@ -3,7 +3,7 @@ import { bootstrap } from '../../utils/devices';
 
 const StyledNavbar = styled.div`
   .navbar {
-    background: linear-gradient(135deg, #ff0000 0%, #ff5d48 45%, #ff9292 90%);
+    background: linear-gradient(135deg, #ff2b00 0%, #ff8106 45%, #fec34d 90%);
     .nav-wrapper {
       width: 100%;
       display: flex;
@@ -32,7 +32,6 @@ const StyledNavbar = styled.div`
           font-weight: 500;
           letter-spacing: var(--Spacing);
           &:hover {
-            cursor: pointer;
             color: var(--Pcolor);
           }
         }

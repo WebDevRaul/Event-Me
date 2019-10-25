@@ -15,14 +15,16 @@ const StyledButtonOne = styled.div`
     }
     &:hover {
       cursor: pointer;
-      background: var(--Pcolor);
       & p {
-        color: var(--Scolor);
+        color: var(--Pcolor);
       }
     }
   }
   .box {
     box-shadow: inset 0 0 0 2px var(--mainWhite);
+    &:hover {
+      box-shadow: inset 0 0 0 2px var(--Pcolor);
+    }
   }
   .green {
     background: var(--Green);
@@ -35,9 +37,6 @@ const StyledButtonOne = styled.div`
   }
   .blue {
     background: var(--Blue);
-    &:hover {
-      background: var(--Pcolor);
-    }
   }
 `
 

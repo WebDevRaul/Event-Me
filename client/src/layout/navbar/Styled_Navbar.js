@@ -58,21 +58,15 @@ const StyledNavbar = styled.div`
             &:hover {
               cursor: pointer;
             }
-            &:hover ~ .wrapper {
-             display: block;
-           }
           }
           .wrapper {
             min-width: 100%;
             height: 100%;
             position: absolute;
             top: 100%;
-            right: 0;
+            right: 20px;
             z-index: 50;
-            display: none;
-            &:hover {
-              display: block;
-            }
+            display: ${({ show }) => show ? 'block' : 'none'};
             .list {
               min-width: 100%;
               padding: 10px;
@@ -99,7 +93,7 @@ const StyledNavbar = styled.div`
               border-left: 1px solid var(--Shadow);
               border-top: 1px solid var(--Shadow);
               top: 5px;
-              left: 55px;
+              left: 40px;
               transform: rotate(45deg);
               z-index: 20;
             }

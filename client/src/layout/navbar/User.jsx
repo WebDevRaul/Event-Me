@@ -2,13 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import ButtonOne from '../../components/common/buttonOne/ButtonOne';
+import SubTitle from '../../components/common/subTitle/SubTitle';
 
 const User = ({ onClick, onSignOut }) => {
   return (
-    <>
-      <li><Link to='/profile' onClick={onClick}>Profile</Link></li>
-      <li><span className='sign-out' onClick={onSignOut}><ButtonOne text='Sign Out' isClass='box' /></span></li>
-    </>
+    <div className='user'>
+      <SubTitle text='Username' /><span></span>
+      <div className='wrapper'>
+        <div className='list'>
+          <span className='tip' />
+          <div ><Link to='create-event' onClick={onClick}>Create Event</Link></div>
+          <div ><Link to='/to-do'>My Events</Link></div>
+          <div ><Link to='/profile'>My Profile</Link></div>
+          <div ><Link to='/setings'>Setings</Link></div>
+          <div ><Link to='/event-me' onClick={onSignOut}>Sign Out</Link></div>
+        </div>
+      </div>
+    </div>
   )
 }
 

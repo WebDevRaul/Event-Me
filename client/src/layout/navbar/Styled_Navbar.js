@@ -36,23 +36,6 @@ const StyledNavbar = styled.div`
           }
         }
       }
-      .events, .pages {
-        &::after, ::before {
-          position: absolute;
-          content: "";
-          height: 100%;
-          width: 1px;
-          background: var(--Shadow);
-        }
-        &::before {
-          top: 0;
-          right: 0;
-        }
-        &::after {
-          top: 0;
-          left: 0;
-        }
-      }
       .events {
         display: flex;
         position: relative;
@@ -61,11 +44,66 @@ const StyledNavbar = styled.div`
       .pages {
         display: flex;
         position: relative;
-        &::before {
-          right: 1%;
-        }
         .button-one {
           width: 125px;
+        }
+        .user {
+          min-width: 175px;
+          position: relative;
+          display: flex;
+          color: var(--mainWhite);
+          font-weight: 500;
+          letter-spacing: var(--Spacing);
+          p {
+            &:hover {
+              cursor: pointer;
+            }
+            &:hover ~ .wrapper {
+             display: block;
+           }
+          }
+          .wrapper {
+            min-width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            z-index: 50;
+            display: none;
+            &:hover {
+              display: block;
+            }
+            .list {
+              min-width: 100%;
+              padding: 10px;
+              margin-top: 10px;
+              background-color: var(--mainWhite);
+              border: 1px solid var(--Shadow);
+              border-radius: var(--BorderRadius);
+              div {
+                margin: 10px 0;
+                a {
+                  color: var(--mainBlack);
+                  &:hover {
+                    color: var(--Scolor);
+                  }
+                }
+              }
+            }
+            .tip {
+              content: '';
+              width: 10px;
+              height: 10px;
+              background: var(--mainWhite);
+              position: absolute;
+              border-left: 1px solid var(--Shadow);
+              border-top: 1px solid var(--Shadow);
+              top: 5px;
+              left: 55px;
+              transform: rotate(45deg);
+              z-index: 20;
+            }
+          }
         }
       }
     }
@@ -96,9 +134,6 @@ const StyledNavbar = styled.div`
           display: flex;
           flex-direction: column;
           align-items: center;
-          &::before, ::after {
-            display: none;
-          }
           .button-one {
             width: 158px;
           }

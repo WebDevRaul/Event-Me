@@ -1,16 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { Link } from 'react-router-dom';
 
 
-const Li = ({ text, isClass, onClickLi, name }) => (
-  <li className={classnames('path hover', {'active' : isClass })} onClick={() => onClickLi(name)}>{text}</li>
-);
+const Li = ({ text, url, name }) => {
+  const active = String(url).endsWith(name);
+  return (
+    <Link to={`/settings/${name}`}>
+      <li className={classnames('path', {'active' : active })}>{text}</li>
+    </Link>
+  )
+}
 
 Li.propTypes = {
   text: PropTypes.string.isRequired,
-  isClass: PropTypes.bool.isRequired,
-  onClickLi: PropTypes.func.isRequired,
+  url: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired
 }
 

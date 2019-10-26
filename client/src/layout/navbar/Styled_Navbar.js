@@ -78,7 +78,7 @@ const StyledNavbar = styled.div`
               padding-left: 1px;
               a {
                 margin: 5px 0;
-                padding: 10px;
+                padding: 14px;
                 color: var(--mainBlack);
                 &:hover {
                   background: var(--Shadow);

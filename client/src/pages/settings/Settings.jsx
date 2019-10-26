@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Route, Switch } from 'react-router-dom';
 
 import Navigation from '../../components/settings/navigation/Navigation';
 import Basic from '../../components/settings/Basic';
@@ -8,36 +10,30 @@ import Account from '../../components/settings/Account';
 
 import StyledSettings from './Styled_Settings';
 
-const Setting = () => {
-  const [state, setState] = useState({ basic: true, about: false, photo: false, account: false });
-  const { basic, about, photo, account } = state;
-  const onClick = name => {
-    // Find the active state
-    const active = Object.entries(state).filter(([key, val]) => val !== false);
-    // Flat array
-    const [flattenedArr, val] = [].concat.apply([],active)
-    // Return null if click on active state
-    if(name === flattenedArr) return null;
-    // Update new state
-    setState({...state, [flattenedArr]: false, [name]: true })
-  }
+const Setting = ({ match }) => {
   return (
-    <StyledSettings basic={basic}>
+    <StyledSettings>
       <div className='settings'>
         <div className='row no-gutters'>
           <div className='col-12 col-sm-8'>
-            { basic && <Basic /> }
-            { about && <About /> }
-            { photo && <Photo /> }
-            { account && <Account /> }
+            <Switch>
+              <Route exact path='/settings/basic' component={Basic} />
+              <Route exact path='/settings/about' component={About} />
+              <Route exact path='/settings/photo' component={Photo} />
+              <Route exact path='/settings/account' component={Account} />
+            </Switch>
           </div>
           <div className='col-12 col-sm-4'>
-            <Navigation onClick={onClick} state={state}/>
+            <Navigation match={match}/>
           </div>
         </div>
       </div>
     </StyledSettings>
   )
+}
+
+Setting.propTypes = {
+  match: PropTypes.object.isRequired
 }
 
 export default Setting;

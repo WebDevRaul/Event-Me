@@ -25,7 +25,7 @@ const data = [
     ]
   },
   {    
-    id: '1',
+    id: '2',
     title: 'Trip to Hincesti',
     date: '2019-12-31',
     description:

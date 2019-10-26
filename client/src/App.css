@@ -1,8 +1,9 @@
 :root {
   --Pcolor: rgb(127, 0, 31);
   --Scolor: rgb(255, 129, 6);
+  --Hover: rgb(254, 195, 77);
   --Green: rgb(50,200, 50);
-  --Blue: rgb(32, 167, 172);
+  --Blue: rgb(0, 123, 255);
   --Grey: rgb(194, 194, 194);
   --Shadow: rgba(34, 36, 38, 0.2);
   --Background: rgb(234, 234,234);

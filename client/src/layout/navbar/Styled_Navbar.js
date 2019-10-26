@@ -68,19 +68,21 @@ const StyledNavbar = styled.div`
             z-index: 50;
             display: ${({ show }) => show ? 'block' : 'none'};
             .list {
+              display: flex;
+              flex-direction: column;
               min-width: 100%;
-              padding: 10px;
               margin-top: 10px;
               background-color: var(--mainWhite);
               border: 1px solid var(--Shadow);
               border-radius: var(--BorderRadius);
-              div {
-                margin: 10px 0;
-                a {
-                  color: var(--mainBlack);
-                  &:hover {
-                    color: var(--Scolor);
-                  }
+              padding-left: 1px;
+              a {
+                margin: 5px 0;
+                padding: 10px;
+                color: var(--mainBlack);
+                &:hover {
+                  background: var(--Shadow);
+                  color: var(--Scolor);
                 }
               }
             }

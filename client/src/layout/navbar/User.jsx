@@ -11,11 +11,11 @@ const User = ({ onClick, onSignOut }) => {
       <div className='wrapper'>
         <div className='list'>
           <span className='tip' />
-          <div ><Link to='create-event'>Create Event</Link></div>
-          <div ><Link to='/to-do'>My Events</Link></div>
-          <div ><Link to='/profile'>My Profile</Link></div>
-          <div ><Link to='/setings'>Setings</Link></div>
-          <div ><Link to='/event-me' onClick={onSignOut}>Sign Out</Link></div>
+          <Link to='create-event'>Create Event</Link>
+          <Link to='/my-events'>My Events</Link>
+          <Link to='/profile'>My Profile</Link>
+          <Link to='/settings'>Settings</Link>
+          <Link to='/event-me' onClick={onSignOut}>Sign Out</Link>
         </div>
       </div>
     </div>

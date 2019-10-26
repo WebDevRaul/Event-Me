@@ -22,7 +22,7 @@ const Setting = () => {
     setState({...state, [flattenedArr]: false, [name]: true })
   }
   return (
-    <StyledSettings>
+    <StyledSettings basic={basic}>
       <div className='settings'>
         <div className='row no-gutters'>
           <div className='col-12 col-sm-8'>
@@ -32,7 +32,7 @@ const Setting = () => {
             { account && <Account /> }
           </div>
           <div className='col-12 col-sm-4'>
-            <Navigation onClick={onClick} />
+            <Navigation onClick={onClick} state={state}/>
           </div>
         </div>
       </div>

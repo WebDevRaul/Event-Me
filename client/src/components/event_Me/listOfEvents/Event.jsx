@@ -6,13 +6,13 @@ import Body from './Body';
 import Members from './Members';
 import Footer from './Footer';
 
-const Event = ({ event: { hostedBy, title, date, location, members, description, id } }) => {
+const Event = ({ event: { hostedBy, title, date, location, members, description } }) => {
   return (
     <div className='event'>
       <Header  name={hostedBy} title={title} />
       <Body date={date} location={location} />
       <Members members={members} />
-      <Footer description={description} id={id} />
+      <Footer description={description} title={title} />
     </div>
   )
 }

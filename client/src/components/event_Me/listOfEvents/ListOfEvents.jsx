@@ -1,18 +1,30 @@
 import React from 'react';
-import data from '../data/TempData';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { state_event } from '../../../redux/selectors/event';
 
 import Event from './Event';
 
 import StyledListOfEvents from './Styled_ListOfEvents';
+import isEmpty from '../../common/isEmpty/isEmpty';
 
-const ListOfEvents = () => {
+const ListOfEvents = ({ state: { events } }) => {
   return (
     <StyledListOfEvents>
       <div className='list-of-events'>
-        {data.map((event, index) => <Event key={index} event={event} />)}
+        {!isEmpty(events) && events.map((evt, i) => <Event key={i} event={evt} />)}
       </div>
     </StyledListOfEvents>
   )
-}
+};
 
-export default ListOfEvents;
+ListOfEvents.propTypes = {
+  state: PropTypes.object.isRequired
+};
+
+const mapStateToProps = createStructuredSelector({
+  state: state_event
+});
+
+export default connect(mapStateToProps, null)(ListOfEvents);

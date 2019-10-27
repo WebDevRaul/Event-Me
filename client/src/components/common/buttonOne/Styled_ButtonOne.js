@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 const StyledButtonOne = styled.div`
   .button-one {
-    max-width: 160px;
     padding: 11px 21px;
     margin: auto;
     letter-spacing: var(--Spacing);

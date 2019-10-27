@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const StyledEventInfo = styled.section`
   .event-info {
     padding: 50px 20px;
-    .header, .info {
+    .header, .info, .side-bar {
       margin: 20px;
       border: 1px solid var(--Shadow);
       border-radius: var(--BorderRadius);
@@ -41,6 +41,31 @@ const StyledEventInfo = styled.section`
         align-items: center;
         min-height: 50px;
         margin-bottom: 0px;
+      }
+    }
+    .side-bar {
+      .top {
+        padding: 20px 0;
+        text-align: center;
+        background: var(--blue);
+        border-top-right-radius: var(--BorderRadius);
+        border-top-left-radius: var(--BorderRadius);
+        p {
+          margin-bottom: 0;
+        }
+      }
+      .bottom {
+        padding: 15px;
+        background: var(--mainWhite);
+        border-bottom-right-radius: var(--BorderRadius);
+        border-bottom-left-radius: var(--BorderRadius);
+        div {
+          padding: 15px;
+          border-bottom: 1px solid var(--Shadow);
+          &:last-child {
+            border-bottom: none;
+          }
+        }
       }
     }
   }

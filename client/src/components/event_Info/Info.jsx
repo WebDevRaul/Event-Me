@@ -6,7 +6,7 @@ import SubTitle from '../common/subTitle/SubTitle';
 const Info = ({ date, text }) => {
   return (
     <div className='info'>
-      <SubTitle text={text} />
+      <p>{text}</p>
       <p><time>{date}</time></p>
       <p>map location</p>
     </div>

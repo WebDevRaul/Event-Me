@@ -4,7 +4,6 @@ import photo from '../../../assets/images/questionMark.jpg';
 
 import Title from '../../common/title/Title';
 import Photo from '../../common/photo/Photo';
-import SubTitle from '../../common/subTitle/SubTitle';
 
 const Header = ({ name, title }) => {
   return (
@@ -12,7 +11,7 @@ const Header = ({ name, title }) => {
       <Photo photo={photo} width='80px' height='80px' alt='member' />
       <div className='info'>
         <Title text={title} />
-        <SubTitle text={`Hosted by ${name}`} />
+        <p>Hosted by {name}</p>
       </div>
     </div>
   )

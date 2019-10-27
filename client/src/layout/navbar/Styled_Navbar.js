@@ -55,6 +55,7 @@ const StyledNavbar = styled.div`
           font-weight: 500;
           letter-spacing: var(--Spacing);
           p {
+            margin: 0px;
             &:hover {
               cursor: pointer;
             }

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import isEmpty from '../common/isEmpty/isEmpty';
 
 import Person from './Person';
 
@@ -14,7 +15,7 @@ const SideBar = ({ arr }) => {
         }
       </div>
       <div className="bottom">
-        {arr.map((person, i) => <Person person={person} key={i} /> )}
+        {!isEmpty(arr) && arr.map((person, i) => <Person person={person} key={i} /> )}
       </div>
     </div>
   )

@@ -10,5 +10,5 @@ export const state_events = createSelector(
 
 export const state_selectedEvent = createSelector(
   [select_selectedEvent_state],
-  state => state[0]
+  state => state
 );

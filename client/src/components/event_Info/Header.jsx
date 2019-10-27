@@ -5,12 +5,12 @@ import Title from '../common/title/Title';
 import ButtonOne from '../common/buttonOne/ButtonOne';
 
 
-const Header = ({ date, name }) => {
+const Header = ({ title, date, name }) => {
   return (
     <div className='header'>
       <div className='top'>
         <div>
-        <Title text='Lorem, ipsum dolor.' />
+        <Title text={title} />
         <time>{date}</time>
         <p>Sugested by <strong>{name}</strong></p>
         </div>
@@ -23,6 +23,7 @@ const Header = ({ date, name }) => {
 };
 
 Header.propTypes = {
+  title: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired
 }

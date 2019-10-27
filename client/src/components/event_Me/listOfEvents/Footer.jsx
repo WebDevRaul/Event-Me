@@ -4,7 +4,6 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { select_event } from '../../../redux/actions/event';
 
-import SubTitle from '../../common/subTitle/SubTitle';
 import ButtonOne from '../../common/buttonOne/ButtonOne';
 
 const Footer = ({ description, title, id, history, select_event }) => {
@@ -16,7 +15,7 @@ const Footer = ({ description, title, id, history, select_event }) => {
   }
   return (
     <div className='footer'>
-      <SubTitle text={description} />
+      <p>{description}</p>
       <ButtonOne text='View' onClick={onClick} isClass='blue' />
     </div>
   )

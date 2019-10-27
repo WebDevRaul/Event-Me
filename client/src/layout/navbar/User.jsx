@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import SubTitle from '../../components/common/subTitle/SubTitle';
 
 const User = ({ onClick, onSignOut }) => {
   const name = 'Joana';
   return (
     <div className='user' onClick={onClick}>
-      <SubTitle text={name} /><span></span>
+      <p>{name}</p>
       <div className='wrapper'>
         <div className='list'>
           <span className='tip' />

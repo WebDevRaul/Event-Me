@@ -3,10 +3,10 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import Landing from './pages/landing/Landing';
 import Navbar from './layout/navbar/Navbar';
 import Home from './pages/home/Home';
-import Settings from './pages/settings/Settings';
+import Settings from './pages/user_Settings/Settings';
 import SignIn from './pages/signIn/SignIn';
 import Register from './pages/register/Register';
-import NotFound from './pages/notFound/NotFound';
+import NotFound from './pages/not_Found/NotFound';
 import Footer from './layout/footer/Footer';
 
 import './App.css';

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const StyledSettings = styled.section`
   .settings {
     padding: 50px 20px;
-    .navigation {
+    .side-nav {
       ul {
         width: 300px;
         background: var(--mainWhite);

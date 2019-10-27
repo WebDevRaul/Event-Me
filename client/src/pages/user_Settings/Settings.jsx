@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch } from 'react-router-dom';
 
-import Navigation from '../../components/settings/navigation/Navigation';
-import Basic from '../../components/settings/Basic';
-import About from '../../components/settings/About';
-import Photo from '../../components/settings/Photo';
-import Account from '../../components/settings/Account';
+import SideNav from '../../components/user_Settings/side_Nav/SideNav';
+import Basic from '../../components/user_Settings/Basic';
+import About from '../../components/user_Settings/About';
+import Photo from '../../components/user_Settings/Photo';
+import Account from '../../components/user_Settings/Account';
 
 import StyledSettings from './Styled_Settings';
 
@@ -24,7 +24,7 @@ const Setting = ({ match }) => {
             </Switch>
           </div>
           <div className='col-12 col-sm-4'>
-            <Navigation match={match}/>
+            <SideNav match={match}/>
           </div>
         </div>
       </div>

@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Li from './Li';
 
-const Navigation = ({ match }) => {
+const SideNav = ({ match }) => {
   const { url } = match;
   return (
-    <div className='navigation'>
+    <div className='side-nav'>
       <ul className="list">
         <li className="path head">Profile</li>
         <Li text='Basic' url={url} name='basic'/>
@@ -20,8 +20,8 @@ const Navigation = ({ match }) => {
   )
 }
 
-Navigation.propTypes = {
+SideNav.propTypes = {
   match: PropTypes.object.isRequired
 }
 
-export default Navigation;
+export default SideNav;

@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import event from './event';
+import eventMe from './event';
 
 const persistConfig = {
   key: 'root',
@@ -12,7 +12,7 @@ const persistConfig = {
 
 
 const rootReducer =  combineReducers({
-  event
+  eventMe
 });
 
 export default persistReducer(persistConfig, rootReducer);

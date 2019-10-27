@@ -1,17 +1,20 @@
 import { EVENTS } from '../actions/types';
 
 const initialState = {
-  events: {}
+  events: [],
+  selectedEvent: {}
 };
 
-const event = (state=initialState, action) => {
+const eventMe = (state=initialState, action) => {
   const { payload } = action;
   switch(action.type) {
     case EVENTS.UPDATE_EVENT:
       return { ...state, events: payload }
+    case EVENTS.SELECT_EVENT:
+      return { ...state, selectedEvent: {...state.events.filter(({ id }) => id === payload)} }
     default:
       return state;
   }
 };
 
-export default event;
+export default eventMe;

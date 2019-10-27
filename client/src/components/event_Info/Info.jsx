@@ -1,10 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import SubTitle from '../common/subTitle/SubTitle';
 
-const text = 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam saepe ex eum dolore velit ullam fuga accusamus sint id dolorum.'
-const date = new Date().toISOString().slice(0, 10);
-
-const Info = () => {
+const Info = ({ date, text }) => {
   return (
     <div className='info'>
       <SubTitle text={text} />
@@ -12,6 +11,11 @@ const Info = () => {
       <p>map location</p>
     </div>
   )
+}
+
+SubTitle.propTypes = {
+  date: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired
 }
 
 export default Info;

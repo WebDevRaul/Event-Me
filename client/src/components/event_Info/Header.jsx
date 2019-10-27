@@ -1,12 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Title from '../common/title/Title';
 import ButtonOne from '../common/buttonOne/ButtonOne';
 
-const date = new Date().toISOString().slice(0, 10);
-const name = 'Joana'
 
-const Header = () => {
+const Header = ({ date, name }) => {
   return (
     <div className='header'>
       <div className='top'>
@@ -21,6 +20,11 @@ const Header = () => {
       </div>
     </div>
   )
+};
+
+Header.propTypes = {
+  date: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired
 }
 
 export default Header;

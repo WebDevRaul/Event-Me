@@ -1,4 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { state_selectedEvent } from '../../redux/selectors/event';
 
 import Header from '../../components/event_Info/Header';
 import Info from '../../components/event_Info/Info';
@@ -7,23 +11,31 @@ import SideBar from '../../components/event_Info/SideBar';
 
 import StyledEventInfo from './Styled_EventInfo';
 
-const EventInfo = () => {
+const EventInfo = ({ state: { date, hostedBy, description, members} }) => {
   return (
     <StyledEventInfo>
       <div className='event-info'>
         <div className="row no-gutters">
           <div className="col-12 col-sm-8">
-            <Header />
-            <Info />
+            <Header date={date} name={hostedBy} />
+            <Info date={date} text={description} />
             <Chat />
           </div>
           <div className="col-12 col-sm-4">
-            <SideBar />
+            <SideBar arr={members} />
           </div>
         </div>
       </div>
     </StyledEventInfo>
   )
+};
+
+EventInfo.propTypes = {
+  state: PropTypes.object.isRequired
 }
 
-export default EventInfo;
+const mapStateToProps = createStructuredSelector({
+  state: state_selectedEvent
+});
+
+export default connect(mapStateToProps, null)(EventInfo);

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import SubTitle from '../../components/common/subTitle/SubTitle';
 
 const User = ({ onClick, onSignOut }) => {
-  const name = 'Joana'
+  const name = 'Joana';
   return (
     <div className='user' onClick={onClick}>
       <SubTitle text={name} /><span></span>

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Person = ({ name }) => {
+const Person = ({ person: { name } }) => {
   return (
     <div className='person'>
       {name}

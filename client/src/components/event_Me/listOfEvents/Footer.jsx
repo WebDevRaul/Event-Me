@@ -17,7 +17,7 @@ const Footer = ({ description, title, id, history, select_event }) => {
   return (
     <div className='footer'>
       <SubTitle text={description} />
-        <ButtonOne text='View' onClick={onClick} isClass='blue' />
+      <ButtonOne text='View' onClick={onClick} isClass='blue' />
     </div>
   )
 }

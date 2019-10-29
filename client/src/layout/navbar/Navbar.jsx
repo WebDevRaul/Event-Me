@@ -17,7 +17,7 @@ const Navbar = ({ history: { location: { pathname } } }) => {
   const onClick = () => { setShow(!show) };
   const onSignOut = () => {}
   
-  const isAuth = true;
+  const isAuth = false;
 
   return (
     <StyledNavbar show={show}>

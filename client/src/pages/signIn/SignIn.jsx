@@ -6,6 +6,8 @@ import { createStructuredSelector } from 'reselect';
 import Input from '../../components/common/input/Input';
 import StyledSignIn from './Styled_SignIn';
 import ButtonOne from '../../components/common/buttonOne/ButtonOne';
+import Circle from '../../components/common/circle/Circle';
+import User from '../../assets/svg/user';
 
 
 
@@ -23,6 +25,7 @@ const SignIn = () => {
   return (
     <StyledSignIn>
       <div className='sign-in'>
+        {/* <Circle /> */}
         <form noValidate >
           <Input 
             name='email'

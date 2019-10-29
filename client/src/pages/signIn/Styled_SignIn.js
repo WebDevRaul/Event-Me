@@ -8,8 +8,8 @@ const StyledSignIn = styled.section`
   height: calc(100vh - 86px);
   width: 410px;
   .sign-in {
-    padding: 30px;
     position: relative;
+    padding: 30px;
     border: 1px solid var(--Shadow);
     border-radius: var(--BorderRadius);
     background: var(--mainWhite);

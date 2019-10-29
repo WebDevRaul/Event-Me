@@ -11,29 +11,32 @@ import NotFound from './pages/not_Found/NotFound';
 import Footer from './layout/footer/Footer';
 
 import './App.css';
+import ScrollToTop from './utils/ScrollToTop';
 
 const App = () => {
   return (
     <Router>
-      <div className='app'>
-        <Route exact path='/' component={Landing} />
-        <Route  path='/(.+)' render={() => (
-          <>
-            <Navbar />
-            <Switch>
-              <Route exact path='/event-me' component={EventMe} />
-              <Route exact path='/event-me/:id' component={EventInfo} />
-              <Redirect exact from ='/settings' to='/settings/basic' />
-              <Route exact path='/settings/:id' component={Settings} />
-              <Route exact path='/sign-in' component={SignIn} />
-              <Route exact path='/register' component={Register} />
-    
-              <Route path='*' component={NotFound} />
-            </Switch>
-            <Footer />
-          </>
-        )} />
-      </div>
+      <ScrollToTop>
+        <div className='app'>
+          <Route exact path='/' component={Landing} />
+          <Route  path='/(.+)' render={() => (
+            <>
+              <Navbar />
+              <Switch>
+                <Route exact path='/event-me' component={EventMe} />
+                <Route exact path='/event-me/:id' component={EventInfo} />
+                <Redirect exact from ='/settings' to='/settings/basic' />
+                <Route exact path='/settings/:id' component={Settings} />
+                <Route exact path='/sign-in' component={SignIn} />
+                <Route exact path='/register' component={Register} />
+      
+                <Route path='*' component={NotFound} />
+              </Switch>
+              <Footer />
+            </>
+          )} />
+        </div>
+      </ScrollToTop>
     </Router>
   )
 }

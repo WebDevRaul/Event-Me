@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import StyledUser from './Styled_User';
-import FaceBook from '../../../assets/svg/Facebook';
+import AddUserSvg from '../../../assets/svg/AddUserSvg';
 
 const User = ({ isBgk, width, height }) => {
   return (
     <StyledUser isBgk={isBgk}>
       <div className='logo'>
         <div className='inner-logo'>
-          <FaceBook width={width} height={height} />
+          <AddUserSvg width={width} height={height} />
         </div>
       </div>
     </StyledUser>

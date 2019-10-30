@@ -17,8 +17,8 @@ const StyledCircle = styled.div`
     background: var(--Shadow);
     border-radius: 50px;
     .inner-circle {
-      width: 97%;
-      height: 97%;
+      width: 98%;
+      height: 98%;
       background: var(--mainWhite);
       border-radius: 50px;
     }
@@ -29,6 +29,12 @@ const StyledCircle = styled.div`
     width: 100%;
     position: absolute;
     bottom: 0;
+  }
+  .logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 `
 

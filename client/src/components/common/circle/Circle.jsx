@@ -1,15 +1,24 @@
 import React from 'react';
-import StyledCircle from './Styled_Circle';
+import PropTypes from 'prop-types';
 import User from '../../../components/common/user/User';
 
-const Circle = () => (
+import StyledCircle from './Styled_Circle';
+
+const Circle = ({ children, isBgk }) => (
   <StyledCircle>
     <div className='top'>
       <div className='inner-circle' />
     </div>
     <div className='bottom' />
-    <User isBgk='yes' width='50px' height='50px' />
+    <User isBgk={isBgk}>
+      { children }
+    </User>
   </StyledCircle>
-)
+);
+
+Circle.propTypes = {
+  children: PropTypes.object.isRequired,
+  isBgk: PropTypes.string
+}
 
 export default Circle;

@@ -2,14 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import StyledUser from './Styled_User';
-import AddUserSvg from '../../../assets/svg/AddUserSvg';
 
-const User = ({ isBgk, width, height }) => {
+const User = ({ children, isBgk }) => {
   return (
     <StyledUser isBgk={isBgk}>
       <div className='logo'>
         <div className='inner-logo'>
-          <AddUserSvg width={width} height={height} />
+          { children }
         </div>
       </div>
     </StyledUser>
@@ -18,8 +17,7 @@ const User = ({ isBgk, width, height }) => {
 
 User.propTypes = {
   isBgk: PropTypes.string,
-  width: PropTypes.string.isRequired,
-  height: PropTypes.string.isRequired
+  children: PropTypes.object.isRequired
 }
 
 export default User;

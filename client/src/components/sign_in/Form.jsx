@@ -7,6 +7,7 @@ import { createStructuredSelector } from 'reselect';
 import { state_isAuth } from '../../redux/selectors/user';
 import Input from '../common/input/Input';
 import ButtonOne from '../common/buttonOne/ButtonOne';
+import validateSignIn from './utils/Validate';
 
 const Form = ({ sign_in, isAuth }) => {
   const [state, setState] = useState({ email: '', password: '' });
@@ -15,12 +16,19 @@ const Form = ({ sign_in, isAuth }) => {
 
   const onChange = e => setState({...state , [e.target.name]: e.target.value });
 
-  const onFocus = e => { }
+  const onFocus = e => { 
+    if( email || password !== undefined) {
+      const field = Object.keys(error).filter(i => i === e.target.name )[0];
+      setErrors({ ...error, [field]: undefined });
+    }
+  }
 
   const onSubmit = e => {
     e.preventDefault();
-    // Validate SignIn form
-    sign_in({ user: { email, password }, isAuth: true });
+    // Validate form
+    const { errors, isValid } = validateSignIn({ email, password });
+    if(!isValid) { setErrors({ ...error, ...errors }) } 
+    else { sign_in({ user: { email, password }, isAuth: true }); }
   };
 
   // Redirect on Dashboard

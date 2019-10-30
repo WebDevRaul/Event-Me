@@ -1,7 +1,7 @@
 import Validator from 'validator';
 import isEmpty from '../../common/isEmpty/isEmpty';
 
-const validateRegister = ({user}) => {
+const validateRegister = user => {
   let errors = {};
 
   // Check if Empty
@@ -32,9 +32,9 @@ const validateRegister = ({user}) => {
   }
 
   // Validate Empty
-  // if (Validator.isEmpty(user.first_name)) {
-  //   errors.first_name = 'First name field is required!'
-  // }
+  if (Validator.isEmpty(user.first_name)) {
+    errors.first_name = 'First name field is required!'
+  }
   if (Validator.isEmpty(user.last_name)) {
     errors.last_name = 'Last name field is required!'
   }

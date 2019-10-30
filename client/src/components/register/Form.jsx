@@ -9,14 +9,16 @@ import validateRegister from './utils/Validate';
 
 const Form = ({ register, history }) => {
   const [state, setState] = useState({ first_name: '', last_name: '', email: '', password: '', password2: '' });
-  const [ error, setErrors ] = useState({ email: undefined, password: undefined });
+  const [ error, setErrors ] = useState({ 
+    first_name: undefined, last_name: undefined,  email: undefined, password: undefined, password2: undefined 
+  });
   const { first_name, last_name, email, password, password2 } = state;
 
   const onChange = e => setState({...state , [e.target.name]: e.target.value });
 
   const onFocus = e => { 
     if(first_name || last_name || email || password || password2 !== undefined) {
-      const field = Object.keys(error).filter(i => { return i === e.target.name })[0];
+      const field = Object.keys(error).filter(i => i === e.target.name )[0];
       setErrors({ ...error, [field]: undefined });
     }
   }
@@ -25,7 +27,7 @@ const Form = ({ register, history }) => {
     e.preventDefault();
     const user = { first_name, last_name, email, password }
     // Validate form
-    const { errors, isValid } = validateRegister({ user });
+    const { errors, isValid } = validateRegister(user);
     if(!isValid) { setErrors({ ...error, ...errors }) } 
     else { register({ user, history }) }
   }

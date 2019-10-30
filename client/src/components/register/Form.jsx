@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
+import { register } from '../../redux/actions/user';
 import Input from '../common/input/Input';
 import ButtonOne from '../common/buttonOne/ButtonOne';
 
-const Form = () => {
+const Form = ({ register, history }) => {
   const [state, setState] = useState({ first_name: '', last_name: '', email: '', password: '', password2: '' });
   const [ error, setErrors ] = useState({ email: undefined, password: undefined });
   const { first_name, last_name, email, password, password2 } = state;
@@ -17,6 +17,9 @@ const Form = () => {
 
   const onSubmit = e => {
     e.preventDefault();
+    const user = { first_name, last_name, email, password }
+    // Validate form
+    register({ user, history })
   }
 
   return (
@@ -72,11 +75,7 @@ const Form = () => {
 }
 
 Form.propTypes = {
-
+  register: PropTypes.func.isRequired
 };
 
-const mapStateToProps = createStructuredSelector({
-
-});
-
-export default connect(mapStateToProps, {  })(Form);
+export default connect( null , { register })(withRouter(Form));

@@ -23,12 +23,6 @@ const StyledButtonOne = styled.div`
   .green {
     background: var(--Green);
   }
-  .grey {
-    background: var(--Grey);
-  }
-  .black {
-    background: var(--mainBlack);
-  }
   .blue {
     background: var(--Blue);
   }

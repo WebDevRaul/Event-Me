@@ -45,7 +45,7 @@ const StyledNavbar = styled.div`
         display: flex;
         position: relative;
         .button-one {
-          width: 125px;
+          width: 116px;
         }
         .user {
           min-width: 175px;
@@ -131,9 +131,6 @@ const StyledNavbar = styled.div`
           display: flex;
           flex-direction: column;
           align-items: center;
-          .button-one {
-            width: 158px;
-          }
           li {
             height: 50px;
           }

@@ -5,7 +5,7 @@ const StyledSignIn = styled.section`
   flex-direction: column;
   justify-content: center;
   margin: 0 auto;
-  height: calc(100vh - 86px);
+  min-height: calc(100vh - 86px);
   width: 410px;
   .sign-in {
     position: relative;
@@ -13,6 +13,12 @@ const StyledSignIn = styled.section`
     border: 1px solid var(--Shadow);
     border-radius: var(--BorderRadius);
     background: var(--mainWhite);
+    .button-one {
+      display: flex;
+      justify-content: center;
+      width: 80%;
+      text-transform: uppercase;
+    }
   }
 `
 

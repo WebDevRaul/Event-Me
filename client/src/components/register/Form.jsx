@@ -15,9 +15,12 @@ const Form = () => {
 
   const onFocus = e => { }
 
-  const onSubmit = e => {}
+  const onSubmit = e => {
+    e.preventDefault();
+  }
+
   return (
-    <form noValidate >
+    <form noValidate onSubmit={onSubmit} >
       <Input 
         name='first_name'
         label='First Name'
@@ -63,7 +66,7 @@ const Form = () => {
         type='password'
         error={error.password2}
       />
-      <ButtonOne text='Submit' onClick={onSubmit} isClass='blue' />
+      <ButtonOne text='Register' isClass='blue' type='submit' />
     </form>
   )
 }

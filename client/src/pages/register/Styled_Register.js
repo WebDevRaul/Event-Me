@@ -14,6 +14,12 @@ const StyledRegister = styled.section`
     border: 1px solid var(--Shadow);
     border-radius: var(--BorderRadius);
     background: var(--mainWhite);
+    .button-one {
+      display: flex;
+      justify-content: center;
+      width: 80%;
+      text-transform: uppercase;
+    }
   }
 `
 

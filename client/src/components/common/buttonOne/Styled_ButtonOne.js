@@ -2,21 +2,16 @@ import styled from 'styled-components';
 
 const StyledButtonOne = styled.div`
   .button-one {
-    padding: 11px 21px;
+    padding: 10px 15px;
     margin: auto;
     letter-spacing: var(--Spacing);
     border-radius: var(--BorderRadius);
-    text-align: center;
     background: transparent;
-    p {
-      margin: 0px !important;
-      color: var(--mainWhite);
-    }
+    color: var(--mainWhite);
+    border: none;
     &:hover {
       cursor: pointer;
-      & p {
-        color: var(--Pcolor);
-      }
+      color: var(--Pcolor);
     }
   }
   .box {

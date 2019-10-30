@@ -3,15 +3,17 @@ import PropTypes from 'prop-types';
 
 import StyledButtonOne from './Styled_ButtonOne';
 
-const ButtonOne = ({ text, isClass, onClick }) => {
+const ButtonOne = ({ text, isClass, onClick, type }) => {
   return (
     <StyledButtonOne>
-      <div className={`button-one ${isClass}`} onClick={onClick}>
-        <p>{text}</p>
-      </div>
+      <button className={`button-one ${isClass}`} type={type} onClick={onClick}>{text}</button>
     </StyledButtonOne>
   )
 };
+
+ButtonOne.defaultProps = {
+  type: 'text'
+}
 
 ButtonOne.propTypes = {
   text: PropTypes.string.isRequired,

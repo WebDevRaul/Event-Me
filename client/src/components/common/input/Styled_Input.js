@@ -14,9 +14,9 @@ const shrink = () => `
 
 const StyledInput = styled.div`
   position: relative;
-  margin: 40px 0;
+  margin: 25px 0;
   .form-input {
-    padding: 22px 12px 10px;
+    padding: 10px;
     width: 100%;
     border: 1px solid var(--Shadow);
     border-radius: var(--BorderRadius);
@@ -26,15 +26,17 @@ const StyledInput = styled.div`
   }
 
   input[type='password'] {
-    letter-spacing: 0.3em;
+    letter-spacing: .3em;
   }
 
   .form-input-label {
-    letter-spacing: var(--Spacing);
-    top: 18px;
-    left: 12px;
-    text-transform: uppercase;
     position: absolute;
+    top: 11px;
+    left: 12px;
+    color: var(--mainBlack);
+    letter-spacing: var(--Spacing);
+    text-transform: uppercase;
+    font-weight: 500;
     transition: var(--Transition);
     &.shrink {
       ${shrink}

@@ -4,11 +4,10 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import Input from '../../components/common/input/Input';
-import StyledSignIn from './Styled_SignIn';
 import ButtonOne from '../../components/common/buttonOne/ButtonOne';
 import Circle from '../../components/common/circle/Circle';
 
-
+import StyledSignIn from './Styled_SignIn';
 
 const SignIn = () => {
   const [state, setState] = useState({ email: '', password: '' });

@@ -1,23 +1,26 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { sign_out } from '../../redux/actions/user';
+import { createStructuredSelector } from 'reselect';
+import { state_isAuth } from '../../redux/selectors/user';
 import classnames  from 'classnames';
 import { Link } from 'react-router-dom';
 
 import Guest from './Guest';
 import User from './User';
-
-import StyledNavbar from './Styled_Navbar';
 import ButtonOne from '../../components/common/buttonOne/ButtonOne';
 
-const Navbar = ({ history: { location: { pathname } } }) => {
+import StyledNavbar from './Styled_Navbar';
+
+const Navbar = ({ isAuth, sign_out }) => {
   const [isOpen, setOpen] = useState(false);
   const [show, setShow] = useState(false);
 
   const onToggle = () => setOpen(!isOpen);
   const onClick = () => { setShow(!show) };
-  const onSignOut = () => {}
-  
-  const isAuth = false;
+  const onSignOut = () => sign_out();
 
   return (
     <StyledNavbar show={show}>
@@ -42,6 +45,15 @@ const Navbar = ({ history: { location: { pathname } } }) => {
       </nav>
     </StyledNavbar>
   )
-}
+};
 
-export default withRouter(Navbar);
+Navbar.propTypes = {
+  isAuth: PropTypes.bool.isRequired,
+  sign_out: PropTypes.func.isRequired
+};
+
+const mapStateToProps = createStructuredSelector({
+  isAuth: state_isAuth
+});
+
+export default connect( mapStateToProps, { sign_out } )(withRouter(Navbar));

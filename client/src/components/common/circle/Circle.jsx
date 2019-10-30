@@ -8,7 +8,7 @@ const Circle = () => (
       <div className='inner-circle' />
     </div>
     <div className='bottom' />
-    <User />
+    <User isBgk='yes' width='50px' height='50px' />
   </StyledCircle>
 )
 

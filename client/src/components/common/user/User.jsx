@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import StyledUser from './Styled_User';
-import UserSvg from '../../../assets/svg/user';
+import FaceBook from '../../../assets/svg/Facebook';
 
 const User = ({ isBgk, width, height }) => {
   return (
-    <StyledUser>
+    <StyledUser isBgk={isBgk}>
       <div className='logo'>
         <div className='inner-logo'>
-          <User width='50px' height='50px' />
+          <FaceBook width={width} height={height} />
         </div>
       </div>
     </StyledUser>
@@ -17,7 +17,7 @@ const User = ({ isBgk, width, height }) => {
 }
 
 User.propTypes = {
-  isBgk: PropTypes.string.isRequired,
+  isBgk: PropTypes.string,
   width: PropTypes.string.isRequired,
   height: PropTypes.string.isRequired
 }

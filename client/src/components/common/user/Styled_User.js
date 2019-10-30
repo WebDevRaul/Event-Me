@@ -12,7 +12,7 @@ const StyledUser = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 50px;
-    background: var(--Scolor);
+    background: ${({ isBgk }) => isBgk ? 'var(--Scolor)' : 'var(--Pcolor)'};
     .inner-logo {
       display: flex;
       justify-content: center;

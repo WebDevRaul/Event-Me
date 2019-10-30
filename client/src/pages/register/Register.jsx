@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import Circle from '../../components/common/circle/Circle';
 import Form from '../../components/register/Form';

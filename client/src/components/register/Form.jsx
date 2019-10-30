@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { register } from '../../redux/actions/user';
 import Input from '../common/input/Input';
 import ButtonOne from '../common/buttonOne/ButtonOne';
+import validateRegister from './utils/Validate';
 
 const Form = ({ register, history }) => {
   const [state, setState] = useState({ first_name: '', last_name: '', email: '', password: '', password2: '' });
@@ -13,13 +14,20 @@ const Form = ({ register, history }) => {
 
   const onChange = e => setState({...state , [e.target.name]: e.target.value });
 
-  const onFocus = e => { }
+  const onFocus = e => { 
+    if(first_name || last_name || email || password || password2 !== undefined) {
+      const field = Object.keys(error).filter(i => { return i === e.target.name })[0];
+      setErrors({ ...error, [field]: undefined });
+    }
+  }
 
   const onSubmit = e => {
     e.preventDefault();
     const user = { first_name, last_name, email, password }
     // Validate form
-    register({ user, history })
+    const { errors, isValid } = validateRegister({ user });
+    if(!isValid) { setErrors({ ...error, ...errors }) } 
+    else { register({ user, history }) }
   }
 
   return (

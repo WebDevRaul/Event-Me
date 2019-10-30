@@ -1,4 +1,4 @@
 active link navbar
 close navbar user-links on click outside?
 validate SignIn form
-validate Register form
+validate Register form (Error for longer then 30 char) & more validation

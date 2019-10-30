@@ -16,7 +16,7 @@ const Input = ({ name, label, value, onChange, onFocus, type, error }) => {
         autoComplete='true'
         required
       />
-      <label className={classnames('form-input-label', { 'shrink': value })} >
+      <label className={classnames('form-input-label', { 'shrink': value || error })} >
         {error ? error : label}
       </label>
     </StyledInput>

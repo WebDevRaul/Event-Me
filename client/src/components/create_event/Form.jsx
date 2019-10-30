@@ -1,17 +1,30 @@
 import React, { useState } from 'react';
 import ButtonOne from '../common/buttonOne/ButtonOne';
 import Input from '../common/input/Input';
+import validateEvent from './utils/Validate';
 
 const Form = () => {
-  const [ state, setState ] = useState({ title: '', date: '', city: '', location: '', hosted: ''});
-  const [error, setError] = useState({});
-  const { title, date, city, location, hosted } = state;
+  const [ state, setState ] = useState({ title: '', date: '', city: '', location: '', description: ''});
+  const [error, setErrors] = useState({
+    title: undefined, date: undefined, city: undefined, location: undefined, description: undefined
+  });
+  const { title, date, city, location, description } = state;
 
   const onChange = e => setState({...state , [e.target.name]: e.target.value });
   const onClick = () => {}
-  const onFocus = () => {};
+  const onFocus = e => {
+    if(title || date || city || location || description !== undefined) {
+      const field = Object.keys(error).filter(i => i === e.target.name )[0];
+      setErrors({ ...error, [field]: undefined });
+    }
+  };
+
   const onSubmit = e => {
     e.preventDefault();
+    const data = { title, date, city, location, description };
+    const { errors, isValid } = validateEvent(data);
+    if(!isValid) { setErrors({ ...error, ...errors }) } 
+    else {  }
   };
   return (
     <form noValidate onSubmit={onSubmit}>
@@ -46,14 +59,6 @@ const Form = () => {
         onChange={onChange} 
         onFocus={onFocus} 
         error={error.location}
-      />
-      <Input 
-        name='hosted' 
-        label='Hosted By' 
-        value={hosted} 
-        onChange={onChange} 
-        onFocus={onFocus} 
-        error={error.hosted}
       />
       <div className='submit'>
         <ButtonOne isClass='green' text='submit' type='submit' />

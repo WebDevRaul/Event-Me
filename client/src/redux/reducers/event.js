@@ -1,11 +1,11 @@
 import { EVENTS } from '../actions/types';
 
-const initialState = {
+const INITIAL_STATE = {
   events: [],
   selectedEvent: {}
 };
 
-const eventMe = (state=initialState, action) => {
+const eventMe = (state=INITIAL_STATE, action) => {
   const { payload } = action;
   switch(action.type) {
     case EVENTS.UPDATE_EVENT:

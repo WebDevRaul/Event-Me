@@ -1,2 +1,3 @@
 active link navbar
 close navbar user-links on click outside?
+validate SignIn form

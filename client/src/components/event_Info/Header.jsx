@@ -9,11 +9,13 @@ import Title from '../common/title/Title';
 import ButtonOne from '../common/buttonOne/ButtonOne';
 
 
-const Header = ({ title, date, name, event_id, isAuth, user, join_event }) => {
+const Header = ({ isAuth, user, join_event, state }) => {
+  const { title, date, hostedBy } = state;
   const onClick = () => {
     if(!isAuth) return null;
     const { name, id } = user;
-    join_event({ event_id, user: { id, name } })
+    const event = { ...state, members: [...state.members, {name, id}] }
+    join_event(event)
   }
   return (
     <div className='header'>
@@ -21,7 +23,7 @@ const Header = ({ title, date, name, event_id, isAuth, user, join_event }) => {
         <div>
         <Title text={title} />
         <time>{date}</time>
-        <p>Sugested by <strong>{name}</strong></p>
+        <p>Sugested by <strong>{hostedBy}</strong></p>
         </div>
       </div>
       <div className='buttom'>
@@ -32,9 +34,7 @@ const Header = ({ title, date, name, event_id, isAuth, user, join_event }) => {
 };
 
 Header.propTypes = {
-  title: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
+  state: PropTypes.object.isRequired,
   isAuth: PropTypes.bool.isRequired,
   user: PropTypes.object.isRequired,
   join_event: PropTypes.func.isRequired

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { state_selectedEvent } from '../../redux/selectors/event';
+import { state_events } from '../../redux/selectors/event';
 
 import Header from '../../components/event_Info/Header';
 import Info from '../../components/event_Info/Info';
@@ -11,13 +11,18 @@ import SideBar from '../../components/event_Info/SideBar';
 
 import StyledEventInfo from './Styled_EventInfo';
 
-const EventInfo = ({ state: {title, date, hostedBy, description, members, id} }) => {
+const EventInfo = ({ state, history: { location: { pathname } } }) => {
+  const end_id = pathname.slice(10).indexOf('-');
+  const event_id = pathname.slice(10).slice(0, end_id); 
+  const event_state = state.filter(i => i.id === event_id)[0];
+  const { date, description, members } = event_state;
+
   return (
     <StyledEventInfo>
       <div className='event-info'>
         <div className="row no-gutters">
           <div className="col-12 col-sm-8">
-            <Header title={title} date={date} name={hostedBy} event_id={id} />
+            <Header state={event_state} />
             <Info date={date} text={description} />
             <Chat />
           </div>
@@ -31,11 +36,12 @@ const EventInfo = ({ state: {title, date, hostedBy, description, members, id} })
 };
 
 EventInfo.propTypes = {
-  state: PropTypes.object.isRequired
+  state: PropTypes.array.isRequired,
+  history: PropTypes.object.isRequired
 }
 
 const mapStateToProps = createStructuredSelector({
-  state: state_selectedEvent
+  state: state_events
 });
 
 export default connect(mapStateToProps, null)(EventInfo);

@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import validateEvent from './utils/Validate';
+import { connect } from 'react-redux';
+import { create_event } from '../../redux/actions/event';
+import { createStructuredSelector } from 'reselect';
+import { state_isAuth, state_user_name } from '../../redux/selectors/user';
+
 import ButtonOne from '../common/buttonOne/ButtonOne';
 import Input from '../common/input/Input';
-import validateEvent from './utils/Validate';
 import TextArea from '../common/textarea/Textarea';
 
-const Form = () => {
+const Form = ({ create_event, isAuth, name }) => {
   const [ state, setState ] = useState({ title: '', date: '', city: '', location: '', description: '' });
   const [error, setErrors] = useState({
     title: undefined, date: undefined, city: undefined, location: undefined, description: undefined
@@ -27,10 +33,11 @@ const Form = () => {
 
   const onSubmit = e => {
     e.preventDefault();
-    const data = { title, date, city, location, description };
+    const data = { title, date, city, location, description, hostedBy: name };
     const { errors, isValid } = validateEvent(data);
+    // if(!isAuth) return null;
     if(!isValid) { setErrors({ ...error, ...errors }) } 
-    else {  }
+    else { create_event(data) }
   };
 
   return (
@@ -81,6 +88,17 @@ const Form = () => {
       <ButtonOne isClass='blue' text='Cancel' onClick={onClick} />
     </>
   )
-}
+};
 
-export default Form;
+Form.propTypes = {
+  create_event: PropTypes.func.isRequired,
+  isAuth: PropTypes.bool.isRequired,
+  name: PropTypes.string
+};
+
+const mapStateToProps = createStructuredSelector({
+  isAuth: state_isAuth,
+  name: state_user_name
+});
+
+export default connect( mapStateToProps, { create_event })(Form);

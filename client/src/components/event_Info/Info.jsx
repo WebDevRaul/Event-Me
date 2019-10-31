@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import SubTitle from '../common/subTitle/SubTitle';
-
 const Info = ({ date, text }) => {
   return (
     <div className='info'>
@@ -13,7 +11,7 @@ const Info = ({ date, text }) => {
   )
 }
 
-SubTitle.propTypes = {
+Info.propTypes = {
   date: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired
 }

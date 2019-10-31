@@ -14,15 +14,13 @@ const StyledCreateEvent = styled.section`
     border: 1px solid var(--Shadow);
     border-radius: var(--BorderRadius);
     background: var(--mainWhite);
-    form {
-      .submit {
-        margin: 0 5%;
-        display: flex;
-        justify-content: space-between;
-        .button-one {
-          width: 116px;
-        }
-      }
+    .button-one {
+      width: 116px;
+    }
+    .blue {
+      position: absolute;
+      bottom: 30px;
+      right: 20px;
     }
   }
 `

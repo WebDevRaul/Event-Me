@@ -6,15 +6,33 @@ const validateEvent = data => {
 
   // Check if Empty
   data.title = !isEmpty(data.title) ? data.title : '';
+  data.city = !isEmpty(data.city) ? data.city : '';
+  data.location = !isEmpty(data.location) ? data.location : '';
+  data.description = !isEmpty(data.description) ? data.description : '';
 
-  // Validate Name
+  // Validate Fields
   if (!Validator.isLength(data.title, { min:2, max: 30 })) {
     errors.title = 'Title must be between 2 and 30 characters';
+  }
+  if (!Validator.isLength(data.description, { min:10, max: 500 })) {
+    errors.description = 'Description must be between 10 and 500 characters';
   }
 
   // Validate Empty
   if (Validator.isEmpty(data.title)) {
     errors.title = 'Title field is required!'
+  }
+  if (Validator.isEmpty(data.date)) {
+    errors.date = 'Date field is required!'
+  }
+  if (Validator.isEmpty(data.city)) {
+    errors.city = 'City field is required!'
+  }
+  if (Validator.isEmpty(data.location)) {
+    errors.location = 'Location field is required!'
+  }
+  if (Validator.isEmpty(data.description)) {
+    errors.description = 'Description field is required!'
   }
 
   // Return errors

@@ -51,6 +51,12 @@ const StyledTextarea = styled.div`
   .over {
     color: var(--Error);
   }
+  .validate {
+    border-color: var(--Error);
+  }
+  .validate ~ .label {
+    color: var(--Error);
+  }
 `
 
 export default StyledTextarea;

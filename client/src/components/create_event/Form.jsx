@@ -12,7 +12,9 @@ const Form = () => {
   const { title, date, city, location, description } = state;
 
   const onChange = e => setState({...state , [e.target.name]: e.target.value });
+
   const onClick = () => {}
+
   const onFocus = e => {
     if(title || date || city || location || description !== undefined) {
       const field = Object.keys(error).filter(i => i === e.target.name )[0];
@@ -27,6 +29,7 @@ const Form = () => {
     if(!isValid) { setErrors({ ...error, ...errors }) } 
     else {  }
   };
+
   return (
     <form noValidate onSubmit={onSubmit}>
       <Input 

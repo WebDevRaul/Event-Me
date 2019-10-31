@@ -23,33 +23,36 @@ const TextArea = ({ name, label, text, onChange, onFocus, error }) => {
     setState({ row: 1, focus: 0 })
   };
 
-  const onFocusTextarea = () => {
-    if(row === 1) setState({ row: 3, focus: 1 });
-  }
+  const onFocusTextarea = () => { if(row === 1) setState({ row: 3, focus: 1 }) };
 
   return (
     <StyledTextarea focus={focus}>
-      <Textarea 
-        className='ref'
-        minRows={row} 
-        ref={outsideRef}
-        name={name} 
-        value={text}
-        onChange={e => onChange(e)} 
-        onFocus={onFocusTextarea} 
-      />
-      <span className={classnames('badge', { 'over': text.length > 50 })}>{text.length}</span>
-      <label className={classnames('label', { 'shrink': text || error })} >
-        {error ? error : label}
-      </label>
+      <div onFocus={onFocus}>
+        <Textarea 
+          className={classnames('ref', {'validate' : error})}
+          minRows={row} 
+          ref={outsideRef}
+          name={name} 
+          value={text}
+          onChange={e => onChange(e)} 
+          onFocus={onFocusTextarea} 
+        />
+        <span className={classnames('badge', {'d-none': !focus, 'over': text.length > 500 })}>{text.length}</span>
+        <label className={classnames('label', { 'shrink': text || error })} >
+          {error ? error : label}
+        </label>
+      </div>
     </StyledTextarea>
   )
 }
 
 TextArea.propTypes = {
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
   text: PropTypes.string,
   onChange: PropTypes.func.isRequired,
-  onFocus: PropTypes.func.isRequired
+  onFocus: PropTypes.func.isRequired,
+  error: PropTypes.string
 }
 
 export default TextArea;

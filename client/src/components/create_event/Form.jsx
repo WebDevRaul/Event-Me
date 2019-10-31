@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ButtonOne from '../common/buttonOne/ButtonOne';
 import Input from '../common/input/Input';
 import validateEvent from './utils/Validate';
+import TextArea from '../common/textarea/Textarea';
 
 const Form = () => {
   const [ state, setState ] = useState({ title: '', date: '', city: '', location: '', description: ''});
@@ -60,6 +61,14 @@ const Form = () => {
         onFocus={onFocus} 
         error={error.location}
       />
+      <TextArea
+        name='description' 
+        label='description'
+        text={description}
+        onChange={onChange} 
+        onFocus={onFocus} 
+        error={error.description}
+        />
       <div className='submit'>
         <ButtonOne isClass='green' text='submit' type='submit' />
         <ButtonOne isClass='blue' text='Cancel' onClick={onClick} />

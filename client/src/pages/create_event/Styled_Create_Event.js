@@ -7,6 +7,14 @@ const StyledCreateEvent = styled.section`
   margin: 0 auto;
   min-height: calc(100vh - 86px);
   width: 410px;
+  .go-back {
+    display: flex;
+    justify-content: flex-end;
+    .button-one {
+      font-weight: 600;
+      color: var(--Pcolor);
+    }
+  }
   .create-event {
     position: relative;
     padding: 40px 20px 30px;
@@ -15,7 +23,7 @@ const StyledCreateEvent = styled.section`
     border-radius: var(--BorderRadius);
     background: var(--mainWhite);
     .button-one {
-      width: 116px;
+    width: 116px;
     }
     .blue {
       position: absolute;

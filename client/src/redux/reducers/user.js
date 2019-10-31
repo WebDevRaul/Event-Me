@@ -7,7 +7,6 @@ const INITIAL_STATE = {
 
 const user = (state=INITIAL_STATE, action) => {
   const { payload } = action;
-  console.log(payload)
   switch(action.type) {
     case USER.REGISTER:
       return { ...state, info: payload.user }

@@ -18,6 +18,7 @@ const StyledTextarea = styled.div`
   textarea {
     width: 100%;
     padding: 10px;
+    min-height: 40.87px;
     border: 1px solid var(--Shadow);
     border-radius: var(--BorderRadius);
     overflow-y: hidden;
@@ -35,7 +36,7 @@ const StyledTextarea = styled.div`
     letter-spacing: var(--Spacing);
     text-transform: uppercase;
     font-weight: 500;
-    transition: var(--Transition); 
+    transition: var(--Transition);
     &.shrink {
       ${shrink}
     }   

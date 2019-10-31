@@ -83,7 +83,7 @@ const Form = ({ create_event, isAuth, name }) => {
           onFocus={onFocus} 
           error={error.description}
           />
-          <ButtonOne isClass='green' text='submit' type='submit' />
+          <ButtonOne isClass='green' text='Submit' type='submit' />
       </form>
       <ButtonOne isClass='blue' text='Cancel' onClick={onClick} />
     </>

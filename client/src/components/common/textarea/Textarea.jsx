@@ -35,7 +35,7 @@ const TextArea = ({ name, label, text, onChange, onFocus, error }) => {
           name={name} 
           value={text}
           onChange={e => onChange(e)} 
-          onFocus={onFocusTextarea} 
+          onFocus={onFocusTextarea}
         />
         <span className={classnames('badge', {'d-none': !focus, 'over': text.length > 500 })}>{text.length}</span>
         <label className={classnames('label', { 'shrink': text || error })} >

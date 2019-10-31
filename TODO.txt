@@ -2,4 +2,3 @@ active link navbar
 close navbar user-links on click outside?
 validate Register/SignIn form (Error for longer then 30 char) & more validation
 validate create event, add textarea
-github name change

@@ -7,7 +7,7 @@ export const state_isAuth = createSelector(
   [select_isAuth_state],
   state => state
 );
-export const state_user_name = createSelector(
+export const state_user = createSelector(
   [select_user_state],
-  state => state.name
+  state => state
 );

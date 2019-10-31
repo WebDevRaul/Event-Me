@@ -11,3 +11,7 @@ export const select_event = id => {
 export const create_event = event => {
   return { type: EVENTS.CREATE_EVENT, payload: {...event, id: '3', members: []} }
 }
+
+export const join_event = data => {
+  return { type: EVENTS.JOIN_EVENT, payload: data }
+}

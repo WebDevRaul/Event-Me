@@ -8,7 +8,7 @@ export const register = data => {
 
 export const sign_in = data => {
   const { email } = data.user;
-  return { type: USER.SIGN_IN, payload: { user: { email, name: 'Joana' }, isAuth: true } }
+  return { type: USER.SIGN_IN, payload: { user: { email, name: 'Joana', id: '5a' }, isAuth: true } }
 }
 
 export const sign_out = () => {

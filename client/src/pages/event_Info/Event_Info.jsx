@@ -11,13 +11,13 @@ import SideBar from '../../components/event_Info/SideBar';
 
 import StyledEventInfo from './Styled_EventInfo';
 
-const EventInfo = ({ state: {title, date, hostedBy, description, members} }) => {
+const EventInfo = ({ state: {title, date, hostedBy, description, members, id} }) => {
   return (
     <StyledEventInfo>
       <div className='event-info'>
         <div className="row no-gutters">
           <div className="col-12 col-sm-8">
-            <Header title={title} date={date} name={hostedBy} />
+            <Header title={title} date={date} name={hostedBy} event_id={id} />
             <Info date={date} text={description} />
             <Chat />
           </div>

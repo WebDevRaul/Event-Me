@@ -1,4 +1,4 @@
-import photo from '../../../assets/images/questionMark.jpg';
+import photo from '../../assets/images/questionMark.jpg';
 
 const data = [
   {
@@ -18,7 +18,7 @@ const data = [
         photo: photo
       },
       {
-        id: '1b',
+        id: '2a',
         name: 'Marius',
         photo: photo
       }
@@ -36,12 +36,12 @@ const data = [
     hostPhoto: photo,
     members: [
       {
-        id: '1a',
+        id: '3a',
         name: 'Vasilica',
         photo: photo
       },
       {
-        id: '1b',
+        id: '4a',
         name: 'Gheorghita',
         photo: photo
       }

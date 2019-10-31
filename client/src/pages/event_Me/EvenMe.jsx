@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { update_events } from '../../redux/actions/event';
-import data from './data/TempData';
 
 import ListOfEvents from '../../components/event_Me/listOfEvents/ListOfEvents';
 import RecentEvents from '../../components/event_Me/recentEvents/RecentEvents';
@@ -10,7 +9,7 @@ import RecentEvents from '../../components/event_Me/recentEvents/RecentEvents';
 
 const EventMe = ({ update_events }) => {
   // Initial events update
-  useEffect(() => { update_events(data) }, [update_events])
+  // useEffect(() => { update_events(data) }, [update_events])
   
   return (
       <div className='event-me'>

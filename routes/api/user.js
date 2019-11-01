@@ -13,8 +13,8 @@ router.post('/register', (req, res) => {
   const { first_name, last_name, email, password } = req.body;
   User.findOne({ email })
     .then(user => {
-      errors.email = 'Email already exists';
-      if(user) return res.status(400).json(errors);
+      errors.email = 'This E-Mail is already taken';
+      if(user) return res.status(409).json(errors);
       const newUser = new User({ first_name, last_name, email, password });
 
       bcrypt.genSalt(10,(err, salt) => {
@@ -28,4 +28,28 @@ router.post('/register', (req, res) => {
       });
     })
     .catch(err => console.log(err));
-})
+});
+
+// @route   GET api/user/sign-in
+// @desc    SignIn User / Returning JWT Token
+// @access  Public
+router.post('/sign-in', (req, res) => {
+  const { email, password } = req.body;
+  errors.emailOrPassword='Invalid E-Mail or Password';
+
+  User.findOne({ email })
+    .then(user => {
+      if(!user) res.status(404).json(errors);
+      const { id, first_name, last_name, email } = user;
+      
+      bcrypt.compare(password, user.password)
+        .then(isMatch => {
+          if(!isMatch) return res.status(404).json(errors);
+          const payload = { user_id: id, first_name, last_name, email };
+          jwt.sign(payload, SECRET_OR_KEY, { expiresIn: 3600 }, (err, token) => {
+            res.json({ success: true, token: 'Bearer ' + token });
+          });
+        })
+    })
+    .catch(err => console.log(err));
+});

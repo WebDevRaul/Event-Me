@@ -7,7 +7,6 @@ const INITIAL_STATE = {
 
 const eventMe = (state=INITIAL_STATE, action) => {
   const { payload } = action;
-  console.log(payload)
   switch(action.type) {
     case EVENTS.UPDATE_EVENT:
       return { ...state, events: payload };

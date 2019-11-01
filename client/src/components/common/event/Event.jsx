@@ -1,27 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Header from '../../event_Info/Header';
-import Info from '../../event_Info/Info';
-import Chat from '../../event_Info/Chat';
-import SideBar from '../../event_Info/SideBar';
 
-import StyledMyEvent from './Styled_Event';
+import Card from './Card';
+import Info from './Info';
+import Chat from './Chat';
+import Members from './Members';
 
-const Event = ({ state, edit }) => {
-  const { date, description, members } = state;
+import StyledEvent from './Styled_Event';
+
+const Event = ({ state: { id, title, date, hostedBy, description, members }, edit }) => {
   return (
-    <StyledMyEvent>
+    <StyledEvent>
       <div className="row no-gutters">
         <div className="col-12 col-sm-8">
-          <Header state={state} edit={edit}/>
+          <Card state={ {evt_id: id, title, date, hostedBy} } edit={edit} />
           <Info date={date} text={description} />
           <Chat />
         </div>
         <div className="col-12 col-sm-4">
-          <SideBar arr={members} />
+          <Members arr={members} />
         </div>
       </div>
-    </StyledMyEvent>
+    </StyledEvent>
   )
 };
 

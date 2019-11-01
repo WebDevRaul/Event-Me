@@ -1,7 +1,7 @@
 import { USER } from '../actions/types';
 
 const INITIAL_STATE = {
-  info: { name: 'Joana', id: '5a' },
+  info: { name: 'Joana', user_id: '5a' },
   isAuth: true
 }
 

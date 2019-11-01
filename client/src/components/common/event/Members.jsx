@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import isEmpty from '../common/isEmpty/isEmpty';
+import isEmpty from '../isEmpty/isEmpty';
 
 import Person from './Person';
 
-const SideBar = ({ arr }) => {
+const Members = ({ arr }) => {
   return (
     <div className='side-bar'>
       <div className="top">
@@ -21,8 +21,8 @@ const SideBar = ({ arr }) => {
   )
 }
 
-SideBar.propTypes = {
+Members.propTypes = {
   arr: PropTypes.array.isRequired
 }
 
-export default SideBar;
+export default Members;

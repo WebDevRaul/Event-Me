@@ -13,7 +13,10 @@ const eventMe = (state=INITIAL_STATE, action) => {
     case EVENTS.CREATE_EVENT:
       return { ...state, events: [...state.events, payload] };
     case EVENTS.JOIN_EVENT:
-      return { ...state, events: [ ...state.events.filter(i => i.id !== payload.id), payload] }
+      return { ...state, events: [ ...state.events.map(evt => {
+        if(evt.id === payload.evt_id) evt.members = [...evt.members, payload.user]
+        return evt;
+      })] }
     default:
       return state;
   }

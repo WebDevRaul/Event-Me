@@ -10,7 +10,7 @@ const Person = ({ person: { name } }) => {
 }
 
 Person.propTypes = {
-  name: PropTypes.string
+  person: PropTypes.object.isRequired
 }
 
 export default Person;

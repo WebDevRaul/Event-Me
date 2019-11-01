@@ -10,6 +10,7 @@ const data = [
     city: 'Chisinau, MLD',
     location: "Mol Dova, Nr.1",
     hostedBy: 'Joana',
+    user_id: '5a',
     hostPhoto: photo,
     members: [
       {
@@ -33,6 +34,7 @@ const data = [
     city: 'Hincesti, MLD',
     location: "Hanul lui Manuc",
     hostedBy: 'Town Hall',
+    user_id: '6a',
     hostPhoto: photo,
     members: [
       {

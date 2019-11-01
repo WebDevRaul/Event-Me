@@ -1,8 +1,8 @@
 import { USER } from '../actions/types';
 
 const INITIAL_STATE = {
-  info: {},
-  isAuth: false
+  info: { name: 'Joana', id: '5a' },
+  isAuth: true
 }
 
 const user = (state=INITIAL_STATE, action) => {

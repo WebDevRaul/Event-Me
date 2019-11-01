@@ -8,7 +8,8 @@ export const select_event = id => {
   return { type: EVENTS.SELECT_EVENT, payload: id }
 }
 
-export const create_event = event => {
+export const create_event = ({ event, history }) => {
+  history.push('/event-me');
   return { type: EVENTS.CREATE_EVENT, payload: {...event, id: '3', members: []} }
 }
 

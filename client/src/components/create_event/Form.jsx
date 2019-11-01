@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import validateEvent from './utils/Validate';
 import { connect } from 'react-redux';
 import { create_event } from '../../redux/actions/event';
@@ -10,7 +11,7 @@ import ButtonOne from '../common/buttonOne/ButtonOne';
 import Input from '../common/input/Input';
 import TextArea from '../common/textarea/Textarea';
 
-const Form = ({ create_event, isAuth, user: { name } }) => {
+const Form = ({ create_event, isAuth, user: { name, id }, history }) => {
   const [ state, setState ] = useState({ title: '', date: '', city: '', location: '', description: '' });
   const [error, setErrors] = useState({
     title: undefined, date: undefined, city: undefined, location: undefined, description: undefined
@@ -33,11 +34,11 @@ const Form = ({ create_event, isAuth, user: { name } }) => {
 
   const onSubmit = e => {
     e.preventDefault();
-    const data = { title, date, city, location, description, hostedBy: name };
-    const { errors, isValid } = validateEvent(data);
+    const event = { title, date, city, location, description, hostedBy: name , user_id: id};
+    const { errors, isValid } = validateEvent(event);
     if(!isAuth) return null;
     if(!isValid) { setErrors({ ...error, ...errors }) } 
-    else { create_event(data) }
+    else { create_event({ event, history }) }
   };
 
   return (
@@ -93,7 +94,8 @@ const Form = ({ create_event, isAuth, user: { name } }) => {
 Form.propTypes = {
   create_event: PropTypes.func.isRequired,
   isAuth: PropTypes.bool.isRequired,
-  name: PropTypes.string
+  name: PropTypes.string,
+  history: PropTypes.object.isRequired
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -101,4 +103,4 @@ const mapStateToProps = createStructuredSelector({
   user: state_user
 });
 
-export default connect( mapStateToProps, { create_event })(Form);
+export default connect( mapStateToProps, { create_event })(withRouter(Form));

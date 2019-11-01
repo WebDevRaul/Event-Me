@@ -26,6 +26,9 @@ const StyledButtonOne = styled.div`
   .blue {
     background: var(--Blue);
   }
+  .red {
+    background: var(--Error);
+  }
 `
 
 export default StyledButtonOne;

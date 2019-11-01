@@ -11,7 +11,7 @@ import Event from '../../components/common/event/Event';
 const MyEvents = ({ events }) => {
   return (
     <StyledMyEvents>
-      { events.map((i, index) => <Event edit={true} state={i} key={index} />) }
+      { events.map((i, index) => <Event key={index} state={i} edit={false}/>) }
     </StyledMyEvents>
   )
 };

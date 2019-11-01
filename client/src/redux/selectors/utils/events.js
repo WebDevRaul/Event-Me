@@ -1,5 +1,5 @@
 export  const privateEvents = state => {
   const { events } = state.eventMe;
-  const { id } = state.user.info;
-  return events.filter(i => i.user_id === id)
+  const { user_id } = state.user.info;
+  return events.filter(i => i.user_id === user_id)
 }

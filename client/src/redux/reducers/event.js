@@ -7,11 +7,12 @@ const INITIAL_STATE = {
 
 const eventMe = (state=INITIAL_STATE, action) => {
   const { payload } = action;
+  console.log(payload)
   switch(action.type) {
     case EVENTS.UPDATE_EVENT:
       return { ...state, events: payload };
     case EVENTS.CREATE_EVENT:
-      return { ...state, events: [...state.events, payload] };
+      return { ...state, events: [...state.events.filter(evt => evt.id !== payload.id), payload] };
     case EVENTS.JOIN_EVENT:
       return { ...state, events: [ ...state.events.map(evt => {
         if(evt.id === payload.evt_id) evt.members = [...evt.members, payload.user]

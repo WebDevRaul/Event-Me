@@ -10,7 +10,7 @@ export const select_event = id => {
 
 export const create_event = ({ event, history }) => {
   history.push('/event-me');
-  return { type: EVENTS.CREATE_EVENT, payload: {...event, id: '3', members: []} }
+  return { type: EVENTS.CREATE_EVENT, payload: event }
 }
 
 export const join_event = data => {

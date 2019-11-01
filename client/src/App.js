@@ -7,6 +7,7 @@ import CreateEvent from './pages/create_event/Create_Event';
 import EventInfo from './pages/event_Info/Event_Info';
 import Settings from './pages/settings_/Settings';
 import MyEvents from './pages/my_events/My_Events';
+import ManageEvent from './pages/manage_event/Manage_Event';
 import SignIn from './pages/signIn/SignIn';
 import Register from './pages/register/Register';
 import NotFound from './pages/not_Found/NotFound';
@@ -28,13 +29,15 @@ const App = () => {
               <Switch>
                 <Route exact path='/event-me' component={EventMe} />
                 <Route exact path='/event-me/:id' component={EventInfo} />
-                <Route exact path='/create-event' component={CreateEvent} />
                 <Route exact path='/sign-in' component={SignIn} />
                 <Route exact path='/register' component={Register} />
 
                 <Redirect exact from ='/settings' to='/settings/basic' />
                 <PrivateRoute exact path='/settings/:id' component={Settings} />
                 <PrivateRoute exact path='/my-events' component={MyEvents} />
+                <Redirect exact from ='/my-events/manage-event' to='/my-events/manage-event/:id' />
+                <PrivateRoute exact path='/my-events/manage-event/:id' component={ManageEvent} />
+                <PrivateRoute exact path={['/my-events/manage-event/:id/edit', '/create-event']} component={CreateEvent} />
       
                 <Route path='*' component={NotFound} />
               </Switch>

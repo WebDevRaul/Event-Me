@@ -14,16 +14,19 @@ const Card = ({ isAuth, user, join_event, state, history, edit }) => {
   const [alert, setAlert] = useState(undefined);
   const { name, user_id } = user;
   const { title, date, hostedBy, evt_id } = state;
+  const title_name = title.split(' ').join('-');
 
   const onClick = () => {
     if(!isAuth) return setAlert('Sign In to join this event');
     join_event({ evt_id, user: {name, user_id} })
   }
 
-  const onMenageEvent = () => history.push('/my-events');
+  const onMenageEvent = () => history.push(`/my-events/manage-event/${evt_id}-${title_name}`);
+  const onEdit = () => history.push(`/my-events/manage-event/${evt_id}-${title_name}/edit`);
+  const onDelete = () => {};
 
   return (
-    <div className='header'>
+    <div className='header'>  
       <div className='top'>
         <div>
         <Title text={title} />
@@ -35,8 +38,8 @@ const Card = ({ isAuth, user, join_event, state, history, edit }) => {
         {alert}
         {!edit && <ButtonOne text='JOIN THIS EVENT' isClass='blue' onClick={onClick} />}
         {(isAuth && !edit) && <ButtonOne text='MENAGE EVENT' isClass='blue' onClick={onMenageEvent} />}
-        {(isAuth && edit) && <ButtonOne text='Edit' isClass='green' onClick={onMenageEvent} />}
-        {(isAuth && edit) && <ButtonOne text='Delete' isClass='red' onClick={onMenageEvent} />}
+        {(isAuth && edit) && <ButtonOne text='Edit' isClass='green' onClick={onEdit} />}
+        {(isAuth && edit) && <ButtonOne text='Delete' isClass='red' onClick={onDelete} />}
       </div>
     </div>
   )

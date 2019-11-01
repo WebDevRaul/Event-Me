@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import validateEvent from './utils/Validate';
@@ -6,17 +6,29 @@ import { connect } from 'react-redux';
 import { create_event } from '../../redux/actions/event';
 import { createStructuredSelector } from 'reselect';
 import { state_isAuth, state_user } from '../../redux/selectors/user';
+import { state_events } from '../../redux/selectors/event';
+import { filter_event } from '../../utils/filter_event' ;
 
 import ButtonOne from '../common/buttonOne/ButtonOne';
 import Input from '../common/input/Input';
 import TextArea from '../common/textarea/Textarea';
 
-const Form = ({ create_event, isAuth, user: { name, id }, history }) => {
-  const [ state, setState ] = useState({ title: '', date: '', city: '', location: '', description: '' });
+const Form = ({ create_event, isAuth, user: { name, user_id }, history, events }) => {
+  const [ state, setState ] = useState(
+    { title: '', date: '', city: '', location: '', description: '', id: undefined, members: [] }
+  );
   const [error, setErrors] = useState({
     title: undefined, date: undefined, city: undefined, location: undefined, description: undefined
   });
-  const { title, date, city, location, description } = state;
+  const { title, date, city, location, description, id } = state;
+  const { pathname } = history.location;
+  
+  useEffect(() => {
+    const { event } = filter_event({ state: events, pathname, root: '/my-events/manage-event/' });
+    if(!!!event) return undefined;
+    const { title, date, city, location, description, id, members } = event;
+    setState({ title, date, city, location, description, id, members});
+  }, [events, pathname])
 
   const onChange = e => setState({...state , [e.target.name]: e.target.value });
 
@@ -34,7 +46,7 @@ const Form = ({ create_event, isAuth, user: { name, id }, history }) => {
 
   const onSubmit = e => {
     e.preventDefault();
-    const event = { title, date, city, location, description, hostedBy: name , user_id: id};
+    const event = { title, date, city, location, description, hostedBy: name , user_id, id};
     const { errors, isValid } = validateEvent(event);
     if(!isAuth) return null;
     if(!isValid) { setErrors({ ...error, ...errors }) } 
@@ -95,12 +107,14 @@ Form.propTypes = {
   create_event: PropTypes.func.isRequired,
   isAuth: PropTypes.bool.isRequired,
   name: PropTypes.string,
-  history: PropTypes.object.isRequired
+  history: PropTypes.object.isRequired,
+  events: PropTypes.array.isRequired
 };
 
 const mapStateToProps = createStructuredSelector({
   isAuth: state_isAuth,
-  user: state_user
+  user: state_user,
+  events: state_events
 });
 
 export default connect( mapStateToProps, { create_event })(withRouter(Form));

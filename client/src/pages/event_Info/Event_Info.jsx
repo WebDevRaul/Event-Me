@@ -10,7 +10,7 @@ import NotFound from '../not_Found/NotFound';
 import Event from '../../components/common/event/Event';
 
 const EventInfo = ({ state, history: { location: { pathname } } }) => {
-  const { event } = filter_event({ state, pathname, root: '/home/' })
+  const { event } = filter_event({ state, pathname, root: '/home/' });
   if(!!!event) return <NotFound />
   return (
     <StyledEventInfo>

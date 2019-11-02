@@ -7,8 +7,15 @@ const User = require('./models/User');
 require('dotenv').config();
 const { MONGO_DB } = require('./config/Keys');
 const user = require('./routes/api/user');
+const event = require('./routes/api/event');
+
 
 const app = express();
+
+
+// Body-Parser Middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 
 // Connect to DB
@@ -17,17 +24,16 @@ mongoose.connect(MONGO_DB, { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => console.log('MongoDB Connected'))
 .catch(err => console.log(err));
 
-// Body-Parser Middleware
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 
 // Passport Middleware & Config
 app.use(passport.initialize());
 require('./config/Passport')(passport);
-passport.serializeUser((user, done) => {done(null, user._id)});
+passport.serializeUser((user, done) => {done(null, user.id)});
 passport.deserializeUser((id, done) => User.findById(id, (err, user) => done(err, user)));
 
+
 app.use('/api/user', user);
+app.use('/api/event', event);
 
 
 // Server static assets if in production

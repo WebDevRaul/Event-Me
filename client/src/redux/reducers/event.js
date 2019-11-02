@@ -1,8 +1,8 @@
 import { EVENTS } from '../actions/types';
-import data from '../data/TempData';
 
 const INITIAL_STATE = {
-  events: [...data]
+  events: [],
+  error: {}
 };
 
 const eventMe = (state=INITIAL_STATE, action) => {
@@ -11,9 +11,11 @@ const eventMe = (state=INITIAL_STATE, action) => {
     case EVENTS.UPDATE_EVENT:
       return { ...state, events: payload };
     case EVENTS.CREATE_EVENT:
-      return { ...state, events: [...state.events.filter(evt => evt.id !== payload.id), payload] };
+      return { ...state, events: [...state.events, payload] };
     case EVENTS.JOIN_EVENT:
-      return { ...state, events: [...state.events.map(evt => evt.id === payload.evt_id ? { ...evt, members: [...evt.members, payload.user] } : evt)] }
+      return { ...state, events: [...state.events.map(evt => evt.id === payload.evt_id ? { ...evt, members: [...evt.members, payload.user] } : evt)] };
+      case EVENTS.ERROR:
+        return { ...state, error: payload }
     default:
       return state;
   }

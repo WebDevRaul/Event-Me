@@ -4,9 +4,9 @@ import { withRouter } from 'react-router-dom';
 
 import ButtonOne from '../../common/buttonOne/ButtonOne';
 
-const Footer = ({ description, title, id, history }) => {
+const Footer = ({ description, title, _id, history }) => {
   const name = title.split(' ').join('-');
-  const onClick = () => history.push(`/home/${id}-${name}`)
+  const onClick = () => history.push(`/home/${_id}-${name}`)
   return (
     <div className='footer'>
       <p>{description}</p>
@@ -18,7 +18,7 @@ const Footer = ({ description, title, id, history }) => {
 Footer.propTypes = {
   description: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  _id: PropTypes.string.isRequired,
   history: PropTypes.object.isRequired
 }
 

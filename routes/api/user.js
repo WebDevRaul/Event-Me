@@ -42,12 +42,12 @@ router.post('/sign-in', (req, res) => {
   User.findOne({ email })
     .then(user => {
       if(!user) res.status(404).json(errors);
-      const { id, first_name, last_name, email } = user;
+      const { _id, first_name, last_name, email } = user;
       
       bcrypt.compare(password, user.password)
         .then(isMatch => {
           if(!isMatch) return res.status(404).json(errors);
-          const payload = { user: {user_id: id, first_name, last_name, email}, isAuth: true };
+          const payload = { user: {user_id: _id, first_name, last_name, email}, isAuth: true };
           jwt.sign(payload, SECRET_OR_KEY, { expiresIn: 3600 }, (err, token) => {
             res.json({ token: 'Bearer ' + token });
           });

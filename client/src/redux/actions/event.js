@@ -4,11 +4,11 @@ import URL from './URL';
 
 export const create_event = ({ event, history }) => dispatch => {
   axios.post(`${URL.event}/create-event`, event)
-    .then(({ data: { event } }) => {
-      dispatch({ type: EVENTS.CREATE_EVENT, payload: event });
+    .then(({ data }) => {
+      dispatch({ type: EVENTS.CREATE_EVENT, payload: data });
       history.push('/home');
     })
-    .catch(err => dispatch({ type: EVENTS.ERROR, payload: err }));
+    .catch(err => console.log(err));
 }
 
 export const select_event = id => {

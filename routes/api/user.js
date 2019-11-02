@@ -36,6 +36,7 @@ router.post('/register', (req, res) => {
 // @access  Public
 router.post('/sign-in', (req, res) => {
   const { email, password } = req.body;
+  const errors = {};
   errors.emailOrPassword='Invalid E-Mail or Password';
 
   User.findOne({ email })
@@ -48,7 +49,7 @@ router.post('/sign-in', (req, res) => {
           if(!isMatch) return res.status(404).json(errors);
           const payload = { user_id: id, first_name, last_name, email };
           jwt.sign(payload, SECRET_OR_KEY, { expiresIn: 3600 }, (err, token) => {
-            res.json({ success: true, token: 'Bearer ' + token });
+            res.json({ isAuth: true, token: 'Bearer ' + token });
           });
         })
     })

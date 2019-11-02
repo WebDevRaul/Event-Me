@@ -10,7 +10,7 @@ import ButtonOne from '../common/buttonOne/ButtonOne';
 import validateSignIn from './utils/Validate';
 
 const Form = ({ sign_in, isAuth }) => {
-  const [state, setState] = useState({ email: '', password: '' });
+  const [state, setState] = useState({ email: 'Mark@gmail.com', password: '123456' });
   const [ error, setErrors ] = useState({ email: undefined, password: undefined });
   const { email, password } = state;
 
@@ -28,7 +28,7 @@ const Form = ({ sign_in, isAuth }) => {
     // Validate form
     const { errors, isValid } = validateSignIn({ email, password });
     if(!isValid) { setErrors({ ...error, ...errors }) } 
-    else { sign_in({ user: { email, password }, isAuth: true }); }
+    else { sign_in({ email, password }); }
   };
 
   // Redirect on Dashboard

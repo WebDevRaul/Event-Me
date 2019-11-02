@@ -1,7 +1,7 @@
 import { USER } from './types';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
-import URL from '../../utils/URL';
+import URL from './URL';
 
 // Async/await
 // export const register = ({ user, history }) => {

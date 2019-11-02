@@ -1,34 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import validateEvent from './utils/Validate';
 import { connect } from 'react-redux';
 import { create_event } from '../../redux/actions/event';
 import { createStructuredSelector } from 'reselect';
-import { state_isAuth, state_user } from '../../redux/selectors/user';
+import { state_user } from '../../redux/selectors/user';
 import { state_events } from '../../redux/selectors/event';
-import { filter_event } from '../../utils/filter_event' ;
+// import { filter_event } from '../../utils/filter_event' ;
 
 import ButtonOne from '../common/buttonOne/ButtonOne';
 import Input from '../common/input/Input';
 import TextArea from '../common/textarea/Textarea';
 
-const Form = ({ create_event, isAuth, user: { first_name, user_id }, history, events }) => {
-  const [ state, setState ] = useState(
-    { title: '', date: '', city: '', location: '', description: '', id: undefined, members: [] }
-  );
+const Form = ({ create_event,  user, history, events }) => {
+  const [ state, setState ] = useState({ title: 'Trip to Odessa', date: '01/01/2020', city: 'Odessa', location: 'Odessa / Ukraine', description: 'Visiting old town' });
   const [error, setErrors] = useState({
     title: undefined, date: undefined, city: undefined, location: undefined, description: undefined
   });
-  const { title, date, city, location, description, id } = state;
-  const { pathname } = history.location;
+  const { title, date, city, location, description } = state;
+  // const { pathname } = history.location;
   
-  useEffect(() => {
-    const { event } = filter_event({ state: events, pathname, root: '/my-events/manage-event/' });
-    if(!!!event) return undefined;
-    const { title, date, city, location, description, id, members } = event;
-    setState({ title, date, city, location, description, id, members});
-  }, [events, pathname])
+  // useEffect(() => {
+  //   const { event } = filter_event({ state: events, pathname, root: '/my-events/manage-event/' });
+  //   if(!!!event) return undefined;
+  //   const { title, date, city, location, description, id, members } = event;
+  //   setState({ title, date, city, location, description, id, members});
+  // }, [events, pathname])
 
   const onChange = e => setState({...state , [e.target.name]: e.target.value });
 
@@ -46,9 +44,9 @@ const Form = ({ create_event, isAuth, user: { first_name, user_id }, history, ev
 
   const onSubmit = e => {
     e.preventDefault();
-    const event = { title, date, city, location, description, hostedBy: first_name , user_id, id};
+    const { first_name, user_id } = user;
+    const event = { title, date, city, location, description, first_name , user_id };
     const { errors, isValid } = validateEvent(event);
-    if(!isAuth) return null;
     if(!isValid) { setErrors({ ...error, ...errors }) } 
     else { create_event({ event, history }) }
   };
@@ -105,14 +103,12 @@ const Form = ({ create_event, isAuth, user: { first_name, user_id }, history, ev
 
 Form.propTypes = {
   create_event: PropTypes.func.isRequired,
-  isAuth: PropTypes.bool.isRequired,
   name: PropTypes.string,
   history: PropTypes.object.isRequired,
   events: PropTypes.array.isRequired
 };
 
 const mapStateToProps = createStructuredSelector({
-  isAuth: state_isAuth,
   user: state_user,
   events: state_events
 });

@@ -8,7 +8,7 @@ import ButtonOne from '../common/buttonOne/ButtonOne';
 import validateRegister from './utils/Validate';
 
 const Form = ({ register, history }) => {
-  const [state, setState] = useState({ first_name: '', last_name: '', email: '', password: '', password2: '' });
+  const [state, setState] = useState({ first_name: 'Adam', last_name: 'Mark', email: 'Mark@gmail.com', password: '123456', password2: '123456' });
   const [ error, setErrors ] = useState({ 
     first_name: undefined, last_name: undefined,  email: undefined, password: undefined, password2: undefined 
   });
@@ -25,7 +25,7 @@ const Form = ({ register, history }) => {
 
   const onSubmit = e => {
     e.preventDefault();
-    const user = { first_name, last_name, email, password }
+    const user = { first_name, last_name, email, password, password2 }
     // Validate form
     const { errors, isValid } = validateRegister(user);
     if(!isValid) { setErrors({ ...error, ...errors }) } 

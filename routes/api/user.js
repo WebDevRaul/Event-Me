@@ -13,6 +13,7 @@ router.post('/register', (req, res) => {
   const { first_name, last_name, email, password } = req.body;
   User.findOne({ email })
     .then(user => {
+      const errors = {};
       errors.email = 'This E-Mail is already taken';
       if(user) return res.status(409).json(errors);
       const newUser = new User({ first_name, last_name, email, password });
@@ -22,7 +23,7 @@ router.post('/register', (req, res) => {
           if(err) throw err;
           newUser.password = hash;
           newUser.save()
-            .then(user => res.json(user))
+            .then(user => res.json({ success: true }))
             .catch(err => console.log(err))
         });
       });
@@ -53,3 +54,5 @@ router.post('/sign-in', (req, res) => {
     })
     .catch(err => console.log(err));
 });
+
+module.exports = router;

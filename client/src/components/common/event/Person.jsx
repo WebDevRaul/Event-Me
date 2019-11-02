@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Person = ({ person: { name } }) => {
+const Person = ({ person: { first_name } }) => {
   return (
     <div className='person'>
-      {name}
+      {first_name}
     </div>
   )
 }

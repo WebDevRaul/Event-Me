@@ -13,7 +13,7 @@ const Event = ({ state: { id, title, date, hostedBy, description, members }, edi
     <StyledEvent>
       <div className="row no-gutters">
         <div className="col-12 col-sm-8">
-          <Card state={ {evt_id: id, title, date, hostedBy} } edit={edit} />
+          <Card state={ {evt_id: id, title, date, hostedBy, members} } edit={edit} />
           <Info date={date} text={description} />
           <Chat />
         </div>

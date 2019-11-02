@@ -14,13 +14,13 @@ const data = [
     hostPhoto: photo,
     members: [
       {
-        id: '1a',
-        name: 'Cristina',
+        user_id: '1a',
+        first_name: 'Cristina',
         photo: photo
       },
       {
-        id: '2a',
-        name: 'Marius',
+        user_id: '2a',
+        first_name: 'Marius',
         photo: photo
       }
     ]
@@ -38,13 +38,13 @@ const data = [
     hostPhoto: photo,
     members: [
       {
-        id: '3a',
-        name: 'Vasilica',
+        user_id: '3a',
+        first_name: 'Vasilica',
         photo: photo
       },
       {
-        id: '4a',
-        name: 'Gheorghita',
+        user_id: '4a',
+        first_name: 'Gheorghita',
         photo: photo
       }
     ]

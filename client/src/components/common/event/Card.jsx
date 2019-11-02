@@ -8,16 +8,19 @@ import { state_isAuth, state_user } from '../../../redux/selectors/user';
 
 import Title from '../title/Title';
 import ButtonOne from '../buttonOne/ButtonOne';
+import { isJoined } from './utils/isJoined';
 
 
 const Card = ({ isAuth, user, join_event, state, history, edit }) => {
   const [alert, setAlert] = useState(undefined);
   const { first_name, user_id } = user;
-  const { title, date, hostedBy, evt_id } = state;
+  const { title, date, hostedBy, evt_id, members } = state;
   const title_name = title.split(' ').join('-');
 
   const onClick = () => {
     if(!isAuth) return setAlert('Sign In to join this event');
+    const { joined } = isJoined({ members, user_id });
+    if(joined) return setAlert('You already joined this event');
     join_event({ evt_id, user: {first_name, user_id} })
   }
 

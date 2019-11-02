@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import PrivateRoute from './PrivateRoute';
 import Landing from './pages/landing/Landing';
 import Navbar from './layout/navbar/Navbar';
 import EventMe from './pages/event_Me/EvenMe';
@@ -15,7 +16,6 @@ import Footer from './layout/footer/Footer';
 
 import './App.css';
 import ScrollToTop from './utils/ScrollToTop';
-import PrivateRoute from './PrivateRoute';
 
 const App = () => {
   return (

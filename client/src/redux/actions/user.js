@@ -33,28 +33,35 @@ export const register = ({ user, history }) => dispatch => {
 
 export const sign_in = data => dispatch => {
   axios.post(`${URL.user}/sign-in`, data)
-    .then(({ data }) => {
-      const { token, isAuth } = data;
+    .then(({ data: { token } }) => {
       // Save to LocalStorage
       localStorage.setItem('jwToken', token);
       // Set Auth Token
       setAuthToken(token);
       // Set User
-      dispatch({ type: USER.SIGN_IN, payload: { user: jwt_decode(token), isAuth } })
+      dispatch(setCurrentUser(token))
     })
     .catch(err => dispatch({ type: USER.ERROR, payload: err }))
 }
 
 export const sign_out = () => dispatch => {
   // Remove token from localstorage
-  localStorage.removeItem('jwtToken');
+  localStorage.removeItem('jwToken');
   // Remove Auth Token
   setAuthToken(false);
   // Clear user (Redux)
-  dispatch({ type: USER.SIGN_OUT });
-}
+  dispatch(setRemoveUser());
+};
 
-const setAuthToken = token => {
+export const setAuthToken = token => {
   if (!token) return delete axios.defaults.headers.common['Authorization'];
-    axios.defaults.headers.common['Authorization'] = token;
+  axios.defaults.headers.common['Authorization'] = token;
+};
+
+export const setCurrentUser = token => {
+  return { type: USER.SIGN_IN, payload: jwt_decode(token) };
+};
+
+export const setRemoveUser = () => {
+  return { type: USER.SIGN_OUT }
 };

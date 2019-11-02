@@ -6,7 +6,7 @@ import ButtonOne from '../../common/buttonOne/ButtonOne';
 
 const Footer = ({ description, title, id, history }) => {
   const name = title.split(' ').join('-');
-  const onClick = () => history.push(`/event-me/${id}-${name}`)
+  const onClick = () => history.push(`/home/${id}-${name}`)
   return (
     <div className='footer'>
       <p>{description}</p>

@@ -32,7 +32,7 @@ const Form = ({ sign_in, isAuth }) => {
   };
 
   // Redirect on Dashboard
-  if(isAuth) return <Redirect to='/event-me' />;
+  if(isAuth) return <Redirect to='/home' />;
 
   return (
     <form noValidate onSubmit={onSubmit} >

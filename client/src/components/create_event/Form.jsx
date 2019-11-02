@@ -13,7 +13,7 @@ import ButtonOne from '../common/buttonOne/ButtonOne';
 import Input from '../common/input/Input';
 import TextArea from '../common/textarea/Textarea';
 
-const Form = ({ create_event, isAuth, user: { name, user_id }, history, events }) => {
+const Form = ({ create_event, isAuth, user: { first_name, user_id }, history, events }) => {
   const [ state, setState ] = useState(
     { title: '', date: '', city: '', location: '', description: '', id: undefined, members: [] }
   );
@@ -46,7 +46,7 @@ const Form = ({ create_event, isAuth, user: { name, user_id }, history, events }
 
   const onSubmit = e => {
     e.preventDefault();
-    const event = { title, date, city, location, description, hostedBy: name , user_id, id};
+    const event = { title, date, city, location, description, hostedBy: first_name , user_id, id};
     const { errors, isValid } = validateEvent(event);
     if(!isAuth) return null;
     if(!isValid) { setErrors({ ...error, ...errors }) } 

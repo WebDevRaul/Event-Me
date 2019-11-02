@@ -12,13 +12,13 @@ import ButtonOne from '../buttonOne/ButtonOne';
 
 const Card = ({ isAuth, user, join_event, state, history, edit }) => {
   const [alert, setAlert] = useState(undefined);
-  const { name, user_id } = user;
+  const { first_name, user_id } = user;
   const { title, date, hostedBy, evt_id } = state;
   const title_name = title.split(' ').join('-');
 
   const onClick = () => {
     if(!isAuth) return setAlert('Sign In to join this event');
-    join_event({ evt_id, user: {name, user_id} })
+    join_event({ evt_id, user: {first_name, user_id} })
   }
 
   const onMenageEvent = () => history.push(`/my-events/manage-event/${evt_id}-${title_name}`);

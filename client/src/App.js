@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import PrivateRoute from './PrivateRoute';
 import Landing from './pages/landing/Landing';
 import Navbar from './layout/navbar/Navbar';
-import EventMe from './pages/event_Me/EvenMe';
+import Home from './pages/home/Home';
 import CreateEvent from './pages/create_event/Create_Event';
 import EventInfo from './pages/event_Info/Event_Info';
 import Settings from './pages/settings_/Settings';
@@ -27,8 +27,8 @@ const App = () => {
             <>
               <Navbar />
               <Switch>
-                <Route exact path='/event-me' component={EventMe} />
-                <Route exact path='/event-me/:id' component={EventInfo} />
+                <Route exact path='/home' component={Home} />
+                <Route exact path='/home/:id' component={EventInfo} />
                 <Route exact path='/sign-in' component={SignIn} />
                 <Route exact path='/register' component={Register} />
 

@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-const User = ({ onClick, onSignOut }) => {
-  const name = 'Joana';
+const User = ({ onClick, onSignOut, name }) => {
   return (
     <div className='user' onClick={onClick}>
       <p>{name}</p>
@@ -14,7 +13,7 @@ const User = ({ onClick, onSignOut }) => {
           <Link to='/my-events'>My Events</Link>
           <Link to='/profile'>My Profile</Link>
           <Link to='/settings'>Settings</Link>
-          <Link to='/event-me' onClick={onSignOut}>Sign Out</Link>
+          <Link to='/home' onClick={onSignOut}>Sign Out</Link>
         </div>
       </div>
     </div>
@@ -24,6 +23,7 @@ const User = ({ onClick, onSignOut }) => {
 User.propTypes = {
   onClick: PropTypes.func.isRequired,
   onSignOut: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired
 }
 
 export default User;

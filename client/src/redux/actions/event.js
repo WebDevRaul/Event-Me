@@ -9,7 +9,7 @@ export const select_event = id => {
 }
 
 export const create_event = ({ event, history }) => {
-  history.push('/event-me');
+  history.push('/home');
   return { type: EVENTS.CREATE_EVENT, payload: event }
 }
 

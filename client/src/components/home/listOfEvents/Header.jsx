@@ -5,7 +5,7 @@ import photo from '../../../assets/images/questionMark.jpg';
 import Title from '../../common/title/Title';
 import Photo from '../../common/photo/Photo';
 
-const Header = ({ name: { first_name }, title }) => {
+const Header = ({ author: { first_name }, title }) => {
   return (
     <div className='header'>
       <Photo photo={photo} width='80px' height='80px' alt='member' />
@@ -18,7 +18,7 @@ const Header = ({ name: { first_name }, title }) => {
 };
 
 Header.propTypes = {
-  name: PropTypes.object.isRequired,
+  author: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired
 }
 

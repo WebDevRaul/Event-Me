@@ -8,7 +8,8 @@ const EventSchema = new Schema({
   city: { type: String, required: true },
   location: { type: String, required: true },
   description: { type: String, required: true },
-  author: { type: Schema.Types.ObjectId, ref: 'user' }
+  author: { type: Schema.Types.ObjectId, ref: 'user' },
+  members: { type: Array, default: [] }
 });
 
 module.exports = Event = mongoose.model('event', EventSchema);

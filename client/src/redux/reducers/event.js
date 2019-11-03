@@ -8,7 +8,7 @@ const INITIAL_STATE = {
 const eventMe = (state=INITIAL_STATE, action) => {
   const { payload } = action;
   switch(action.type) {
-    case EVENTS.UPDATE_EVENT:
+    case EVENTS.INITIAL_UPDATE:
       return { ...state, events: payload };
     case EVENTS.CREATE_EVENT:
       return { ...state, events: [...state.events, payload] };

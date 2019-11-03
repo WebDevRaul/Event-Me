@@ -4,6 +4,13 @@ const passport = require('passport');
 const Event = require('../../models/Event');
 
 
+// @route   GET api/event/home
+// @desc    Fetch events
+// @access  Public
+router.get('/home', (req, res) => {
+  Event.find({}).populate('author', 'first_name').exec((err, events) => res.json(events))
+});
+
 // @route   POST api/event/create-event
 // @desc    Create event
 // @access  Private

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { update_events } from '../../redux/actions/event';
@@ -9,7 +9,7 @@ import RecentEvents from '../../components/home/recentEvents/RecentEvents';
 
 const Home = ({ update_events }) => {
   // Initial events update
-  // useEffect(() => { update_events(data) }, [update_events])
+  useEffect(() => { update_events() }, [update_events])
   
   return (
       <div className='home'>

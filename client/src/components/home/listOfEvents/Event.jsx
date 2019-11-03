@@ -9,7 +9,7 @@ import Footer from './Footer';
 const Event = ({ event: { author, title, date, location, members, description, _id } }) => {
   return (
     <div className='event'>
-      <Header  name={author} title={title} />
+      <Header  author={author} title={title} />
       <Body date={date} location={location} />
       <Members members={members} />
       <Footer description={description} title={title} _id={_id} />

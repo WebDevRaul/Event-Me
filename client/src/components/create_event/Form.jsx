@@ -12,9 +12,10 @@ import { state_events } from '../../redux/selectors/event';
 import ButtonOne from '../common/buttonOne/ButtonOne';
 import Input from '../common/input/Input';
 import TextArea from '../common/textarea/Textarea';
+import DateInput from '../common/date/DateInput';
 
 const Form = ({ create_event,  user, history, events }) => {
-  const [ state, setState ] = useState({ title: 'Trip to Odessa', date: '01/01/2020', city: 'Odessa', location: 'Odessa / Ukraine', description: 'Visiting old town' });
+  const [ state, setState ] = useState({ title: 'Trip to Odessa', date: '', city: 'Odessa', location: 'Odessa / Ukraine', description: 'Visiting old town' });
   const [error, setErrors] = useState({title: '', date: '', city: '', location: '', description: ''});
   const { title, date, city, location, description } = state;
   // const { pathname } = history.location;
@@ -27,6 +28,7 @@ const Form = ({ create_event,  user, history, events }) => {
   // }, [events, pathname])
 
   const onChange = e => setState({...state , [e.target.name]: e.target.value });
+  const onChangeDate = e => setState({ ...state, date: String(e) });
 
   const onFocus = e => {
     if(title || date || city || location || description !== undefined) {
@@ -60,19 +62,17 @@ const Form = ({ create_event,  user, history, events }) => {
           onFocus={onFocus} 
           error={error.title}
         />
-        <Input 
-          name='date' 
-          label='Event Date' 
-          value={date} 
-          onChange={onChange} 
-          onFocus={onFocus} 
+        <DateInput
+          value={date}
+          onChange={e => onChangeDate(e)}
           error={error.date}
+          onFocus={onFocus}
         />
         <Input 
           name='city' 
           label='City' 
           value={city} 
-          onChange={onChange} 
+          onChange={onChange}
           onFocus={onFocus} 
           error={error.city}
         />

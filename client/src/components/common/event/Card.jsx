@@ -14,7 +14,7 @@ import { isJoined } from './utils/isJoined';
 const Card = ({ isAuth, user, join_event, state, history, edit }) => {
   const [alert, setAlert] = useState(undefined);
   const { first_name, user_id } = user;
-  const { title, date, hostedBy, evt_id, members } = state;
+  const { title, date: { day, time }, hostedBy, evt_id, members } = state;
   const title_name = title.split(' ').join('-');
 
   const onClick = () => {
@@ -33,7 +33,7 @@ const Card = ({ isAuth, user, join_event, state, history, edit }) => {
       <div className='top'>
         <div>
         <Title text={title} />
-        <time>{date}</time>
+        <time>{day} at{' '} {time}</time>
         <p>Sugested by <strong>{hostedBy}</strong></p>
         </div>
       </div>

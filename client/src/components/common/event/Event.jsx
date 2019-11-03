@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { format, parseISO } from 'date-fns';
 
 import Card from './Card';
 import Info from './Info';
@@ -8,13 +9,15 @@ import Members from './Members';
 
 import StyledEvent from './Styled_Event';
 
-const Event = ({ state: { id, title, date, hostedBy, description, members }, edit }) => {
+const Event = ({ state: { _id, title, date, hostedBy, description, members }, edit }) => {
+  const day = format(parseISO(date), 'EEEE do LLL');
+  const time = format(parseISO(date), 'h:mm a');
   return (
     <StyledEvent>
       <div className="row no-gutters">
         <div className="col-12 col-sm-8">
-          <Card state={ {evt_id: id, title, date, hostedBy, members} } edit={edit} />
-          <Info date={date} text={description} />
+          <Card state={ {evt_id: _id, title, date: { day, time }, hostedBy, members} } edit={edit} />
+          <Info date={{ day, time }} text={description} />
           <Chat />
         </div>
         <div className="col-12 col-sm-4">

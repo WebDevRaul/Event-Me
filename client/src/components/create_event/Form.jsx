@@ -15,9 +15,7 @@ import TextArea from '../common/textarea/Textarea';
 
 const Form = ({ create_event,  user, history, events }) => {
   const [ state, setState ] = useState({ title: 'Trip to Odessa', date: '01/01/2020', city: 'Odessa', location: 'Odessa / Ukraine', description: 'Visiting old town' });
-  const [error, setErrors] = useState({
-    title: undefined, date: undefined, city: undefined, location: undefined, description: undefined
-  });
+  const [error, setErrors] = useState({title: '', date: '', city: '', location: '', description: ''});
   const { title, date, city, location, description } = state;
   // const { pathname } = history.location;
   
@@ -39,7 +37,7 @@ const Form = ({ create_event,  user, history, events }) => {
 
   const onClick = () => {
     setState({ title: '', date: '', city: '', location: '', description: '' });
-    setErrors({  title: undefined, date: undefined, city: undefined, location: undefined, description: undefined });
+    setErrors({ title: '', date: '', city: '', location: '', description: '' });
   }
 
   const onSubmit = e => {

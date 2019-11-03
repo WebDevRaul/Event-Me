@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Info = ({ date, text }) => {
+const Info = ({ date: { day, time }, text }) => {
   return (
     <div className='info'>
       <p>{text}</p>
-      <p><time>{date}</time></p>
+      <p><time>{day} at{' '} {time}</time></p>
       <p>map location</p>
     </div>
   )
 }
 
 Info.propTypes = {
-  date: PropTypes.string.isRequired,
+  date: PropTypes.object.isRequired,
   text: PropTypes.string.isRequired
 }
 

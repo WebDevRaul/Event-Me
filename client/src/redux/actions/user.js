@@ -41,7 +41,7 @@ export const sign_in = data => dispatch => {
       // Set User
       dispatch(setCurrentUser(token))
     })
-    .catch(err => dispatch({ type: USER.ERROR, payload: err }))
+    .catch(err => dispatch({ type: USER.ERROR, payload: err.response.data }))
 }
 
 export const sign_out = () => dispatch => {

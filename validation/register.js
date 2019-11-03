@@ -1,7 +1,7 @@
-import Validator from 'validator';
-import isEmpty from '../../common/isEmpty/isEmpty';
+const Validator = require('validator');
+const isEmpty = require('./isEmpty');
 
-const validateRegister = user => {
+module.exports = function validateRegister(user) {
   let errors = {};
 
   // Check if Empty
@@ -48,11 +48,8 @@ const validateRegister = user => {
     errors.password2 = 'Confirm Password field is required!'
   }
 
-  // Return errors
   return {
     errors,
     isValid: isEmpty(errors)
   };
-}
-
-export default validateRegister;
+};

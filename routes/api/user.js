@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const { SECRET_OR_KEY } = require('../../config/Keys');
 const User = require('../../models/User');
 const validateSignIn = require('../../validation/sign_in');
+const validateRegister = require('../../validation/register');
 
 
 // @route   POST api/user/register
@@ -12,9 +13,11 @@ const validateSignIn = require('../../validation/sign_in');
 // @access  Public
 router.post('/register', (req, res) => {
   const { first_name, last_name, email, password } = req.body;
+  const { errors, isValid } = validateRegister(req.body);
+
+  if (!isValid) return res.status(400).json(errors);
   User.findOne({ email })
     .then(user => {
-      const errors = {};
       errors.email = 'This E-Mail is already taken';
       if(user) return res.status(409).json(errors);
       const newUser = new User({ first_name, last_name, email, password });

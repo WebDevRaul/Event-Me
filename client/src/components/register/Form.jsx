@@ -1,18 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { register } from '../../redux/actions/user';
+import { createStructuredSelector } from 'reselect';
+import { state_user_error } from '../../redux/selectors/user';
 import Input from '../common/input/Input';
 import ButtonOne from '../common/buttonOne/ButtonOne';
 import validateRegister from './utils/Validate';
 
-const Form = ({ register, history }) => {
+const Form = ({ register, history, errors }) => {
   const [state, setState] = useState({ first_name: 'Adam', last_name: 'Mark', email: 'Mark@gmail.com', password: '123456', password2: '123456' });
   const [ error, setErrors ] = useState({ 
     first_name: undefined, last_name: undefined,  email: undefined, password: undefined, password2: undefined 
   });
   const { first_name, last_name, email, password, password2 } = state;
+
+  useEffect(() => { setErrors({ ...error, ...errors }) },[errors])
 
   const onChange = e => setState({...state , [e.target.name]: e.target.value });
 
@@ -85,7 +89,12 @@ const Form = ({ register, history }) => {
 }
 
 Form.propTypes = {
-  register: PropTypes.func.isRequired
+  register: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired
 };
 
-export default connect( null , { register })(withRouter(Form));
+const mapStateToProps = createStructuredSelector({
+  errors: state_user_error
+});
+
+export default connect( mapStateToProps , { register })(withRouter(Form));

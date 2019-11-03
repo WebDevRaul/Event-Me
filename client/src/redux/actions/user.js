@@ -65,3 +65,7 @@ export const setCurrentUser = token => {
 export const setRemoveUser = () => {
   return { type: USER.SIGN_OUT }
 };
+
+export const clearUserErrors = () => {
+  return { type: USER.CLEAR_ERROR, payload: {} }
+}

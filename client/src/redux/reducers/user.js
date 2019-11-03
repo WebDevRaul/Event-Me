@@ -18,6 +18,8 @@ const user = (state=INITIAL_STATE, action) => {
       return { ...state, info: {}, isAuth: false }
     case USER.ERROR:
       return { ...state, error: payload }
+    case USER.CLEAR_ERROR:
+      return { ...state, error: payload }
     default:
       return state;
   }

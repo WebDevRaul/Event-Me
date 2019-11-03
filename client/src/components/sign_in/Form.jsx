@@ -2,19 +2,25 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { sign_in } from '../../redux/actions/user';
+import { sign_in, clearUserErrors } from '../../redux/actions/user';
 import { createStructuredSelector } from 'reselect';
 import { state_isAuth, state_user_error } from '../../redux/selectors/user';
 import Input from '../common/input/Input';
 import ButtonOne from '../common/buttonOne/ButtonOne';
 import validateSignIn from './utils/Validate';
 
-const Form = ({ sign_in, isAuth, errors }) => {
+const Form = ({ sign_in, isAuth, errors, clearUserErrors }) => {
   const [state, setState] = useState({ email: 'Mark@gmail.com', password: '123456' });
   const [ error, setErrors ] = useState({ email: undefined, password: undefined });
   const { email, password } = state;
 
-  useEffect(() => { setErrors({ ...error, ...errors })},[errors])
+  // Clear Errors
+  useEffect(() => {
+    const clear = () => clearUserErrors();
+    return clear;
+  },[clearUserErrors]);
+  // Update Errors
+  useEffect(() => { setErrors(errors)},[errors])
 
   const onChange = e => setState({...state , [e.target.name]: e.target.value });
 
@@ -63,7 +69,8 @@ const Form = ({ sign_in, isAuth, errors }) => {
 Form.propTypes = {
   sign_in: PropTypes.func.isRequired,
   isAuth: PropTypes.bool.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
+  clearUserErrors: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = createStructuredSelector({
@@ -71,4 +78,4 @@ const mapStateToProps = createStructuredSelector({
   errors: state_user_error
 });
 
-export default connect(mapStateToProps, { sign_in })(Form);
+export default connect(mapStateToProps, { sign_in, clearUserErrors })(Form);

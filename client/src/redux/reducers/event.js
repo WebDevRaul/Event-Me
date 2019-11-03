@@ -15,7 +15,9 @@ const eventMe = (state=INITIAL_STATE, action) => {
     case EVENTS.JOIN_EVENT:
       return { ...state, events: [...state.events.map(evt => evt.id === payload.evt_id ? { ...evt, members: [...evt.members, payload.user] } : evt)] };
       case EVENTS.ERROR:
-        return { ...state, error: payload }
+        return { ...state, error: payload };
+      case EVENTS.CLEAR_ERROR:
+        return { ...state, error: payload };
     default:
       return state;
   }

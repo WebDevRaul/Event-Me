@@ -19,7 +19,8 @@ const StyledDateInput = styled.div`
     input {
     width: 100%;
     padding: 10px;
-    border: 1px solid var(--Shadow);
+    border: 1px solid;
+    border-color: ${({ err }) => err ? 'var(--Shadow)' : 'var(--Error)'};
     border-radius: var(--BorderRadius);
     }
   }
@@ -35,6 +36,10 @@ const StyledDateInput = styled.div`
   }
   label {
     ${({ val }) => val ? shrink : null}
+  }
+  label {
+    ${({ err }) => !err ? shrink : null};
+    color: ${({ err }) => err ? null : 'var(--Error)'};
   }
   label {
     ${({ focus }) => focus ? shrink : null}

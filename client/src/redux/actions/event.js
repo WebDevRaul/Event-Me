@@ -14,7 +14,7 @@ export const create_event = ({ event, history }) => dispatch => {
       dispatch({ type: EVENTS.CREATE_EVENT, payload: data });
       history.push('/home');
     })
-    .catch(err => dispatch({ type: EVENTS.ERROR, payload: err }));
+    .catch(err => dispatch({ type: EVENTS.ERROR, payload: err.response.data }));
 }
 
 export const select_event = id => {
@@ -23,4 +23,8 @@ export const select_event = id => {
 
 export const join_event = data => {
   return { type: EVENTS.JOIN_EVENT, payload: data }
+}
+
+export const clearEventErrors = () => {
+  return { type: EVENTS.CLEAR_ERROR, payload: {} }
 }

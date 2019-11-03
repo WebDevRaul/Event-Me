@@ -1,5 +1,4 @@
 active link navbar
 close navbar user-links on click outside?
-validate Register/SignIn form (Error for longer then 30 char) & more validation
-more validation on Create_Event 
+more validation on Create_Event DATE!!!
 alert joined event members that event has been changed/edit 

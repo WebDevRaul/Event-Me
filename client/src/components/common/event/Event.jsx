@@ -9,7 +9,7 @@ import Members from './Members';
 
 import StyledEvent from './Styled_Event';
 
-const Event = ({ state: { _id, title, date, hostedBy, description, members }, edit }) => {
+const Event = ({ state: { _id, title, date, hostedBy, description, location, city, members }, edit }) => {
   const day = format(parseISO(date), 'EEEE do LLL');
   const time = format(parseISO(date), 'h:mm a');
   return (
@@ -17,7 +17,7 @@ const Event = ({ state: { _id, title, date, hostedBy, description, members }, ed
       <div className="row no-gutters">
         <div className="col-12 col-sm-8">
           <Card state={ {evt_id: _id, title, date: { day, time }, hostedBy, members} } edit={edit} />
-          <Info date={{ day, time }} text={description} />
+          <Info date={{ day, time }} text={description} city={city} location={location} />
           <Chat />
         </div>
         <div className="col-12 col-sm-4">

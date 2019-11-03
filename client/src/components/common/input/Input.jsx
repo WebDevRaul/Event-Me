@@ -13,7 +13,7 @@ const Input = ({ name, label, value, onChange, onFocus, type, error }) => {
         onChange={onChange}
         onFocus={onFocus}
         type={type}
-        autoComplete='true'
+        autoComplete='off'
         required
       />
       <label className={classnames('form-input-label', { 'shrink': value || error })} >

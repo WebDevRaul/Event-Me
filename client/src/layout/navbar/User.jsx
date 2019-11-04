@@ -9,7 +9,7 @@ const User = ({ onClick, onSignOut, name }) => {
       <div className='wrapper'>
         <div className='list'>
           <span className='tip' />
-          <Link to='create-event'>Create Event</Link>
+          <Link to='/create-event'>Create Event</Link>
           <Link to='/my-events'>My Events</Link>
           <Link to='/profile'>My Profile</Link>
           <Link to='/settings'>Settings</Link>

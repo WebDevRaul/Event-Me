@@ -13,7 +13,7 @@ import UpdateAndDelete from './UpdateAndDelete';
 import ManageEvt from './ManageEvt';
 
 
-const Card = ({ state, user, isAuth, edit, history, join_event, leave_event, delete_event }) => {
+const Card = ({ state, user, isAuth, update, history, join_event, leave_event, delete_event, my_evt }) => {
   const [alert, setAlert] = useState(undefined);
   const { user_id } = user;
   const { title, date: { day, time }, author: { first_name, _id }, evt_id, members } = state;
@@ -25,7 +25,10 @@ const Card = ({ state, user, isAuth, edit, history, join_event, leave_event, del
     join_event({ evt_id, user });
   }
   const onLeaveEvt = () => leave_event({ evt_id, user });
-  const onMenageEvt = () => history.push(`/home/${evt_id}-${title_name}/manage-event`);
+  const onMenageEvt = () => {
+    if(my_evt) return history.push(`/my-events/${evt_id}-${title_name}/manage-event`);
+    history.push(`/home/${evt_id}-${title_name}/manage-event`);
+  }
   const onUpdateEvt = () => history.push(`/home/${evt_id}-${title_name}/manage-event/update`);
   const onDeleteEvt = () => delete_event({ _id: evt_id, history })
 
@@ -40,9 +43,9 @@ const Card = ({ state, user, isAuth, edit, history, join_event, leave_event, del
       </div>
       <div className='buttom'>
         {alert}
-        { !edit && <JoinAndLeave isJoined={joined} isAuth={isAuth} onJoinEvt={onJoinEvt} onLeaveEvt={onLeaveEvt}/> }
-        { (!edit && _id === user_id) && <ManageEvt onMenageEvt={onMenageEvt} />}
-        { edit && <UpdateAndDelete onUpdateEvt={onUpdateEvt} onDeleteEvt={onDeleteEvt}/> }
+        {!update && <JoinAndLeave isJoined={joined} isAuth={isAuth} onJoinEvt={onJoinEvt} onLeaveEvt={onLeaveEvt}/>}
+        { (!update && _id === user_id) && <ManageEvt onMenageEvt={onMenageEvt} />}
+        { update && <UpdateAndDelete onUpdateEvt={onUpdateEvt} onDeleteEvt={onDeleteEvt}/> }
       </div>
     </div>
   )
@@ -52,7 +55,7 @@ Card.propTypes = {
   state: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
   isAuth: PropTypes.bool.isRequired,
-  edit: PropTypes.bool,
+  update: PropTypes.bool,
   history: PropTypes.object.isRequired,
   join_event: PropTypes.func.isRequired,
   leave_event: PropTypes.func.isRequired,

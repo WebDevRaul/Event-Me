@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import validateEvent from './utils/Validate';
 import { connect } from 'react-redux';
-import { create_event, update_event, clearEventErrors, } from '../../redux/actions/event';
+import { create_event, update_event } from '../../redux/actions/event';
 import { createStructuredSelector } from 'reselect';
 import { state_user } from '../../redux/selectors/user';
 import { state_events, state_event_error } from '../../redux/selectors/event';
@@ -15,19 +15,19 @@ import TextArea from '../common/textarea/Textarea';
 import DateInput from '../common/date/DateInput';
 import isEmpty from '../common/isEmpty/isEmpty';
 
-const Form = ({ user, events, history, errors, create_event, update_event, clearEventErrors, }) => {
+const Form = ({ user, events, history, errors, create_event, update_event }) => {
   const [ state, setState ] = useState({ title: '', date: '', city: '', location: '', description: '', _id: '' });
   const [error, setErrors] = useState({title: '', date: '', city: '', location: '', description: ''});
   const { title, date, city, location, description, _id } = state;
   const { pathname } = history.location;
-  // Clear Errors
-  useEffect(() => { const clear = () => clearEventErrors(); return clear; },[clearEventErrors]);
+
   // Update Errors
   useEffect(() => { setErrors(errors) },[errors]);
-  // Clear state if path is create-event
+  // Clear state & errors if path is create-event
   useEffect(() => { 
     if(pathname.startsWith('/home/')) return undefined;
-    setState({ title: '', date: '', city: '', location: '', description: '' })
+    setState({ title: '', date: '', city: '', location: '', description: '' });
+    setErrors({ title: '', date: '', city: '', location: '', description: '' });
    },[pathname])
   // Update State 
   useEffect(() => {
@@ -91,8 +91,7 @@ Form.propTypes = {
   events: PropTypes.array.isRequired,
   errors: PropTypes.object.isRequired,
   create_event: PropTypes.func.isRequired,
-  update_event: PropTypes.func.isRequired,
-  clearEventErrors: PropTypes.func.isRequired
+  update_event: PropTypes.func.isRequired
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -101,4 +100,4 @@ const mapStateToProps = createStructuredSelector({
   errors: state_event_error
 });
 
-export default connect( mapStateToProps, { create_event, update_event, clearEventErrors })(withRouter(Form));
+export default connect( mapStateToProps, { create_event, update_event })(withRouter(Form));

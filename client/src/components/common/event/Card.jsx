@@ -5,18 +5,18 @@ import { connect } from 'react-redux';
 import { join_event, leave_event } from '../../../redux/actions/event';
 import { createStructuredSelector } from 'reselect';
 import { state_isAuth, state_user } from '../../../redux/selectors/user';
+import { isJoined } from './utils/isJoined';
 
 import Title from '../title/Title';
-import ButtonOne from '../buttonOne/ButtonOne';
-import { isJoined } from './utils/isJoined';
 import JoinAndLeave from './JoinAndLeave';
 import EditAndDelete from './EditAndDelete';
+import ManageEvt from './ManageEvt';
 
 
 const Card = ({ state, user, isAuth, edit, history, join_event, leave_event }) => {
   const [alert, setAlert] = useState(undefined);
   const { user_id } = user;
-  const { title, date: { day, time }, hostedBy, evt_id, members } = state;
+  const { title, date: { day, time }, author: { first_name, _id }, evt_id, members } = state;
   const title_name = title.split(' ').join('-');
   const { joined } = isJoined({ members, user_id });
   
@@ -37,13 +37,13 @@ const Card = ({ state, user, isAuth, edit, history, join_event, leave_event }) =
         <div>
         <Title text={title} />
         <time>{day} at{' '} {time}</time>
-        <p>Sugested by <strong>{hostedBy}</strong></p>
+        <p>Sugested by <strong>{first_name}</strong></p>
         </div>
       </div>
       <div className='buttom'>
         {alert}
         { !edit && <JoinAndLeave isJoined={joined} isAuth={isAuth} onJoinEvt={onJoinEvt} onLeaveEvt={onLeaveEvt}/> }
-        { (!edit && isAuth) &&  <ButtonOne text='MENAGE EVENT' isClass='blue' onClick={onMenageEvent} />}
+        { (!edit && _id === user_id) && <ManageEvt onMenageEvent={onMenageEvent} />}
         { edit && <EditAndDelete /> }
       </div>
     </div>

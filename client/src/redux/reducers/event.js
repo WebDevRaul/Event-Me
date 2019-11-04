@@ -13,14 +13,12 @@ const eventMe = (state=INITIAL_STATE, action) => {
     case EVENTS.CREATE_EVENT:
       return { ...state, events: [...state.events, payload] };
     case EVENTS.JOIN_EVENT:
-      // return { ...state, events: [...state.events.map(evt => evt.id === payload.evt_id ? { ...evt, members: [...evt.members, payload.user] } : evt)] };
-      return { ...state, events: [...state.events.filter(i => i._id !== payload._id), payload] }
     case EVENTS.LEAVE_EVENT:
+    case EVENTS.UPDATE_EVENT:
       return { ...state, events: [...state.events.filter(i => i._id !== payload._id), payload] }
     case EVENTS.DELETE_EVENT:
       return { ...state, events: [...state.events.filter(i => i._id !== payload._id)] }
     case EVENTS.ERROR:
-      return { ...state, error: payload };
     case EVENTS.CLEAR_ERROR:
       return { ...state, error: payload };
     default:

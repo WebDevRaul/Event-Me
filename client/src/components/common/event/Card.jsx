@@ -9,7 +9,7 @@ import { isJoined } from './utils/isJoined';
 
 import Title from '../title/Title';
 import JoinAndLeave from './JoinAndLeave';
-import EditAndDelete from './EditAndDelete';
+import UpdateAndDelete from './UpdateAndDelete';
 import ManageEvt from './ManageEvt';
 
 
@@ -26,7 +26,7 @@ const Card = ({ state, user, isAuth, edit, history, join_event, leave_event, del
   }
   const onLeaveEvt = () => leave_event({ evt_id, user });
   const onMenageEvt = () => history.push(`/home/${evt_id}-${title_name}/manage-event`);
-  const onEditEvt = () => history.push(`/home/${evt_id}-${title_name}/manage-event/edit`);
+  const onUpdateEvt = () => history.push(`/home/${evt_id}-${title_name}/manage-event/update`);
   const onDeleteEvt = () => delete_event({ _id: evt_id, history })
 
   return (
@@ -42,7 +42,7 @@ const Card = ({ state, user, isAuth, edit, history, join_event, leave_event, del
         {alert}
         { !edit && <JoinAndLeave isJoined={joined} isAuth={isAuth} onJoinEvt={onJoinEvt} onLeaveEvt={onLeaveEvt}/> }
         { (!edit && _id === user_id) && <ManageEvt onMenageEvt={onMenageEvt} />}
-        { edit && <EditAndDelete onEditEvt={onEditEvt} onDeleteEvt={onDeleteEvt}/> }
+        { edit && <UpdateAndDelete onUpdateEvt={onUpdateEvt} onDeleteEvt={onDeleteEvt}/> }
       </div>
     </div>
   )

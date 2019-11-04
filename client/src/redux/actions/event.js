@@ -29,6 +29,15 @@ export const leave_event = obj => dispatch => {
     .catch(err => dispatch({ type: EVENTS.ERROR, payload: err.response.data }))
 }
 
+export const update_event = ({ event, history }) => dispatch => {
+  axios.post(`${URL.event}/home/:id/manage-event/update`, event)
+    .then(({ data }) => {
+      dispatch({ type: EVENTS.UPDATE_EVENT, payload: data });
+      history.push('/home');
+    })
+    .catch(err => dispatch({ type: EVENTS.ERROR, payload: err.response.data }))
+}
+
 export const delete_event = ({ _id, history }) => dispatch => {
   axios.post(`${URL.event}/home/:id/manage-event`, {_id})
     .then(evt => {

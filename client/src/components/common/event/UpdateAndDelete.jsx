@@ -2,16 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ButtonOne from '../buttonOne/ButtonOne';
 
-const EditAndDelete = ({ onEditEvt, onDeleteEvt }) => (
+const UpdateAndDelete = ({ onUpdateEvt, onDeleteEvt }) => (
   <>
-    <ButtonOne text='EDIT' isClass='blue' onClick={onEditEvt} />
+    <ButtonOne text='UPDATE' isClass='green' onClick={onUpdateEvt} />
     <ButtonOne text='DELETE' isClass='red' onClick={onDeleteEvt} />
   </>
 );
 
-EditAndDelete.propTypes = {
-  onEditEvt: PropTypes.func.isRequired,
+UpdateAndDelete.propTypes = {
+  onUpdateEvt: PropTypes.func.isRequired,
   onDeleteEvt: PropTypes.func.isRequired
 }
 
-export default EditAndDelete;
+export default UpdateAndDelete;

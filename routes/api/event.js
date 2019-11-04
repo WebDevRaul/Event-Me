@@ -57,6 +57,20 @@ router.post('/leave-event', passport.authenticate('jwt'), (req, res) => {
     })
 });
 
+// @route   Update api/event/home/:id/manage-event/update
+// @desc    Update Event
+// @access  Private
+router.post('/home/:id/manage-event/update', passport.authenticate('jwt'), (req, res) => {
+  const { _id, title, date, city, location, description } = req.body;
+  Event.findByIdAndUpdate(_id,
+    { title, date, city, location, description },
+    { upsert: true, new: true })
+    .populate('author', 'first_name').exec((err, evt) => {
+      if(err) return res.status(400).json({ noEvt: 'Event not found!' });
+      res.json(evt)
+    })
+})
+
 // @route   Delete api/event/home/:id/manage-event
 // @desc    Delete Event
 // @access  Private

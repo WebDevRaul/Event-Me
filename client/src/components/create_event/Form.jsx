@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import validateEvent from './utils/Validate';
 import { connect } from 'react-redux';
-import { create_event, clearEventErrors } from '../../redux/actions/event';
+import { create_event, update_event, clearEventErrors, } from '../../redux/actions/event';
 import { createStructuredSelector } from 'reselect';
 import { state_user } from '../../redux/selectors/user';
 import { state_events, state_event_error } from '../../redux/selectors/event';
@@ -15,8 +15,8 @@ import TextArea from '../common/textarea/Textarea';
 import DateInput from '../common/date/DateInput';
 import isEmpty from '../common/isEmpty/isEmpty';
 
-const Form = ({ create_event,  user, history, events, errors, clearEventErrors }) => {
-  const [ state, setState ] = useState({ title: 'Trip to Odessa', date: '', city: 'Odessa', location: 'Ukraine', description: 'Visiting old town', _id: '' });
+const Form = ({ user, events, history, errors, create_event, update_event, clearEventErrors, }) => {
+  const [ state, setState ] = useState({ title: '', date: '', city: '', location: '', description: '', _id: '' });
   const [error, setErrors] = useState({title: '', date: '', city: '', location: '', description: ''});
   const { title, date, city, location, description, _id } = state;
   const { pathname } = history.location;
@@ -53,12 +53,13 @@ const Form = ({ create_event,  user, history, events, errors, clearEventErrors }
     e.preventDefault();
     const { user_id } = user;
     let event = { title, date, city, location, description , author: user_id};
-    if(!isEmpty(_id)) event = {...event, _id}
     const { errors, isValid } = validateEvent(event);
-    if(!isValid) { setErrors({ ...error, ...errors }) } 
-    else { create_event({ event, history }) }
+    if(!isValid) return setErrors({ ...error, ...errors });
+    if(isEmpty(_id)) return create_event({ event, history });
+    // Continue to Edit
+    event = {...event, _id};
+    update_event({ event, history })
   };
-
   return (
     <>
       <form noValidate onSubmit={onSubmit}>
@@ -85,11 +86,12 @@ const Form = ({ create_event,  user, history, events, errors, clearEventErrors }
 };
 
 Form.propTypes = {
-  create_event: PropTypes.func.isRequired,
   name: PropTypes.string,
   history: PropTypes.object.isRequired,
   events: PropTypes.array.isRequired,
   errors: PropTypes.object.isRequired,
+  create_event: PropTypes.func.isRequired,
+  update_event: PropTypes.func.isRequired,
   clearEventErrors: PropTypes.func.isRequired
 };
 
@@ -99,4 +101,4 @@ const mapStateToProps = createStructuredSelector({
   errors: state_event_error
 });
 
-export default connect( mapStateToProps, { create_event, clearEventErrors })(withRouter(Form));
+export default connect( mapStateToProps, { create_event, update_event, clearEventErrors })(withRouter(Form));

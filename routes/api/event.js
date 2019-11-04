@@ -15,7 +15,7 @@ router.get('/home', (req, res) => {
 // @route   POST api/event/create-event
 // @desc    Create event
 // @access  Private
-router.post('/create-event',passport.authenticate('jwt'), (req, res) => {
+router.post('/create-event', passport.authenticate('jwt'), (req, res) => {
   const { title, date, city, location, description, author } = req.body;
   const event = new Event({ title, date, city, location, description, author });
   

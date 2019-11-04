@@ -32,7 +32,7 @@ const App = () => {
                 <Route exact path='/sign-in' component={SignIn} />
                 <Route exact path='/register' component={Register} />
 
-                <PrivateRoute exact path='/create-event' component={CreateEvent} />
+                <PrivateRoute exact path={['/create-event','/home/:id/manage-event/edit']}component={CreateEvent} />
                 <PrivateRoute exact path='/home/:id/manage-event' component={ManageEvent} />
                 
                 <Redirect exact from ='/settings' to='/settings/basic' />

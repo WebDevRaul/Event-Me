@@ -29,4 +29,34 @@ router.post('/create-event',passport.authenticate('jwt'), (req, res) => {
     .catch(err => res.status(400).json(err));
 });
 
+// @route   POST api/event/join-event
+// @desc    Join Event
+// @access  Private
+router.post('/join-event', passport.authenticate('jwt'), (req, res) => {
+  const { evt_id, user } = req.body;
+  Event.findByIdAndUpdate(evt_id, 
+    { $addToSet: { members: user } }, 
+    { upsert: true, new: true }, 
+    (err, evt) => {
+    if(err) return res.status(400).json({ noEvt: 'Event not found!' });
+    res.json(evt)
+  })
+  .catch(err => res.status(400).json({ noEvt: 'Event not found!' }));
+});
+
+// @route   POST api/event/leave-event
+// @desc    Leave Event
+// @access  Private
+router.post('/leave-event', passport.authenticate('jwt'), (req, res) => {
+  const { evt_id, user: { user_id } } = req.body;
+  Event.findByIdAndUpdate(evt_id, 
+    { $pull: { members: { user_id } } }, 
+    { upsert: true, new: true }, 
+    (err, evt) => {
+    if(err) return res.status(400).json({ noEvt: 'Event not found!' });
+    res.json(evt)
+  })
+  .catch(err => res.status(400).json({ noEvt: 'Event not found!' }));
+});
+
 module.exports = router;

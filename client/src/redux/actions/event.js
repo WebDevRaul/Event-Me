@@ -17,13 +17,18 @@ export const create_event = ({ event, history }) => dispatch => {
     .catch(err => dispatch({ type: EVENTS.ERROR, payload: err.response.data }));
 }
 
-export const select_event = id => {
-  return { type: EVENTS.SELECT_EVENT, payload: id }
+export const join_event = data => dispatch => {
+  axios.post(`${URL.event}/join-event`, data)
+    .then(({ data }) => dispatch({ type: EVENTS.JOIN_EVENT, payload: data }))
+    .catch(err => dispatch({ type: EVENTS.ERROR, payload: err.response.data }))
 }
 
-export const join_event = data => {
-  return { type: EVENTS.JOIN_EVENT, payload: data }
+export const leave_event = data => dispatch => {
+  axios.post(`${URL.event}/leave-event`, data)
+    .then(({ data }) => dispatch({ type: EVENTS.LEAVE_EVENT, payload: data }))
+    .catch(err => dispatch({ type: EVENTS.ERROR, payload: err.response.data }))
 }
+
 
 export const clearEventErrors = () => {
   return { type: EVENTS.CLEAR_ERROR, payload: {} }

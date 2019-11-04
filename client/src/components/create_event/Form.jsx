@@ -48,9 +48,8 @@ const Form = ({ create_event,  user, history, events, errors, clearEventErrors }
     const { user_id } = user;
     const event = { title, date, city, location, description , author: user_id};
     const { errors, isValid } = validateEvent(event);
-    // if(!isValid) { setErrors({ ...error, ...errors }) } 
-    // else { create_event({ event, history }) }
-    create_event({ event, history })
+    if(!isValid) { setErrors({ ...error, ...errors }) } 
+    else { create_event({ event, history }) }
   };
 
   return (

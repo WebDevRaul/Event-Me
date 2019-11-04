@@ -33,12 +33,12 @@ const App = () => {
                 <Route exact path='/register' component={Register} />
 
                 <PrivateRoute exact path='/create-event' component={CreateEvent} />
+                <PrivateRoute exact path='/home/:id/manage-event' component={ManageEvent} />
                 
                 <Redirect exact from ='/settings' to='/settings/basic' />
                 <PrivateRoute exact path='/settings/:id' component={Settings} />
                 <PrivateRoute exact path='/my-events' component={MyEvents} />
-                <Redirect exact from ='/my-events/manage-event' to='/my-events/manage-event/:id' />
-                <PrivateRoute exact path='/my-events/manage-event/:id' component={ManageEvent} />
+                {/* <Redirect exact from ='/my-events/manage-event' to='/my-events/manage-event/:id' /> */}
       
                 <Route path='*' component={NotFound} />
               </Switch>

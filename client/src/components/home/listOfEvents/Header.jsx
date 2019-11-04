@@ -5,13 +5,13 @@ import photo from '../../../assets/images/questionMark.jpg';
 import Title from '../../common/title/Title';
 import Photo from '../../common/photo/Photo';
 
-const Header = ({ author, title }) => {
+const Header = ({ author: { first_name }, title }) => {
   return (
     <div className='header'>
       <Photo photo={photo} width='80px' height='80px' alt='member' />
       <div className='info'>
         <Title text={title} />
-        <p>Hosted by {author.first_name}</p>
+        <p>Hosted by {first_name}</p>
       </div>
     </div>
   )

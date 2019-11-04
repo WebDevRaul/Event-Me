@@ -11,7 +11,7 @@ import StyledManageEvent from './Styled_Manage_Event';
 import Event from '../../components/common/event/Event';
 
 const ManageEvent = ({ history: { location: { pathname } }, state }) => {
-  const { event } = filter_event({ state, pathname, root: '/my-events/manage-event/' });
+  const { event } = filter_event({ state, pathname, root: '/home/' });
   if(!!!event) return <NotFound />
   return (
     <StyledManageEvent>

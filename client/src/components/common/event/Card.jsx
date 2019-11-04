@@ -27,10 +27,10 @@ const Card = ({ state, user, isAuth, edit, history, join_event, leave_event }) =
   }
   const onLeaveEvt = () => leave_event({ evt_id, user });
 
-  const onMenageEvent = () => history.push(`/my-events/manage-event/${evt_id}-${title_name}`);
+  const onMenageEvent = () => history.push(`/home/${evt_id}-${title_name}/manage-event`);
   // const onEdit = () => history.push(`/my-events/manage-event/${evt_id}-${title_name}/edit`);
   // const onDelete = () => {};
-
+  
   return (
     <div className='header'>  
       <div className='top'>

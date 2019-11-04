@@ -24,7 +24,7 @@ router.post('/create-event',passport.authenticate('jwt'), (req, res) => {
 
   event.save()
     .then(({ _id }) => {
-      Event.findById(_id).populate('author', 'first_name').exec((err, evt) => res.json(evt))
+      Event.findById(_id).populate('author', 'first_name').exec((err, evt) => console.log(evt))
     })
     .catch(err => res.status(400).json(err));
 });
@@ -36,12 +36,11 @@ router.post('/join-event', passport.authenticate('jwt'), (req, res) => {
   const { evt_id, user } = req.body;
   Event.findByIdAndUpdate(evt_id, 
     { $addToSet: { members: user } }, 
-    { upsert: true, new: true }, 
-    (err, evt) => {
-    if(err) return res.status(400).json({ noEvt: 'Event not found!' });
-    res.json(evt)
-  })
-  .catch(err => res.status(400).json({ noEvt: 'Event not found!' }));
+    { upsert: true, new: true })
+    .populate('author', 'first_name').exec((err, evt) => {
+      if(err) return res.status(400).json({ noEvt: 'Event not found!' });
+      res.json(evt)
+    })
 });
 
 // @route   POST api/event/leave-event
@@ -51,12 +50,11 @@ router.post('/leave-event', passport.authenticate('jwt'), (req, res) => {
   const { evt_id, user: { user_id } } = req.body;
   Event.findByIdAndUpdate(evt_id, 
     { $pull: { members: { user_id } } }, 
-    { upsert: true, new: true }, 
-    (err, evt) => {
-    if(err) return res.status(400).json({ noEvt: 'Event not found!' });
-    res.json(evt)
-  })
-  .catch(err => res.status(400).json({ noEvt: 'Event not found!' }));
+    { upsert: true, new: true })
+    .populate('author', 'first_name').exec((err, evt) => {
+      if(err) return res.status(400).json({ noEvt: 'Event not found!' });
+      res.json(evt)
+    })
 });
 
 module.exports = router;

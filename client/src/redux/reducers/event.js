@@ -17,6 +17,8 @@ const eventMe = (state=INITIAL_STATE, action) => {
       return { ...state, events: [...state.events.filter(i => i._id !== payload._id), payload] }
     case EVENTS.LEAVE_EVENT:
       return { ...state, events: [...state.events.filter(i => i._id !== payload._id), payload] }
+    case EVENTS.DELETE_EVENT:
+      return { ...state, events: [...state.events.filter(i => i._id !== payload._id)] }
     case EVENTS.ERROR:
       return { ...state, error: payload };
     case EVENTS.CLEAR_ERROR:

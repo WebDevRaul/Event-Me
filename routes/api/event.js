@@ -24,7 +24,7 @@ router.post('/create-event',passport.authenticate('jwt'), (req, res) => {
 
   event.save()
     .then(({ _id }) => {
-      Event.findById(_id).populate('author', 'first_name').exec((err, evt) => console.log(evt))
+      Event.findById(_id).populate('author', 'first_name').exec((err, evt) => res.json(evt))
     })
     .catch(err => res.status(400).json(err));
 });
@@ -55,6 +55,17 @@ router.post('/leave-event', passport.authenticate('jwt'), (req, res) => {
       if(err) return res.status(400).json({ noEvt: 'Event not found!' });
       res.json(evt)
     })
+});
+
+// @route   Delete api/event/home/:id/manage-event
+// @desc    Delete Event
+// @access  Private
+router.post('/home/:id/manage-event', passport.authenticate('jwt'), (req, res) => {
+  const { _id } = req.body;
+  Event.findByIdAndDelete(_id, (err, evt) =>{
+    if(err) return res.status(400).json({ noEvt: 'Event not found!' });
+    res.json(evt)
+  });
 });
 
 module.exports = router;

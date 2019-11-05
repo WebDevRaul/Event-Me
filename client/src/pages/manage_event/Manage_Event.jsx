@@ -13,8 +13,6 @@ import Event from '../../components/common/event/Event';
 const ManageEvent = ({ history: { location: { pathname } }, state }) => {
   const root = pathname.startsWith('/home/') ? '/home/' : '/my-events/'
   const { event } = filter_event({ state, pathname, root });
-  console.log(root, 'root');
-  console.log(pathname)
   if(!!!event) return <NotFound />
   return (
     <StyledManageEvent>

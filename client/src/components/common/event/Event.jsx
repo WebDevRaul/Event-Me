@@ -9,14 +9,14 @@ import Members from './Members';
 
 import StyledEvent from './Styled_Event';
 
-const Event = ({ state: { _id, title, date, author, description, location, city, members }, update, my_evt }) => {
+const Event = ({ state: { _id, title, date, author, description, location, city, members }, update }) => {
   const day = format(parseISO(date), 'EEEE do LLL');
   const time = format(parseISO(date), 'h:mm a');
   return (
     <StyledEvent>
       <div className="row no-gutters">
         <div className="col-12 col-sm-8">
-          <Card state={ {evt_id: _id, title, date: { day, time }, author, members} } update={update} my_evt={my_evt} />
+          <Card state={ {evt_id: _id, title, date: { day, time }, author, members} } update={update} />
           <Info date={{ day, time }} text={description} city={city} location={location} />
           <Chat />
         </div>
@@ -30,8 +30,7 @@ const Event = ({ state: { _id, title, date, author, description, location, city,
 
 Event.propTypes = {
   state: PropTypes.object.isRequired,
-  update: PropTypes.bool,
-  my_evt: PropTypes.bool
+  update: PropTypes.bool
 };
 
 export default Event;

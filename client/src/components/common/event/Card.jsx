@@ -13,12 +13,14 @@ import UpdateAndDelete from './UpdateAndDelete';
 import ManageEvt from './ManageEvt';
 
 
-const Card = ({ state, user, isAuth, update, history, join_event, leave_event, delete_event, my_evt }) => {
+const Card = ({ state, user, isAuth, update, history, join_event, leave_event, delete_event }) => {
   const [alert, setAlert] = useState(undefined);
   const { user_id } = user;
+  const { pathname } = history.location;
   const { title, date: { day, time }, author: { first_name, _id }, evt_id, members } = state;
   const title_name = title.split(' ').join('-');
   const { joined } = isJoined({ members, user_id });
+  const root = pathname.startsWith('/home/') ? false : true
   
   const onJoinEvt = () => {
     if(!isAuth) return setAlert('Sign In to join this event');
@@ -26,11 +28,14 @@ const Card = ({ state, user, isAuth, update, history, join_event, leave_event, d
   }
   const onLeaveEvt = () => leave_event({ evt_id, user });
   const onMenageEvt = () => {
-    if(my_evt) return history.push(`/my-events/${evt_id}-${title_name}/manage-event`);
+    if(root) return history.push(`/my-events/${evt_id}-${title_name}/manage-event`);
     history.push(`/home/${evt_id}-${title_name}/manage-event`);
   }
-  const onUpdateEvt = () => history.push(`/home/${evt_id}-${title_name}/manage-event/update`);
-  const onDeleteEvt = () => delete_event({ _id: evt_id, history })
+  const onUpdateEvt = () => {
+    if(root) return history.push(`/my-events/${evt_id}-${title_name}/manage-event/update`);
+    history.push(`/home/${evt_id}-${title_name}/manage-event/update`)
+  }
+  const onDeleteEvt = () => delete_event({ _id: evt_id, history });
 
   return (
     <div className='header'>

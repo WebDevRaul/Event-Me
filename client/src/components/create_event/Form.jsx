@@ -20,7 +20,7 @@ const Form = ({ user, events, history, errors, create_event, update_event }) => 
   const [error, setErrors] = useState({title: '', date: '', city: '', location: '', description: ''});
   const { title, date, city, location, description, _id } = state;
   const { pathname } = history.location;
-
+  
   // Update Errors
   useEffect(() => { setErrors(errors) },[errors]);
   // Clear state & errors if path is create-event
@@ -28,10 +28,11 @@ const Form = ({ user, events, history, errors, create_event, update_event }) => 
     if(pathname.startsWith('/home/')) return undefined;
     setState({ title: '', date: '', city: '', location: '', description: '' });
     setErrors({ title: '', date: '', city: '', location: '', description: '' });
-   },[pathname])
+  },[pathname])
   // Update State 
   useEffect(() => {
-    const { event } = filter_event({ state: events, pathname, root: '/home/' });
+    const root = pathname.startsWith('/home/') ? '/home/' : '/my-events/';
+    const { event } = filter_event({ state: events, pathname, root });
     if(!!!event) return undefined;
     const { title, date, city, location, description, _id } = event;
     setState({ title, date, city, location, description, _id });

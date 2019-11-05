@@ -29,7 +29,8 @@ const App = () => {
             <Route exact path='/sign-in' component={SignIn} />
             <Route exact path='/register' component={Register} />
 
-            <PrivateRoute exact path={['/create-event','/home/:id/manage-event/update']} component={CreateEvent} />
+            <PrivateRoute exact component={CreateEvent}
+              path={['/create-event','/home/:id/manage-event/update','/my-events/:id/manage-event/update']} />
             <PrivateRoute exact path={['/home/:id/manage-event','/my-events/:id/manage-event']} component={ManageEvent} />
             <PrivateRoute exact path='/my-events' component={MyEvents} />
             

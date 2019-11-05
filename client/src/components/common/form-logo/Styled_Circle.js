@@ -36,6 +36,24 @@ const StyledCircle = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
   }
+  .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 80%;
+    border-radius: 50px;
+    background: ${({ isBgk }) => isBgk ? 'var(--Scolor)' : 'var(--Pcolor)'};
+    .inner-logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 88%;
+      height: 88%;
+      background: var(--mainWhite);
+      border-radius: 50px;
+    }
+  }
 `
 
 export default StyledCircle;

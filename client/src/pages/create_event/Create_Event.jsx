@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Circle from '../../components/common/circle/Circle';
+import Circle from '../../components/common/form-logo/Circle';
 import Form from '../../components/create_event/Form';
 import ButtonOne from '../../components/common/buttonOne/ButtonOne';
 
@@ -14,7 +14,7 @@ const CreateEvent = ({ history }) => {
       </div>
       <div className='create-event'>
         <Circle isBgk='yes'>
-          test
+          <><i className='fas fa-calendar-plus fa-3x'></i></>
         </Circle>
         <Form />
       </div>

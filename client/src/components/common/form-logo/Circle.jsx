@@ -1,23 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import InnerCircle from './Inner_Circle';
 
 import StyledCircle from './Styled_Circle';
-import User from '../circle/User';
 
 const Circle = ({ children, isBgk }) => (
-  <StyledCircle>
+  <StyledCircle isBgk={isBgk}>
     <div className='top'>
       <div className='inner-circle' />
     </div>
     <div className='bottom' />
-    <User isBgk={isBgk}>
+    <InnerCircle>
       { children }
-    </User>
+    </InnerCircle>
   </StyledCircle>
 );
 
 Circle.propTypes = {
-  // children: PropTypes.object.isRequired,
+  children: PropTypes.object.isRequired,
   isBgk: PropTypes.string
 }
 

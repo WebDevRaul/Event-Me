@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Circle from '../../components/common/circle/Circle';
+import Circle from '../../components/common/form-logo/Circle';
 import Form from '../../components/register/Form';
-import UserSvg from '../../assets/svg/UserSvg';
+
 
 import StyledRegister from './Styled_Register';
 
@@ -11,7 +11,7 @@ const Register = () => {
     <StyledRegister>
       <div className='register'>
         <Circle isBgk='yes'>
-          <UserSvg width='50px' height='50px' />  
+          <><i className='fas fa-user-plus fa-3x'></i></>
         </Circle>
         <Form />
       </div>

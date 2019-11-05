@@ -22,6 +22,9 @@ const StyledCreateEvent = styled.section`
     border: 1px solid var(--Shadow);
     border-radius: var(--BorderRadius);
     background: var(--mainWhite);
+    .logo {
+      color: var(--Pcolor);
+    }
     .button-one {
     width: 116px;
     }

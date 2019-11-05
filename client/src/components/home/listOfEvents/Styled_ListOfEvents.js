@@ -24,8 +24,15 @@ const StyledListOfEvents = styled.section`
         }
       }
       .body {
-        div {
-          margin: 0 14px;
+        min-height: 50px;
+        p {
+            margin: 0;
+            i {
+              margin-right: 5px;
+            }
+          }
+        span {
+          margin: 0 10px;
         }
       }
       .members {

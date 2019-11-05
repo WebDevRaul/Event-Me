@@ -33,6 +33,7 @@ const DateInput = ({ onChange, value, error, onFocus }) => {
         timeFormat='HH:mm'
         onFocus={e => onFocusDatePicker(e)}
         autoComplete='off'
+        onChangeRaw={e => e.preventDefault()}
       />
       <label>{error ? error : 'Date'}</label>
     </StyledDateInput>

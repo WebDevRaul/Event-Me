@@ -1,5 +1,6 @@
-import { USER } from './types';
+import { toastr } from 'react-redux-toastr';
 import axios from 'axios';
+import { USER } from './types';
 import jwt_decode from 'jwt-decode';
 import URL from './URL';
 
@@ -25,8 +26,9 @@ import URL from './URL';
 export const register = ({ user, history }) => dispatch => {
   axios.post(`${URL.user}/register`, user)
     .then(res => {
-      dispatch({ type: USER.REGISTER, payload: res.data })
-      history.push('/sign-in')
+      dispatch({ type: USER.REGISTER, payload: res.data });
+      history.push('/sign-in');
+      toastr.success('Success!', 'Registered successfully');
     })
     .catch(err => dispatch({ type: USER.ERROR, payload: err.response.data }))
 }
@@ -39,7 +41,8 @@ export const sign_in = data => dispatch => {
       // Set Auth Token
       setAuthToken(token);
       // Set User
-      dispatch(setCurrentUser(token))
+      dispatch(setCurrentUser(token));
+      toastr.success('Success!', 'Signed In successfully');
     })
     .catch(err => dispatch({ type: USER.ERROR, payload: err.response.data }))
 }
@@ -51,6 +54,7 @@ export const sign_out = () => dispatch => {
   setAuthToken(false);
   // Clear user (Redux)
   dispatch(setRemoveUser());
+  toastr.success('Success!', 'Signed Out successfully');
 };
 
 export const setAuthToken = token => {

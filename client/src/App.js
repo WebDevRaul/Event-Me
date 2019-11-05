@@ -6,7 +6,7 @@ import Navbar from './layout/navbar/Navbar';
 import Home from './pages/home/Home';
 import CreateEvent from './pages/create_event/Create_Event';
 import EventInfo from './pages/event_info/Event_Info';
-import Settings from './pages/settings_/Settings';
+import Settings from './pages/settings/Settings';
 import MyEvents from './pages/my_events/My_Events';
 import ManageEvent from './pages/manage_event/Manage_Event';
 import SignIn from './pages/signIn/SignIn';
@@ -33,7 +33,6 @@ const App = () => {
               path={['/create-event','/home/:id/manage-event/update','/my-events/:id/manage-event/update']} />
             <PrivateRoute exact path={['/home/:id/manage-event','/my-events/:id/manage-event']} component={ManageEvent} />
             <PrivateRoute exact path='/my-events' component={MyEvents} />
-            
             <Redirect exact from ='/settings' to='/settings/basic' />
             <PrivateRoute exact path='/settings/:id' component={Settings} />
   

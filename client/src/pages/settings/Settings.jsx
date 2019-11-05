@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch } from 'react-router-dom';
 
-import SideNav from '../../components/settings_/side_Nav/SideNav';
-import Basic from '../../components/settings_/Basic';
-import About from '../../components/settings_/About';
-import Photo from '../../components/settings_/Photo';
-import Account from '../../components/settings_/Account';
+import SideNav from '../../components/settings/side_nav/SideNav';
+import Basic from '../../components/settings/Basic';
+import About from '../../components/settings/About';
+import Photo from '../../components/settings/Photo';
+import Account from '../../components/settings/Account';
 
 import StyledSettings from './Styled_Settings';
 

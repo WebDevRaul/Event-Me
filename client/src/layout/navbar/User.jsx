@@ -1,11 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import UserPhoto from './User_Photo';
 
 const User = ({ onClick, onSignOut, name }) => {
   return (
     <div className='user' onClick={onClick}>
-      <p>{name}</p>
+      <div className='info'>
+        <UserPhoto photo={undefined} />
+        <p className='mb-0'>{name}</p>
+      </div>
       <div className='wrapper'>
         <div className='list'>
           <span className='tip' />

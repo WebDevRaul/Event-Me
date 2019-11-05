@@ -11,9 +11,9 @@ const DateInput = ({ onChange, value, error, onFocus }) => {
   const val = !isEmpty(value) ? 1 : 0;
   const err = isEmpty(error) ? 1 : 0;
   useEffect(() => {
-    if(focus) { document.addEventListener("mousedown", onClickOutside) }
-    else { document.removeEventListener('mousedown', onClickOutside) }
-    return () => document.removeEventListener('mousedown', onClickOutside)
+    if(focus) { document.addEventListener("", onClickOutside) }
+    else { document.removeEventListener('', onClickOutside) }
+    return () => document.removeEventListener('', onClickOutside)
   },[focus]);
 
   const onClickOutside = () => setFocus(0);

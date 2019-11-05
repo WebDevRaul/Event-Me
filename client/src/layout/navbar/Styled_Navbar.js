@@ -54,8 +54,13 @@ const StyledNavbar = styled.div`
           color: var(--mainWhite);
           font-weight: 500;
           letter-spacing: var(--Spacing);
-          p {
-            margin: 0px;
+          .info {
+            display: flex;
+            p {
+              display: flex;
+              align-items: center;
+              margin-left: 5px;
+            }
             &:hover {
               cursor: pointer;
             }
@@ -96,7 +101,7 @@ const StyledNavbar = styled.div`
               border-left: 1px solid var(--Shadow);
               border-top: 1px solid var(--Shadow);
               top: 5px;
-              left: 40px;
+              left: 28px;
               transform: rotate(45deg);
               z-index: 20;
             }

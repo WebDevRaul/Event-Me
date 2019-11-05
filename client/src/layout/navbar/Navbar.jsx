@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -17,6 +17,17 @@ import StyledNavbar from './Styled_Navbar';
 const Navbar = ({ isAuth, sign_out, name }) => {
   const [isOpen, setOpen] = useState(false);
   const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    document.addEventListener("mousedown", onClickOutside);
+    return () => document.removeEventListener("mousedown", onClickOutside);
+  });
+
+  const onClickOutside = e => {
+    if(!show) return null;
+    if(!!!e.target.className) return null;
+    setShow(!show)
+  };
 
   const onToggle = () => setOpen(!isOpen);
   const onClick = () => { setShow(!show) };

@@ -68,18 +68,20 @@ const StyledEvent = styled.section`
       .person {
         display: flex;
         align-items: center;
-        i {
-          color: var(--Pcolor);
-        }
         p {
           margin: 0 0 0 20px;
           font-size: 1.2em;
           font-weight: 500;
         }
+        i {
+          color: var(--Pcolor);
+          font-size: 2em;
+        }
       }
       div {
         padding: 15px;
-        border-bottom: 1px solid var(--Shadow);
+        border-bottom: 1px solid var(--Pcolor);
+        background: none;
         &:last-child {
           border-bottom: none;
         }

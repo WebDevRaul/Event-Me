@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Photo from '../photo/Photo';
+import Photo from '../user/Photo';
 
 const Person = ({ person: { first_name } }) => {
   return (

@@ -1,5 +1,5 @@
 import Validator from 'validator';
-import isEmpty from '../../common/isEmpty/isEmpty';
+import isEmpty from '../../common/utils/isEmpty/isEmpty';
 
 const validateEvent = data => {
   let errors = {};

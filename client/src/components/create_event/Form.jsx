@@ -13,7 +13,7 @@ import ButtonOne from '../common/buttonOne/ButtonOne';
 import Input from '../common/input/Input';
 import TextArea from '../common/textarea/Textarea';
 import DateInput from '../common/date/DateInput';
-import isEmpty from '../common/isEmpty/isEmpty';
+import isEmpty from '../common/utils/isEmpty/isEmpty';
 
 const Form = ({ user, events, history, errors, create_event, update_event }) => {
   const [ state, setState ] = useState({ title: '', date: '', city: '', location: '', description: '', _id: '' });

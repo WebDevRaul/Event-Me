@@ -4,7 +4,7 @@ import DatePicker from 'react-datepicker';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import StyledDateInput from './Styled_DateInput';
-import isEmpty from '../isEmpty/isEmpty';
+import isEmpty from '../utils/isEmpty/isEmpty';
 
 const DateInput = ({ onChange, value, error, onFocus }) => {
   const [focus, setFocus] = useState(0);

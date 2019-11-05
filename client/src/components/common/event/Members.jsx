@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import isEmpty from '../isEmpty/isEmpty';
+import isEmpty from '../utils/isEmpty/isEmpty';
 
 import Person from './Person';
 

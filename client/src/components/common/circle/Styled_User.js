@@ -13,8 +13,8 @@ const StyledUser = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 90%;
-      height: 90%;
+      width: 88%;
+      height: 88%;
       background: var(--mainWhite);
       border-radius: 50px;
     }

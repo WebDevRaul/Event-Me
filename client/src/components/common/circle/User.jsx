@@ -17,7 +17,7 @@ const User = ({ children, isBgk }) => {
 
 User.propTypes = {
   isBgk: PropTypes.string,
-  children: PropTypes.object.isRequired
+  // children: PropTypes.object.isRequired
 }
 
 export default User;

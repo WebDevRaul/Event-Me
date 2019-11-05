@@ -14,7 +14,7 @@ const CreateEvent = ({ history }) => {
       </div>
       <div className='create-event'>
         <Circle isBgk='yes'>
-           <>to do</>
+          test
         </Circle>
         <Form />
       </div>

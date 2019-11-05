@@ -14,6 +14,11 @@ const StyledListOfEvents = styled.section`
         border-bottom: 1px solid var(--Shadow);
       }
       .header {
+        align-items: center;
+        .circle {
+          width: 80px;
+          height: 80px;
+        }
         .info {
           padding: 14px;
         }
@@ -25,7 +30,14 @@ const StyledListOfEvents = styled.section`
       }
       .members {
         min-height: 50px;
+        padding: 7.5px 14px;
         background: var(--Grey);
+        div {
+          margin: 0 5px;
+        }
+        i {
+          font-size: 2em;
+        }
       }
       .footer {
         justify-content: space-between;

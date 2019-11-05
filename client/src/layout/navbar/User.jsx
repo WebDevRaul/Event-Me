@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import Photo from '../../components/common/user/Photo';
 
 const User = ({ onClick, onSignOut, name }) => {
   return (
     <div className='user' onClick={onClick}>
       <div className='info'>
-        <i className='fas fa-user fa-2x'></i>
+        <Photo photo={undefined} width='25px' height='25px' alt='user' />
         <p className='mb-0'>{name}</p>
       </div>
       <div className='wrapper'>

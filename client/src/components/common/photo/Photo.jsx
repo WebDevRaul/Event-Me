@@ -4,7 +4,11 @@ import StyledPhoto from './Styled_Photo';
 
 const Photo = ({ photo, height, width, alt }) => (
   <StyledPhoto>
-    <img src={photo} height={height} width={width} alt={alt} />
+    {
+      photo
+      ? <img src={photo} height={height} width={width} alt={alt} />
+      : <i className='fas fa-user fa-2x'></i>
+    }
   </StyledPhoto>
 );
 

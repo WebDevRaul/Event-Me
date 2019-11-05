@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import User from '../../../components/common/user/User';
 
 import StyledCircle from './Styled_Circle';
 
@@ -10,9 +9,9 @@ const Circle = ({ children, isBgk }) => (
       <div className='inner-circle' />
     </div>
     <div className='bottom' />
-    <User isBgk={isBgk}>
+    {/* <User isBgk={isBgk}>
       { children }
-    </User>
+    </User> */}
   </StyledCircle>
 );
 

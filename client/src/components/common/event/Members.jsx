@@ -10,7 +10,7 @@ const Members = ({ arr }) => {
       <div className="top">
         {
           arr.length > 0
-            ? <p>{arr.length} People Going</p>
+            ? <p>{arr.length} People are Going</p>
             : <p>Be first to go</p>
         }
       </div>

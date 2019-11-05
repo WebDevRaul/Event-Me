@@ -41,6 +41,12 @@ const StyledEvent = styled.section`
       min-height: 50px;
       margin-bottom: 0px;
     }
+    & p {
+      border-bottom: 1px solid var(--Pcolor);
+      &:nth-child(1) {
+        border-top: 1px solid var(--Pcolor);
+      }
+    }
   }
   .side-bar {
     .top {
@@ -51,6 +57,7 @@ const StyledEvent = styled.section`
       border-top-left-radius: var(--BorderRadius);
       p {
         margin-bottom: 0;
+        font-size: 1.5em;
       }
     }
     .bottom {
@@ -58,6 +65,18 @@ const StyledEvent = styled.section`
       background: var(--mainWhite);
       border-bottom-right-radius: var(--BorderRadius);
       border-bottom-left-radius: var(--BorderRadius);
+      .person {
+        display: flex;
+        align-items: center;
+        i {
+          color: var(--Pcolor);
+        }
+        p {
+          margin: 0 0 0 20px;
+          font-size: 1.2em;
+          font-weight: 500;
+        }
+      }
       div {
         padding: 15px;
         border-bottom: 1px solid var(--Shadow);

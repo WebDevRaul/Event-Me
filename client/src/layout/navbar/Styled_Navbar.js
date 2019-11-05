@@ -77,6 +77,9 @@ const StyledNavbar = styled.div`
             right: 20px;
             z-index: 50;
             display: ${({ show }) => show ? 'block' : 'none'};
+            i {
+              margin: 0 10px;
+            }
             .list {
               display: flex;
               flex-direction: column;
@@ -85,7 +88,7 @@ const StyledNavbar = styled.div`
               background-color: var(--mainWhite);
               border: 1px solid var(--Shadow);
               border-radius: var(--BorderRadius);
-              padding-left: 1px;
+              padding-right: 1px;
               a {
                 margin: 5px 0;
                 padding: 14px;

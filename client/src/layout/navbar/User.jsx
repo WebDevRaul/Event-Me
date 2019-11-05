@@ -13,11 +13,11 @@ const User = ({ onClick, onSignOut, name }) => {
       <div className='wrapper'>
         <div className='list'>
           <span className='tip' />
-          <Link to='/create-event'>Create Event</Link>
-          <Link to='/my-events'>My Events</Link>
-          <Link to='/profile'>My Profile</Link>
-          <Link to='/settings'>Settings</Link>
-          <Link to='/home' onClick={onSignOut}>Sign Out</Link>
+          <Link to='/create-event'><i className='fas fa-plus'></i>Create Event</Link>
+          <Link to='/my-events'><i className='fas fa-calendar'></i>My Events</Link>
+          <Link to='/profile'><i className='fas fa-user'></i>My Profile</Link>
+          <Link to='/settings'><i className='fas fa-cogs'></i>Settings</Link>
+          <Link to='/home' onClick={onSignOut}><i className='fas fa-sign-out-alt'></i>Sign Out</Link>
         </div>
       </div>
     </div>

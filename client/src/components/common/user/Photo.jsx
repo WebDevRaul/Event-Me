@@ -20,7 +20,7 @@ Photo.propTypes = {
   height: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
   isBgk: PropTypes.number,
-  isBgk: PropTypes.number
+  isClr: PropTypes.number
 }
 
 export default Photo;

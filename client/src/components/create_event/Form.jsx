@@ -36,7 +36,8 @@ const Form = ({ user, events, history, errors, create_event, update_event }) => 
     if(!!!event) return undefined;
     const { title, date, city, location, description, _id } = event;
     setState({ title, date, city, location, description, _id });
-  }, [pathname, events]);
+    // eslint-disable-next-line
+  }, []);
 
   const onChange = e => setState({...state , [e.target.name]: e.target.value });
   const onChangeDate = e => setState({ ...state, date: String(e) });

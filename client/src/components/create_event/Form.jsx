@@ -67,7 +67,7 @@ const Form = ({ user, events, history, errors, create_event, update_event }) => 
         <Input name='title' label='Event Title' value={title} 
           onChange={onChange} onFocus={onFocus} error={error.title}
         />
-        <DateInput value={date} onChange={e => onChangeDate(e)}
+        <DateInput name='date' value={date} onChange={e => onChangeDate(e)}
           error={error.date} onFocus={onFocus}
         />
         <Input name='city' label='City' value={city} 

@@ -10,7 +10,7 @@ const SideNav = ({ match }) => {
         <li className="path head">Profile</li>
         <Li text='Basic' url={url} name='basic'/>
         <Li text='About Me' url={url} name='about'/>
-        <Li text='My Photo' url={url} name='photo'/>
+        <Li text='My Photos' url={url} name='photo'/>
       </ul>
       <ul className="list">
         <li className="path head">Account</li>

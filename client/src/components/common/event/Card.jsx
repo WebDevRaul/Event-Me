@@ -15,11 +15,10 @@ import ManageEvt from './ManageEvt';
 
 const Card = ({ state, user, isAuth, update, history, join_event, leave_event, delete_event }) => {
   const [alert, setAlert] = useState(undefined);
-  const { user_id } = user;
   const { pathname } = history.location;
   const { title, date: { day, time }, author: { first_name, _id }, evt_id, members } = state;
   const title_name = title.split(' ').join('-');
-  const { joined } = isJoined({ members, user_id });
+  const { joined } = isJoined({ members, _id: user._id });
   const root = pathname.startsWith('/home/') ? false : true
   
   const onJoinEvt = () => {
@@ -49,7 +48,7 @@ const Card = ({ state, user, isAuth, update, history, join_event, leave_event, d
       <div className='buttom'>
         {alert}
         {!update && <JoinAndLeave isJoined={joined} isAuth={isAuth} onJoinEvt={onJoinEvt} onLeaveEvt={onLeaveEvt}/>}
-        { (!update && _id === user_id) && <ManageEvt onMenageEvt={onMenageEvt} />}
+        { (!update && _id === user._id) && <ManageEvt onMenageEvt={onMenageEvt} />}
         { update && <UpdateAndDelete onUpdateEvt={onUpdateEvt} onDeleteEvt={onDeleteEvt}/> }
       </div>
     </div>

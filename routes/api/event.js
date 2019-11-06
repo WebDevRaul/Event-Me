@@ -26,7 +26,7 @@ router.post('/create-event', passport.authenticate('jwt'), (req, res) => {
     .then(({ _id }) => {
       Event.findById(_id).populate('author', 'first_name').exec((err, evt) => res.json(evt))
     })
-    .catch(err => res.status(400).json(err));
+    .catch(err => res.status(400).json({ noEvt: 'Event not found!' }));
 });
 
 // @route   POST api/event/join-event

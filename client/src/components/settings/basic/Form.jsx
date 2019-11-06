@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { update_basic } from '../../../redux/actions/profile';
 import { createStructuredSelector } from 'reselect';
-import { state_user } from '../../../redux/selectors/user';
 
 import ButtonOne from '../../common/buttonOne/ButtonOne';
 import Input from '../../common/input/Input';
 import DateInput from '../../common/date/DateInput';
 
-const Form = ({ user: { user_id },update_basic }) => {
+const Form = ({ update_basic }) => {
   const [state, setState] = useState({ first_name: '', last_name: '', birthday: '', town: ''});
   const [error, setErrors] = useState({ first_name: '', last_name: '', birthday: '', town: ''});
   const { first_name, last_name, birthday, town } = state;
@@ -68,12 +67,11 @@ const Form = ({ user: { user_id },update_basic }) => {
 };
 
 Form.propTypes = {
-  update_basic: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired
+  update_basic: PropTypes.func.isRequired
 };
 
 const mapStateToProps = createStructuredSelector({
-  user: state_user
+
 });
 
 export default connect( mapStateToProps, { update_basic } )(Form);

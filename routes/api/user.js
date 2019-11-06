@@ -54,21 +54,19 @@ router.post('/sign-in', (req, res) => {
   errors.email='Invalid E-Mail or Password';
   errors.password='Invalid E-Mail or Password';
   
-  User.findOne({ email })
-  .then(user => {
-      if(!user) return res.status(404).json(errors);
-      const { _id, first_name, last_name, email } = user;
-      
-      bcrypt.compare(password, user.password)
-        .then(isMatch => {
-          if(!isMatch) return res.status(404).json(errors);
-          const payload = { user: {user_id: _id, first_name, last_name, email}, isAuth: true };
-          jwt.sign(payload, SECRET_OR_KEY, { expiresIn: 3600 }, (err, token) => {
-            res.json({ token: 'Bearer ' + token });
-          });
-        })
-    })
-    .catch(err => res.status(400).json({ error: 'Ooops'}));
+  User.findOne({ email }).populate('profile', '_id birthday town').exec((err, user) => {
+    if(!user) res.status(400).json({ error: 'Ooops' });
+    const { _id, first_name, last_name, email, date, profile } = user;
+    bcrypt.compare(password, user.password)
+      .then(isMatch => {
+        if(!isMatch) return res.status(404).json(errors);
+        const payload = { user: { _id, first_name, last_name, email, date, profile }, isAuth: true };
+        jwt.sign(payload, SECRET_OR_KEY, { expiresIn: 3600 }, (err, token) => {
+          res.json({ token: 'Bearer ' + token });
+        });
+      })
+      .catch(err => res.status(400).json({ error: 'Ooops' }));
+  })
 });
 
 module.exports = router;

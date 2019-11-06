@@ -1,4 +1,2 @@
 active link navbar
-close navbar user-links on click outside?
-more validation on Create_Event DATE!!!
-alert joined event members that event has been changed/edit 
+create new token on update profile

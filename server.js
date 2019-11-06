@@ -6,7 +6,9 @@ const passport = require('passport');
 const User = require('./models/User');
 require('dotenv').config();
 const { MONGO_DB } = require('./config/Keys');
+
 const user = require('./routes/api/user');
+const profile = require('./routes/api/profile');
 const event = require('./routes/api/event');
 
 
@@ -33,6 +35,7 @@ passport.deserializeUser((id, done) => User.findById(id, (err, user) => done(err
 
 
 app.use('/api/user', user);
+app.use('/api/profile', profile);
 app.use('/api/event', event);
 
 

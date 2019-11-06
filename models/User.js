@@ -6,7 +6,8 @@ const UserSchema = new Schema({
   last_name: { type: String, required: true },
   email: { type: String, required: true },
   password: { type: String, required: true },
-  date: { type: Date, default: Date.now }
+  date: { type: Date, default: Date.now },
+  profile: { type: Schema.Types.ObjectId, ref: 'profile' }
 });
 
 module.exports = User = mongoose.model('user', UserSchema);

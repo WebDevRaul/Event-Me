@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { SECRET_OR_KEY } = require('../../config/Keys');
 const User = require('../../models/User');
+const Profile = require('../../models/Profile');
 const validateSignIn = require('../../validation/sign_in');
 const validateRegister = require('../../validation/register');
 
@@ -27,12 +28,19 @@ router.post('/register', (req, res) => {
           if(err) throw err;
           newUser.password = hash;
           newUser.save()
-            .then(user => res.json({ success: true }))
-            .catch(err => console.log(err))
+            .then(({ _id }) => {
+              const newProfile = new Profile({ user_id: _id });
+              newProfile.save()
+                .then(profile => {
+                  User.findByIdAndUpdate(_id, { $addToSet: { profile: profile._id } }, { upsert: true, new: true } )
+                    .then(() => res.json({ success: true }))
+                })
+            })
+            .catch(err => res.status(400).json({ error: 'Ooops'}))
         });
       });
     })
-    .catch(err => console.log(err));
+    .catch(err => res.status(400).json({ error: 'Ooops'}));
 });
 
 // @route   GET api/user/sign-in
@@ -60,7 +68,7 @@ router.post('/sign-in', (req, res) => {
           });
         })
     })
-    .catch(err => res.status(400).json(err));
+    .catch(err => res.status(400).json({ error: 'Ooops'}));
 });
 
 module.exports = router;

@@ -1,7 +1,7 @@
-import { toastr } from 'react-redux-toastr';
 import axios from 'axios';
-import { EVENTS } from './types';
 import URL from './URL';
+import { EVENTS } from './types';
+import { toastr } from 'react-redux-toastr';
 
 export const update_events = () => dispatch => {
   axios.get(`${URL.event}/home`)

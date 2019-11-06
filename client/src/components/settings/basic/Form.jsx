@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { update_basic } from '../../../redux/actions/profile';
 import { createStructuredSelector } from 'reselect';
 import { state_user } from '../../../redux/selectors/user';
+import validateBasic from '../utils/ValidateBasic';
 
 import ButtonOne from '../../common/buttonOne/ButtonOne';
 import Input from '../../common/input/Input';
@@ -31,9 +32,12 @@ const Form = ({ update_basic, user }) => {
   }
   const onSubmit = e => {
     e.preventDefault();
+    // const { errors, isValid } = validateBasic(state);
+    // if(!isValid) { setErrors({...error, ...errors})}
+    // else { update_basic({ ...state })};
     update_basic({ ...state })
   }
-  
+
   return (
     <form noValidate onSubmit={onSubmit}>
       <div className='form'>
@@ -54,11 +58,11 @@ const Form = ({ update_basic, user }) => {
           error={error.last_name}
         />
         <DateInput
-          name='Birthday'
+          name='birthday'
           value={birthday} 
           onChange={e => onChangeDate(e)}
           onFocus={onFocus}
-          error={error.date} 
+          error={error.birthday} 
         />
         <Input 
           name='town'

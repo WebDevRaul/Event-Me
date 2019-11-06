@@ -3,6 +3,7 @@ const router = express.Router();
 const passport = require('passport');
 const User = require('../../models/User');
 const Profile = require('../../models/Profile');
+const validateBasic = require('../../validation/basic');
 
 
 // @route   POST /api/profile/basic
@@ -11,6 +12,8 @@ const Profile = require('../../models/Profile');
 router.post('/basic', passport.authenticate('jwt'), (req, res) => {
   const { last_name, first_name, birthday, town } = req.body;
   const { _id } = req.user;
+  const { errors, isValid } = validateBasic(req.body);
+  if (!isValid) return res.status(400).json(errors);
 
   const user = User.findByIdAndUpdate(_id, { first_name, last_name }, { new: true });
   const profile = Profile.findOneAndUpdate({user_id: _id}, { birthday, town }, { new: true });

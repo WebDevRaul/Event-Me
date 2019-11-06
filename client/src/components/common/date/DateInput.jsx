@@ -25,7 +25,7 @@ const DateInput = ({ name, onChange, value, error, onFocus }) => {
   return (
     <StyledDateInput focus={focus} val={val} err={err}>
       <DatePicker
-        name='date' 
+        name={name} 
         onChange={onChange}
         selected={value ? new Date(value) : null}
         showTimeSelect

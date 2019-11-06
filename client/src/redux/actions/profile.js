@@ -10,7 +10,7 @@ export const update_basic = obj => dispatch => {
       toastr.success('Success!', 'Profile updated');
     })
     .catch(err => {
-      dispatch({ type: PROFILE.ERROR, payload: err });
+      dispatch({ type: PROFILE.ERROR, payload: err.response.data });
       toastr.error('Oops!', 'Something went wrong');
     });
 };

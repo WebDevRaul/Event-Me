@@ -3,17 +3,24 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { update_basic } from '../../../redux/actions/profile';
 import { createStructuredSelector } from 'reselect';
-import { state_user } from '../../../redux/selectors/user';
+import { state_user, state_user_error } from '../../../redux/selectors/user';
 import validateBasic from '../utils/ValidateBasic';
 
 import ButtonOne from '../../common/buttonOne/ButtonOne';
 import Input from '../../common/input/Input';
 import DateInput from '../../common/date/DateInput';
 
-const Form = ({ update_basic, user }) => {
+const Form = ({ update_basic, user, errors }) => {
   const [state, setState] = useState({ first_name: '', last_name: '', birthday: '', town: ''});
   const [error, setErrors] = useState({ first_name: '', last_name: '', birthday: '', town: ''});
   const { first_name, last_name, birthday, town } = state;
+  // Update Errors
+  useEffect(() => { setErrors(errors) },[errors]);
+  // Clear Errors
+  useEffect(() => { 
+    setErrors({ first_name: '', last_name: '', birthday: '', town: '' });
+    // eslint-disable-next-line
+  },[])
   // Update fields
   useEffect(() => { 
     const { first_name, last_name, profile : { birthday, town } } = user;
@@ -32,10 +39,9 @@ const Form = ({ update_basic, user }) => {
   }
   const onSubmit = e => {
     e.preventDefault();
-    // const { errors, isValid } = validateBasic(state);
-    // if(!isValid) { setErrors({...error, ...errors})}
-    // else { update_basic({ ...state })};
-    update_basic({ ...state })
+    const { errors, isValid } = validateBasic(state);
+    if(!isValid) { setErrors({...error, ...errors})}
+    else { update_basic({ ...state })};
   }
 
   return (
@@ -80,11 +86,13 @@ const Form = ({ update_basic, user }) => {
 
 Form.propTypes = {
   update_basic: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired
+  user: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = createStructuredSelector({
-  user: state_user
+  user: state_user,
+  errors: state_user_error
 });
 
 export default connect( mapStateToProps, { update_basic } )(Form);

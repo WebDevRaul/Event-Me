@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 
 // Connect to DB
 // DeprecationWarning useUnifiedTopology: true 
-mongoose.connect(MONGO_DB, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(MONGO_DB, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
 .then(() => console.log('MongoDB Connected'))
 .catch(err => console.log(err));
 

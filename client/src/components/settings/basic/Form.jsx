@@ -6,13 +6,17 @@ import { clearUserErrors } from '../../../redux/actions/user';
 import { createStructuredSelector } from 'reselect';
 import { state_user, state_user_error } from '../../../redux/selectors/user';
 import validateBasic from '../utils/ValidateBasic';
+import { addYears } from 'date-fns/esm';
 
 import ButtonOne from '../../common/buttonOne/ButtonOne';
 import Input from '../../common/Form/input/Input';
 import DateInput from '../../common/Form/date/DateInput';
+import Radio from '../../common/Form/radio/Radio';
 
 const Form = ({ update_basic, user, errors, clearUserErrors }) => {
-  const [state, setState] = useState({ first_name: '', last_name: '', birthday: '', town: ''});
+  const [state, setState] = useState({ 
+    first_name: '', last_name: '', gender: 'Female', birthday: '', town: ''
+  });
   const [error, setErrors] = useState({ first_name: '', last_name: '', birthday: '', town: ''});
   const { first_name, last_name, birthday, town } = state;
 
@@ -66,12 +70,19 @@ const Form = ({ update_basic, user, errors, clearUserErrors }) => {
           onFocus={onFocus}
           error={error.last_name}
         />
+        <Radio onClick={onChange} />
         <DateInput
           name='birthday'
           value={birthday} 
+          label='Date of Birth'
           onChange={e => onChangeDate(e)}
           onFocus={onFocus}
-          error={error.birthday} 
+          error={error.birthday}
+          date='dd LLL yyyy'
+          year={true}
+          month={true}
+          mode='select'
+          maxDate={addYears(new Date(), -18)}
         />
         <Input 
           name='town'

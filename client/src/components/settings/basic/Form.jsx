@@ -11,12 +11,10 @@ import { addYears } from 'date-fns/esm';
 import ButtonOne from '../../common/buttonOne/ButtonOne';
 import Input from '../../common/Form/input/Input';
 import DateInput from '../../common/Form/date/DateInput';
-import Radio from '../../common/Form/radio/Radio';
+import Gender from '../../common/Form/radio/Gender';
 
 const Form = ({ update_basic, user, errors, clearUserErrors }) => {
-  const [state, setState] = useState({ 
-    first_name: '', last_name: '', gender: 'Female', birthday: '', town: ''
-  });
+  const [state, setState] = useState({ first_name: '', last_name: '', gender: '', birthday: '', town: '' });
   const [error, setErrors] = useState({ first_name: '', last_name: '', birthday: '', town: ''});
   const { first_name, last_name, birthday, town } = state;
 
@@ -70,7 +68,10 @@ const Form = ({ update_basic, user, errors, clearUserErrors }) => {
           onFocus={onFocus}
           error={error.last_name}
         />
-        <Radio onClick={onChange} />
+        <Gender
+          name='gender'
+          onClick={onChange} 
+        />
         <DateInput
           name='birthday'
           value={birthday} 

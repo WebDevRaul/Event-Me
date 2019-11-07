@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import SideNav from '../../components/settings/side_nav/SideNav';
 import Basic from '../../components/settings/basic/Basic';
-import About from '../../components/settings/About';
+import About from '../../components/settings/about/About';
 import Photo from '../../components/settings/Photo';
 import Account from '../../components/settings/Account';
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledListOfEvents = styled.section`
+const StyledHomeEvents = styled.section`
   .list-of-events {
     padding: 20px;
     .event {
@@ -8,12 +8,12 @@ const StyledListOfEvents = styled.section`
       background-color: var(--mainWhite);
       border: 1px solid var(--Shadow);
       border-radius: var(--BorderRadius);
-      .header, .body, .members, .footer {
+      .event-title, .event-location, .event-members, .event-description {
         display: flex;
         padding: 14px;
         border-bottom: 1px solid var(--Shadow);
       }
-      .header {
+      .event-title {
         align-items: center;
         .circle {
           width: 80px;
@@ -23,7 +23,7 @@ const StyledListOfEvents = styled.section`
           padding: 14px;
         }
       }
-      .body {
+      .event-location {
         min-height: 50px;
         p {
             margin: 0;
@@ -35,7 +35,7 @@ const StyledListOfEvents = styled.section`
           margin: 0 10px;
         }
       }
-      .members {
+      .event-members {
         min-height: 50px;
         padding: 7.5px 14px;
         background: var(--Grey);
@@ -46,7 +46,7 @@ const StyledListOfEvents = styled.section`
           font-size: 2em;
         }
       }
-      .footer {
+      .event-description {
         justify-content: space-between;
         p {
           margin-right: 20px;
@@ -59,4 +59,4 @@ const StyledListOfEvents = styled.section`
   }
 `
 
-export default StyledListOfEvents;
+export default StyledHomeEvents;

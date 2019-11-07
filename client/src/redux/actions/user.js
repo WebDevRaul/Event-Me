@@ -33,8 +33,8 @@ export const register = ({ user, history }) => dispatch => {
     .catch(err => dispatch({ type: USER.ERROR, payload: err.response.data }))
 }
 
-export const sign_in = data => dispatch => {
-  axios.post(`${URL.user}/sign-in`, data)
+export const sign_in = obj => dispatch => {
+  axios.post(`${URL.user}/sign-in`, obj)
     .then(({ data: { token } }) => {
       // Save to LocalStorage
       localStorage.setItem('jwToken', token);

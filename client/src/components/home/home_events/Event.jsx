@@ -2,20 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { format, parseISO } from 'date-fns';
 
-import Header from './Header';
-import Body from './Body';
-import Members from './Members';
-import Footer from './Footer';
+import EventTitle from './Event_Title';
+import EventLocation from './Event_Location';
+import EventMembers from './Event_Members';
+import EventDescription from './Event_Description';
 
 const Event = ({ event: { author, title, date, city, location, members, description, _id } }) => {
   const day = format(parseISO(date), 'EEEE do LLL');
   const time = format(parseISO(date), 'h:mm a');
   return (
     <div className='event'>
-      <Header  author={author} title={title} />
-      <Body date={{ day, time }} location={location} city={city} />
-      <Members members={members} />
-      <Footer description={description} title={title} _id={_id} />
+      <EventTitle  author={author} title={title} />
+      <EventLocation date={{ day, time }} location={location} city={city} />
+      <EventMembers members={members} />
+      <EventDescription description={description} title={title} _id={_id} />
     </div>
   )
 }

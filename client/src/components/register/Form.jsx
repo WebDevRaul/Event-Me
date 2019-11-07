@@ -5,24 +5,28 @@ import { connect } from 'react-redux';
 import { register, clearUserErrors } from '../../redux/actions/user';
 import { createStructuredSelector } from 'reselect';
 import { state_user_error } from '../../redux/selectors/user';
-import Input from '../common/input/Input';
-import ButtonOne from '../common/buttonOne/ButtonOne';
 import validateRegister from './utils/Validate';
+
+import Input from '../common/Form/input/Input';
+import ButtonOne from '../common/buttonOne/ButtonOne';
 
 const Form = ({ register, history, errors, clearUserErrors }) => {
   const [state, setState] = useState({ first_name: 'Adam', last_name: 'Mark', email: 'Mark@gmail.com', password: '123456', password2: '123456' });
-  const [ error, setErrors ] = useState({ 
-    first_name: undefined, last_name: undefined,  email: undefined, password: undefined, password2: undefined 
-  });
+  const [ error, setErrors ] = useState({ first_name: '', last_name: '',  email: '', password: '', password2: '' });
   const { first_name, last_name, email, password, password2 } = state;
 
-  // Clear Errors
+  // Update Errors CDU
+  useEffect(() => { 
+    setErrors({...error, ...errors});
+    // eslint-disable-next-line
+  },[errors]);
+
+  // Clear Errors CDUM
   useEffect(() => {
     const clear = () => clearUserErrors();
     return clear;
-  },[clearUserErrors]);
-  // Update Errors
-  useEffect(() => { setErrors(errors) },[errors])
+    // eslint-disable-next-line
+  },[]);
 
   const onChange = e => setState({...state , [e.target.name]: e.target.value });
 
@@ -50,7 +54,6 @@ const Form = ({ register, history, errors, clearUserErrors }) => {
         value={first_name}
         onChange={onChange}
         onFocus={onFocus}
-        type='text'
         error={error.first_name}
       />
       <Input 
@@ -59,7 +62,6 @@ const Form = ({ register, history, errors, clearUserErrors }) => {
         value={last_name}
         onChange={onChange}
         onFocus={onFocus}
-        type='text'
         error={error.last_name}
       />
       <Input 
@@ -97,6 +99,7 @@ const Form = ({ register, history, errors, clearUserErrors }) => {
 Form.propTypes = {
   register: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
   clearUserErrors: PropTypes.func.isRequired,
 };
 

@@ -18,7 +18,8 @@ ButtonOne.defaultProps = {
 ButtonOne.propTypes = {
   text: PropTypes.string.isRequired,
   isClass: PropTypes.string,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  type: PropTypes.string
 }
 
 export default ButtonOne;

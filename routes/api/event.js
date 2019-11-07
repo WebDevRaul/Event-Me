@@ -26,7 +26,7 @@ router.post('/create-event', passport.authenticate('jwt'), (req, res) => {
     .then(({ _id }) => {
       Event.findById(_id).populate('author', 'first_name').exec((err, evt) => res.json(evt))
     })
-    .catch(err => res.status(400).json({ noEvt: 'Event not found!' }));
+    .catch(err => res.status(400).json({ error: 'Ooops' }));
 });
 
 // @route   POST api/event/join-event
@@ -38,7 +38,7 @@ router.post('/join-event', passport.authenticate('jwt'), (req, res) => {
     { $addToSet: { members: user } }, 
     { upsert: true, new: true })
     .populate('author', 'first_name').exec((err, evt) => {
-      if(err) return res.status(400).json({ noEvt: 'Event not found!' });
+      if(err) return res.status(400).json({ error: 'Ooops' });
       res.json(evt)
     })
 });
@@ -52,7 +52,7 @@ router.post('/leave-event', passport.authenticate('jwt'), (req, res) => {
     { $pull: { members: { user_id } } }, 
     { upsert: true, new: true })
     .populate('author', 'first_name').exec((err, evt) => {
-      if(err) return res.status(400).json({ noEvt: 'Event not found!' });
+      if(err) return res.status(400).json({ error: 'Ooops' });
       res.json(evt)
     })
 });
@@ -66,7 +66,7 @@ router.post('/home/:id/manage-event/update', passport.authenticate('jwt'), (req,
     { title, date, city, location, description },
     { upsert: true, new: true })
     .populate('author', 'first_name').exec((err, evt) => {
-      if(err) return res.status(400).json({ noEvt: 'Event not found!' });
+      if(err) return res.status(400).json({ error: 'Ooops' });
       res.json(evt)
     })
 })
@@ -77,7 +77,7 @@ router.post('/home/:id/manage-event/update', passport.authenticate('jwt'), (req,
 router.post('/home/:id/manage-event', passport.authenticate('jwt'), (req, res) => {
   const { _id } = req.body;
   Event.findByIdAndDelete(_id, (err, evt) =>{
-    if(err) return res.status(400).json({ noEvt: 'Event not found!' });
+    if(err) return res.status(400).json({ error: 'Ooops' });
     res.json(evt)
   });
 });

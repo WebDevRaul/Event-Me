@@ -6,19 +6,19 @@ import { state_events } from '../../../redux/selectors/event';
 
 import Event from './Event';
 
-import StyledListOfEvents from './Styled_ListOfEvents';
+import StyledHomeEvents from './Styled_Home_Events';
 
-const ListOfEvents = ({ state }) => {
+const HomeEvents = ({ state }) => {
   return (
-    <StyledListOfEvents>
+    <StyledHomeEvents>
       <div className='list-of-events'>
         {state && state.map((evt, i) => <Event key={i} event={evt} />)}
       </div>
-    </StyledListOfEvents>
+    </StyledHomeEvents>
   )
 };
 
-ListOfEvents.propTypes = {
+HomeEvents.propTypes = {
   state: PropTypes.array.isRequired
 };
 
@@ -26,4 +26,4 @@ const mapStateToProps = createStructuredSelector({
   state: state_events
 });
 
-export default connect(mapStateToProps, null)(ListOfEvents);
+export default connect(mapStateToProps, null)(HomeEvents);

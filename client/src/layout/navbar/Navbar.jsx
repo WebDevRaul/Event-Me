@@ -18,6 +18,7 @@ const Navbar = ({ isAuth, sign_out, name }) => {
   const [isOpen, setOpen] = useState(false);
   const [show, setShow] = useState(false);
 
+  // CDM & CDUM
   useEffect(() => {
     document.addEventListener("mousedown", onClickOutside);
     return () => document.removeEventListener("mousedown", onClickOutside);

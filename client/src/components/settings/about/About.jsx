@@ -1,13 +1,17 @@
 import React from 'react'
-import Status from '../../common/Form/radio/Status'
 
-const About = () => {
-  const onClick = e => console.log(e.target);
-  return (
-    <div>
-      <Status name='status' onClick={onClick}/>
+import Title from '../../common/title/Title';
+
+import StyledAbout from './Styled_About';
+import Form from './Form';
+
+const About = () => (
+  <StyledAbout>
+    <div className='about'>
+      <Title text='About' />
+      <Form />
     </div>
-  )
-}
+  </StyledAbout>
+)
 
 export default About;

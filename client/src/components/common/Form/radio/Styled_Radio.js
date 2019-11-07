@@ -2,11 +2,13 @@ import styled from 'styled-components';
 
 const StyledRadio = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: column;
   margin: 25px 0;
-  .gender {
+  .gender, .status {
+    display: flex;
+    align-items: center;
     position: relative;
-    padding: 10px 0;
+    padding: 10px;
     width: 100%;
     border: 1px solid;
     border-color: ${({ err }) => err ? 'var(--Error)' : 'transparent'};
@@ -25,9 +27,12 @@ const StyledRadio = styled.div`
       text-transform: uppercase;
       color: var(--Error);
     }
+    input {
+    margin: 0 10px;
+  }
   }
   label {
-    margin: 0 5px 0 10px;
+    margin: 0px;
     font-size: .9;
     font-weight: 500;
     text-transform: uppercase;

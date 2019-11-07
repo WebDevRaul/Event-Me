@@ -25,9 +25,12 @@ const Status = ({ onClick, name }) => {
 
   return (
     <StyledRadio>
-      <Input name={name} radio={status_single} value='single' onChange={onChange} onClick={onClick} />
-      <Input name={name} radio={status_relationship} value='relationship' onChange={onChange} onClick={onClick} />
-      <Input name={name} radio={status_maried} value='maried' onChange={onChange} onClick={onClick} />
+      <p>Tell us your status:</p>
+      <div className='status'>
+        <Input name={name} radio={status_single} value='single' onChange={onChange} onClick={onClick} />
+        <Input name={name} radio={status_relationship} value='relationship' onChange={onChange} onClick={onClick} />
+        <Input name={name} radio={status_maried} value='maried' onChange={onChange} onClick={onClick} />
+      </div>
     </StyledRadio>
   )
 };

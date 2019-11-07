@@ -15,14 +15,14 @@ import Gender from '../../common/Form/radio/Gender';
 
 const Form = ({ update_basic, user, errors, clearUserErrors }) => {
   const [state, setState] = useState({ first_name: '', last_name: '', gender: '', birthday: '', town: '' });
-  const [error, setErrors] = useState({ first_name: '', last_name: '', birthday: '', town: ''});
-  const { first_name, last_name, birthday, town } = state;
+  const [error, setErrors] = useState({ first_name: '', last_name: '', gender: '', birthday: '', town: ''});
+  const { first_name, last_name, gender, birthday, town } = state;
 
   // Update fields CDM
   useEffect(() => { 
-    const { first_name, last_name, profile : { birthday, town } } = user;
-    if(!!!birthday || !!!town) return setState({ ...state, first_name, last_name });
-     setState({ first_name, last_name, birthday, town });
+    const { first_name, last_name, profile : { gender, birthday, town } } = user;
+    if(!!!gender || !!!birthday || !!!town) return setState({ ...state, first_name, last_name });
+     setState({ first_name, last_name, gender, birthday, town });
     // eslint-disable-next-line
    },[])
   // Update Errors CDU
@@ -32,12 +32,12 @@ const Form = ({ update_basic, user, errors, clearUserErrors }) => {
     const clear = () => clearUserErrors();
     return clear;
     // eslint-disable-next-line
-  },[])
+  },[]);
 
   const onChange = e => setState({...state, [e.target.name]: e.target.value });
   const onChangeDate = e => setState({ ...state, birthday: String(e) });
   const onFocus = e => {
-    if(first_name || last_name || birthday || town !== undefined) {
+    if(first_name || last_name || gender || birthday || town !== undefined) {
       const field = Object.keys(error).filter(i => i === e.target.name )[0];
       setErrors({ ...error, [field]: '' });
     }
@@ -69,8 +69,11 @@ const Form = ({ update_basic, user, errors, clearUserErrors }) => {
           error={error.last_name}
         />
         <Gender
+          value={gender}
           name='gender'
           onClick={onChange} 
+          error={error.gender}
+          onFocus={onFocus}
         />
         <DateInput
           name='birthday'

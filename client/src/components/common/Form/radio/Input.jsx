@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Input = ({ name, value, radio, onChange, onClick }) => (
+const Input = ({ name, value, radio, onChange, onClick, onFocus }) => (
   <>
     <label htmlFor={name}>{value}</label>
-    <input name={name} value={value} checked={radio} onChange={e => onChange(e)} onClick={e => onClick(e)} type='radio' />
+    <input name={name} value={value} checked={radio} onChange={e => onChange(e)} onClick={e => onClick(e)} 
+      onFocus={onFocus} type='radio' />
   </>
 );
 

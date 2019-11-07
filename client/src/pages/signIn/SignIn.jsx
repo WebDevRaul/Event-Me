@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Form from '../../components/sign_in/Form';
-import Circle from '../../components/common/form-logo/Circle';
+import Circle from '../../components/common/Form/form-logo/Circle';
 
 import StyledSignIn from './Styled_SignIn';
 

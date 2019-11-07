@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Circle from '../../components/common/form-logo/Circle';
+import Circle from '../../components/common/Form/form-logo/Circle';
 import Form from '../../components/register/Form';
 
 

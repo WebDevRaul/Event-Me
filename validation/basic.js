@@ -1,12 +1,13 @@
 const Validator = require('validator');
 const isEmpty = require('./isEmpty');
 
-module.exports = function validateCreateEvent({ first_name, last_name, birthday, town }) {
+module.exports = function validateCreateEvent({ first_name, last_name, gender, birthday, town }) {
   let errors = {};
   
   // Check if Empty
   first_name = !isEmpty(first_name) ? first_name : '';
   last_name = !isEmpty(last_name) ? last_name : '';
+  gender = !isEmpty(gender) ? gender : '';
   birthday = !isEmpty(birthday) ? birthday : '';
   town = !isEmpty(town) ? town : '';
 
@@ -27,6 +28,9 @@ module.exports = function validateCreateEvent({ first_name, last_name, birthday,
   }
   if (Validator.isEmpty(last_name)) {
     errors.last_name = 'Last name field is required!'
+  }
+  if (Validator.isEmpty(gender)) {
+    errors.gender = 'Gender field is required!'
   }
   if (Validator.isEmpty(birthday)) {
     errors.birthday = 'Birthday field is required!'

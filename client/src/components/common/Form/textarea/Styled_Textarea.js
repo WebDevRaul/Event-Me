@@ -39,7 +39,10 @@ const StyledTextarea = styled.div`
     transition: var(--Transition);
     &.shrink {
       ${shrink}
-    }   
+    }
+    &:hover {
+      cursor: unset;
+    }
   }
   .badge {
     position: absolute;

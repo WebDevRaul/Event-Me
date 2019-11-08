@@ -18,15 +18,12 @@ const Input = ({ name, label, value, onChange, onFocus, type, error }) => {
     if(focus) input.current.focus();
   }, [focus]);
 
-  const handleClickOutside = e => {
-    // const { current } = outsideRef;
-    // if(current === null) return null;
-    // if(e.target.className !== 'ref' && !focus && !text.length < 50) return null;
-    // if(e.target.className === 'ref' && focus) return null;
-    // setState({ row: 1, focus: 0 })
+  const handleClickOutside = () => {
+    if(!(value || error) && focus) setFocus(false); 
   };
 
   const onClick = () => setFocus(!focus);
+  
   return (
     <StyledInput>
       <input 

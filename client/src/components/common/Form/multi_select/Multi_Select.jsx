@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Select from 'react-select';
@@ -9,47 +9,18 @@ import StyledMultiSelect from './Styled_Multi_select';
 
 
 const MultiSelect = ({ value, label, onChange, error }) => {
-  const [focus, setFocus] = useState(false);
-  const [menu, setMenu] = useState(false);
-  const outsideRef = React.useRef();
-
-  // Update Textarea focus CDU
-  useEffect(() => {
-    if(focus) { outsideRef.current.focus(); setMenu(true); } 
-  }, [focus]);
-  // Create Event CDM && CDUM
-  useEffect(() => {
-    document.addEventListener("mousedown", onClickOutside);
-    return () => document.removeEventListener("mousedown", onClickOutside);
-  });
-
-  const onClickOutside = () => { if(focus) { setFocus(false); setMenu(false) } }
-
-  // const onChangeAndMap = val => {
-  //   console.log(val)
-  //   // const result = [];
-  //   // if(isEmpty(val)) return null;
-  //   // val.map(({ value }) => result.push(value) );
-  //   onChange(val)
-  // }
-
-  const onClick = () => setFocus(!focus);
-
   return (
     <StyledMultiSelect>
-      <div className='select' onClick={onClick}>
+      <div className='select'>
         <Select 
           options={options}
           styles={style}
           closeMenuOnSelect={false}
           isMulti
-          menuIsOpen={menu}
-          name='select'
           placeholder={false}
-          onChange={val => console.log(val)}
-          ref={outsideRef}
+          onChange={val => onChange(val)}
         />
-        <label className={classnames('label', { 'shrink': focus || error })} >
+        <label className={classnames('label', { 'shrink': error || !isEmpty(value) })} >
           {error ? error : label}
         </label>
       </div>

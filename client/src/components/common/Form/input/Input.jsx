@@ -1,28 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import Label from '../label/Label';
+
 import StyledInput from './Styled_Input';
 
-const Input = ({ name, label, value, onChange, onFocus, type, error }) => {
-  const [focus, setFocus] = useState(false);
-  const input = React.useRef();
-
-  // Create Event CDM && CDUM
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  });
-
-  // Update input focus CDU
-  useEffect(() => {
-    if(focus) input.current.focus();
-  }, [focus]);
-
-  const handleClickOutside = () => {
-    if(!(value || error) && focus) setFocus(false); 
-  };
-
-  const onClick = () => setFocus(!focus);
+const Input = ({ name, label, value, onChange, onFocus, type, error }) => {  
+  const input = useRef();
+  const onSetFocus = () => input.current.focus();
   
   return (
     <StyledInput>
@@ -37,9 +22,7 @@ const Input = ({ name, label, value, onChange, onFocus, type, error }) => {
         required
         ref={input}
       />
-      <label onClick={onClick} className={classnames('form-input-label', { 'shrink': value || error || focus })} >
-        {error ? error : label}
-      </label>
+      <Label label={label} value={value} error={error} onSetFocus={onSetFocus} />
     </StyledInput>
   )
 }

@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import isEmpty from '../../utils/isEmpty/isEmpty';
 import DatePicker from 'react-datepicker';
+import Label from '../label/Label';
+import isEmpty from '../../utils/isEmpty/isEmpty';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import StyledDateInput from './Styled_DateInput';
@@ -9,23 +10,16 @@ import StyledDateInput from './Styled_DateInput';
 const DateInput = ({ 
   name, value, label, onChange, onFocus, error, date, showTime, time, year, month, mode, maxDate 
 }) => {
-  const [focus, setFocus] = useState(0);
+  const input = useRef();
   const val = !isEmpty(value) ? 1 : 0;
-  const err = isEmpty(error) ? 1 : 0;
-  useEffect(() => {
-    if(focus) { document.addEventListener('mousedown', onClickOutside) }
-    else { document.removeEventListener('mousedown', onClickOutside) }
-    return () => document.removeEventListener('mousedown', onClickOutside)
-  },[focus]);
+  const err = isEmpty(error) ? 0 : 1;
 
-  const onClickOutside = () => setFocus(0);
-  const onFocusDatePicker = e => {
-    setFocus(1);
-    onFocus(e);
-  };
+  const onFocusDatePicker = e => onFocus(e);
+
+  const onSetFocus = () => input.current.setFocus();
 
   return (
-    <StyledDateInput focus={focus} val={val} err={err}>
+    <StyledDateInput>
       <DatePicker
         name={name} 
         selected={value ? new Date(value) : null}
@@ -40,8 +34,9 @@ const DateInput = ({
         showMonthDropdown={month}
         dropdownMode={mode}
         maxDate={maxDate}
+        ref={input}
       />
-      <label>{error ? error : label}</label>
+      <Label isClass='label' label={label} val={val} error={error} err={err} onSetFocus={onSetFocus} />
     </StyledDateInput>
   )
 };

@@ -1,57 +1,56 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import isEmpty from '../../utils/isEmpty/isEmpty';
 import Textarea from 'react-textarea-autosize';
+import Label from '../label/Label';
 
 import StyledTextarea from './Styled_Textarea';
 
 const TextArea = ({ name, label, text, onChange, onFocus, error }) => {
-  const [focus, setFocus] = useState(false);
   const [state, setState] = useState({ row: 1, shrink: 0 });
   const { row, shrink } = state;
-  const outsideRef = React.createRef();
-  const input = React.useRef();
+  const err = isEmpty(error) ? 0 : 1;
+  const input = useRef();
 
   // Create Event CDM && CDUM
   useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("mousedown", onClickOutside);
+    return () => document.removeEventListener("mousedown", onClickOutside);
   });
 
-   // Update Textarea focus CDU
-   useEffect(() => {
-     if(focus) outsideRef.current._ref.focus();
-     // eslint-disable-next-line
-  }, [focus]);
-
-  const handleClickOutside = e => {
-    const { current } = outsideRef;
+  const onClickOutside = e => {
+    const { current } = input;
     if(current === null) return null;
-    if(e.target.className !== 'ref' && !shrink && !text.length < 50) return null;
-    if(e.target.className === 'ref' && shrink) return null;
+    if(e.target.className !== 'area' && !shrink && !text.length < 50) return null;
+    if(e.target.className === 'area' && shrink) return null;
     setState({ row: 1, shrink: 0 });
-    setFocus(false);
   };
 
-  const onClick = () => setFocus(!focus);
+  const onSetFocus = () => input.current._ref.focus();
   const onFocusTextarea = () => { if(row === 1) setState({ row: 3, shrink: 1 }) };
 
   return (
     <StyledTextarea>
-      <div onFocus={onFocus} ref={input}>
+      <div onFocus={onFocus}>
         <Textarea 
-          className={classnames('ref', {'validate' : error})}
+          className={classnames('area', {'validate' : error})}
           name={name} 
           value={text}
           minRows={row} 
           onChange={e => onChange(e)} 
           onFocus={onFocusTextarea}
-          ref={outsideRef}
+          ref={input}
         />
         <span className={classnames('badge', {'d-none': !shrink, 'over': text.length > 500 })}>{text.length}</span>
-        <label onClick={onClick} className={classnames('label', { 'shrink': text || error || focus })} >
-          {error ? error : label}
-        </label>
+        <Label 
+          isClass='label' 
+          label={label} 
+          value={text} 
+          error={error} 
+          onSetFocus={onSetFocus} 
+          err={err}
+        />
       </div>
     </StyledTextarea>
   )

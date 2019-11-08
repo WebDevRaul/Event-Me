@@ -24,7 +24,6 @@ const Form = () => {
   const onSubmit = e => {
     e.preventDefault();
   }
-  console.log(state);
 
   return (
     <form noValidate onSubmit={onSubmit}>

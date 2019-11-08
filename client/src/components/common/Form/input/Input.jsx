@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import isEmpty from '../../utils/isEmpty/isEmpty';
 import Label from '../label/Label';
 
 import StyledInput from './Styled_Input';
@@ -8,11 +9,12 @@ import StyledInput from './Styled_Input';
 const Input = ({ name, label, value, onChange, onFocus, type, error }) => {  
   const input = useRef();
   const onSetFocus = () => input.current.focus();
+  const err = isEmpty(error) ? 0 : 1;
   
   return (
-    <StyledInput>
+    <StyledInput err={err}>
       <input 
-        className={classnames('form-input', {'validate' : error})}
+        className={classnames('form-input')}
         name={name}
         value={value}
         onChange={onChange}
@@ -22,7 +24,14 @@ const Input = ({ name, label, value, onChange, onFocus, type, error }) => {
         required
         ref={input}
       />
-      <Label label={label} value={value} error={error} onSetFocus={onSetFocus} />
+      <Label 
+        isClass='form-input-label' 
+        label={label} 
+        value={value} 
+        error={error} 
+        onSetFocus={onSetFocus} 
+        err={err}
+      />
     </StyledInput>
   )
 }

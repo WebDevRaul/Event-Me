@@ -1,17 +1,5 @@
 import styled from 'styled-components';
 
-const shrink = () => `
-  top: -7px;
-  background: var(--mainWhite);
-  border-radius: var(--BorderRadius);
-  padding: 2px 10px;
-  font-weight: 600;
-  letter-spacing: var(--Spacing);
-  left: 12px;
-  font-size: .7em;
-  color: var(--Green);
-`
-
 const StyledTextarea = styled.div`
   position: relative;
   margin: 25px 0;
@@ -24,24 +12,16 @@ const StyledTextarea = styled.div`
     overflow-y: hidden;
     resize: none;
     transition: var(--Transition);
-    &:focus ~ .label {
-      ${shrink}
-    }
-  }
-  .label {
-    position: absolute;
-    top: 11px;
-    left: 12px;
-    color: var(--mainBlack);
-    letter-spacing: var(--Spacing);
-    text-transform: uppercase;
-    font-weight: 500;
-    transition: var(--Transition);
-    &.shrink {
-      ${shrink}
-    }
-    &:hover {
-      cursor: unset;
+    &:focus ~ div > .label {
+      top: -7px;
+      background: var(--mainWhite);
+      border-radius: var(--BorderRadius);
+      padding: 2px 10px;
+      font-weight: 600;
+      letter-spacing: var(--Spacing);
+      left: 12px;
+      font-size: .7em;
+      color: ${({ err }) => err ? 'var(--Error)' : 'var(--Green)'};
     }
   }
   .badge {
@@ -57,9 +37,6 @@ const StyledTextarea = styled.div`
   }
   .validate {
     border-color: var(--Error);
-  }
-  .validate ~ .label {
-    color: var(--Error);
   }
 `
 

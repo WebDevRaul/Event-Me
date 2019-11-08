@@ -4,6 +4,7 @@ import ButtonOne from '../../common/buttonOne/ButtonOne';
 import Status from '../../common/Form/radio/Status';
 import TextArea from '../../common/Form/textarea/Textarea';
 import Input from '../../common/Form/input/Input';
+import MultiSelect from '../../common/Form/multi_select/Multi_Select';
 
 const Form = () => {
   const [state, setState] = useState({ status: '', bio: '', ocupation: '', country: '' });
@@ -45,6 +46,7 @@ const Form = () => {
             error={error.bio}
           />
         </>
+        <MultiSelect />
         <Input
           name='ocupation'
           label='Ocupation'

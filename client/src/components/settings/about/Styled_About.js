@@ -24,11 +24,6 @@ const StyledAbout = styled.section`
       .form {
         margin-left: 20px;
         max-width: 330px;
-        div {
-          &:nth-child(2) {
-            margin: 0 0 4px 0;
-          }
-        }
         .status {
           width: auto;
         }

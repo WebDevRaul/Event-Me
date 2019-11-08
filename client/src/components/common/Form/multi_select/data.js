@@ -14,6 +14,7 @@ const style = {
         border: '1px solid var(--Shadow)',
     },
     height: 41,
+    ':hover': {cursor: 'unset !important'}
 }),
   option: styles => ({
     ...styles,

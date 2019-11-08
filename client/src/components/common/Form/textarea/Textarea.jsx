@@ -21,6 +21,7 @@ const TextArea = ({ name, label, text, onChange, onFocus, error }) => {
    // Update Textarea focus CDU
    useEffect(() => {
      if(focus) outsideRef.current._ref.focus();
+     // eslint-disable-next-line
   }, [focus]);
 
   const handleClickOutside = e => {

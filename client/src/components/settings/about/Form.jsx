@@ -7,14 +7,15 @@ import Input from '../../common/Form/input/Input';
 import MultiSelect from '../../common/Form/multi_select/Multi_Select';
 
 const Form = () => {
-  const [state, setState] = useState({ status: '', bio: '', ocupation: '', country: '' });
-  const [error, setErrors] = useState({ status: '', bio: '', ocupation: '', country: '' });
+  const [state, setState] = useState({ status: '', bio: '', select: [], ocupation: '', country: '' });
+  const [error, setErrors] = useState({ status: '', bio: '', select: '', ocupation: '', country: '' });
 
-  const { status, bio, ocupation, country } = state;
+  const { status, bio, select, ocupation, country } = state;
 
   const onChange = e => setState({...state , [e.target.name]: e.target.value });
+  const onChangeSelect = val => setState({ ...state, select: val })
   const onFocus = e => {
-    if(status || bio || ocupation || country !== undefined) {
+    if(status || bio || select || ocupation || country !== undefined) {
       const field = Object.keys(error).filter(i => i === e.target.name )[0];
       setErrors({ ...error, [field]: '' });
     }
@@ -23,6 +24,7 @@ const Form = () => {
   const onSubmit = e => {
     e.preventDefault();
   }
+  console.log(state);
 
   return (
     <form noValidate onSubmit={onSubmit}>
@@ -46,7 +48,12 @@ const Form = () => {
             error={error.bio}
           />
         </>
-        <MultiSelect />
+        <MultiSelect
+          value={select}
+          label='Hobbies'
+          onChange={onChangeSelect}
+          error={error.select}
+        />
         <Input
           name='ocupation'
           label='Ocupation'

@@ -38,6 +38,9 @@ const StyledInput = styled.div`
     text-transform: uppercase;
     font-weight: 500;
     transition: var(--Transition);
+    &:hover {
+      cursor: unset;
+    }
     &.shrink {
       ${shrink}
     }

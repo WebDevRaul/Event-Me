@@ -10,6 +10,7 @@ const LabelMulti = forwardRef(({ label, value, error, onSetFocus, err }, ref) =>
 
   useEffect(() => {
     if(focus && isEmpty(value)) setFocus(false);
+    // eslint-disable-next-line
   },[value])
 
   // Create Event CDM && CDUM

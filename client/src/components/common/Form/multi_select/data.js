@@ -8,7 +8,6 @@ const style = {
   multiValueLabel: styles => ({ ...styles, color: 'var(--Pcolor)' }),
   control: styles => ({
     ...styles,
-    border: '1px solid var(--Shadow)',
     boxShadow: 'none',
     '&:hover': {
         border: '1px solid var(--Shadow)',

@@ -3,9 +3,10 @@ import styled from 'styled-components';
 const StyledMultiSelect = styled.div`
   .select {
     position: relative;
-    /* .indicatorContainer {
-      display: none!important;
-    } */
+    & > div > div {
+      border: '1px solid';
+      border-color: ${({ err }) => err ? 'var(--Error)' : 'var(--Shadow)'};
+    }
     .label {
       position: absolute;
       top: 11px;

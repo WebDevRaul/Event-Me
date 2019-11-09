@@ -25,9 +25,9 @@ const MultiSelect = ({ value, label, onChange, onFocus, error }) => {
     input.current.onMenuOpen();
   }
 
-  const onFocusMultiSelect = e => {
+  const onFocusMultiSelect = () => {
     child.current.setFocusFromMultiSelect();
-    onFocus(e)
+    onFocus()
   }
 
   return (
@@ -39,14 +39,10 @@ const MultiSelect = ({ value, label, onChange, onFocus, error }) => {
           closeMenuOnSelect={false}
           isMulti
           placeholder={false}
-          components={
-            {
-              IndicatorsContainer: () => null
-            }
-          }
+          components={{ IndicatorsContainer: () => null }}
           ClearIndicator={false}
           onChange={val => onChange(val)}
-          onFocus={e => onFocusMultiSelect(e)}
+          onFocus={onFocusMultiSelect}
           ref={input}
         />
         <LabelMulti

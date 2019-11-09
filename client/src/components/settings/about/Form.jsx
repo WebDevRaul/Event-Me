@@ -6,6 +6,7 @@ import TextArea from '../../common/Form/textarea/Textarea';
 import Input from '../../common/Form/input/Input';
 import MultiSelect from '../../common/Form/multi_select/Multi_Select';
 import validateAbout from '../utils/ValidateAbout';
+import isEmpty from '../../common/utils/isEmpty/isEmpty';
 
 const Form = () => {
   const [state, setState] = useState({ status: '', bio: '', select: [], ocupation: '', country: '' });
@@ -21,11 +22,16 @@ const Form = () => {
     setState({ ...state, select: [val] })
   }
   const onFocus = e => {
-    if(status || bio || select || ocupation || country !== undefined) {
+    if(status || bio || ocupation || country !== undefined) {
       const field = Object.keys(error).filter(i => i === e.target.name )[0];
       setErrors({ ...error, [field]: '' });
     }
   };
+  const onFocusMulti = () => {
+    if(isEmpty(select)) {
+      setErrors({ ...error, select: '' });
+    }
+  }
 
 
   const onSubmit = e => {
@@ -61,7 +67,7 @@ const Form = () => {
           value={select}
           label='Hobbies'
           onChange={onChangeSelect}
-          onFocus={e => {}}
+          onFocus={onFocusMulti}
           error={error.select}
         />
         <Input

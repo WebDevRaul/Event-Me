@@ -68,13 +68,6 @@ const Form = ({ update_about }) => {
             error={error.bio}
           />
         </>
-        <MultiSelect
-          value={select}
-          label='Hobbies'
-          onChange={onChangeSelect}
-          onFocus={onFocusMulti}
-          error={error.select}
-        />
         <Input
           name='ocupation'
           label='Ocupation'
@@ -82,6 +75,13 @@ const Form = ({ update_about }) => {
           onChange={onChange}
           onFocus={onFocus}
           error={error.ocupation}
+        />
+        <MultiSelect
+          value={select}
+          label='Hobbies'
+          onChange={onChangeSelect}
+          onFocus={onFocusMulti}
+          error={error.select}
         />
         <Input
           name='country'

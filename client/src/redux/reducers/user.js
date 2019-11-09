@@ -14,9 +14,8 @@ const user = (state=INITIAL_STATE, action) => {
     case USER.SIGN_OUT:
       return { ...state, info: {}, isAuth: false };
     case PROFILE.BASIC:
-      return { ...state, info: payload }
     case PROFILE.ABOUT:
-      return { ...state, info: { ...state.info, profile: payload } }
+      return { ...state, info: payload }
     case USER.ERROR:
     case PROFILE.ERROR:
     case USER.CLEAR_ERROR:

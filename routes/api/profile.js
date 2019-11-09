@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+const jwt = require('jsonwebtoken');
+const { SECRET_OR_KEY } = require('../../config/Keys');
 const User = require('../../models/User');
 const Profile = require('../../models/Profile');
 const validateBasic = require('../../validation/basic');
@@ -23,9 +25,13 @@ router.post('/basic', passport.authenticate('jwt'), (req, res) => {
     .then(() => 
       User.findById(_id, 'first_name last_name email date')
       .populate('profile').exec((err, user) => {
-      if(err) return res.status(400).json({ error: 'Ooops'})
-      res.json(user)
-    }))
+        if(err) return res.status(400).json({ error: 'Ooops'});
+        // Create a new Token
+        const payload = { user, isAuth: true };
+          jwt.sign(payload, SECRET_OR_KEY, { expiresIn: 3600 }, (err, token) => {
+            res.json({ token: 'Bearer ' + token, user });
+          });
+      }))
     .catch(err => res.status(400).json({ error: 'Ooops'}));
 });
 
@@ -39,7 +45,17 @@ router.post('/about', passport.authenticate('jwt'), (req, res) => {
   if (!isValid) return res.status(400).json(errors);
 
   Profile.findOneAndUpdate({user_id: _id}, { status, bio, hobbies: select[0], ocupation, country }, { new: true })
-    .then(profile => res.json(profile))
+    .then(() => {
+      User.findById(_id, 'first_name last_name email date')
+        .populate('profile').exec((err, user) => {
+          if(err) return res.status(400).json({ error: 'Ooops'});
+          // Create a new Token
+          const payload = { user, isAuth: true };
+          jwt.sign(payload, SECRET_OR_KEY, { expiresIn: 3600 }, (err, token) => {
+            res.json({ token: 'Bearer ' + token, user });
+          });
+        })
+    })
     .catch(err => res.status(400).json({ error: 'Ooops'}))
 });
 

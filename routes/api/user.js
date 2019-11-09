@@ -54,7 +54,7 @@ router.post('/sign-in', (req, res) => {
   errors.email='Invalid E-Mail or Password';
   errors.password='Invalid E-Mail or Password';
   
-  User.findOne({ email }).populate('profile', '_id birthday town').exec((err, user) => {
+  User.findOne({ email }).populate('profile').exec((err, user) => {
     if(!user) res.status(400).json({ error: 'Ooops' });
     const { _id, first_name, last_name, email, date, profile } = user;
     bcrypt.compare(password, user.password)

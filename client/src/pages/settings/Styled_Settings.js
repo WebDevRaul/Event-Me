@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const StyledSettings = styled.section`
   .settings {
-    padding: 50px 20px;
+    padding: ${({ plus18px }) => plus18px ? '50px 39px 50px 20px' : '50px 20px'};
     .side-nav {
       ul {
         width: 300px;

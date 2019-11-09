@@ -11,8 +11,9 @@ import Account from '../../components/settings/Account';
 import StyledSettings from './Styled_Settings';
 
 const Setting = ({ match }) => {
+  const plus18px = match.url === '/settings/basic' ? 1 : 0;
   return (
-    <StyledSettings>
+    <StyledSettings plus18px={plus18px}>
       <div className='settings'>
         <div className='row no-gutters'>
           <div className='col-12 col-sm-8'>

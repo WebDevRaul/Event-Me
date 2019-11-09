@@ -14,9 +14,10 @@ import ButtonOne from '../../components/common/buttonOne/ButtonOne';
 
 import StyledNavbar from './Styled_Navbar';
 
-const Navbar = ({ isAuth, sign_out, name }) => {
+const Navbar = ({ isAuth, sign_out, name, history }) => {
   const [isOpen, setOpen] = useState(false);
   const [show, setShow] = useState(false);
+  const plus18px = history.location.pathname === '/settings/basic' ? 1 : 0;
 
   // CDM & CDUM
   useEffect(() => {
@@ -35,7 +36,7 @@ const Navbar = ({ isAuth, sign_out, name }) => {
   const onSignOut = () => sign_out();
 
   return (
-    <StyledNavbar show={show}>
+    <StyledNavbar show={show} plus18px={plus18px}>
       <nav className='navbar navbar-light'>
         <div className='nav-wrapper'>
           <div className='nav-header'>

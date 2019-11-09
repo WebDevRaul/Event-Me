@@ -3,6 +3,7 @@ import { bootstrap } from '../../utils/devices';
 
 const StyledNavbar = styled.div`
   .navbar {
+    padding-right: ${({ plus18px }) => plus18px ? '19px' : '0'};
     background: linear-gradient(135deg, #ff2b00 0%, #ff8106 45%, #fec34d 90%);
     .nav-wrapper {
       width: 100%;

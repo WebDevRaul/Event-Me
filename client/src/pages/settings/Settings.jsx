@@ -5,7 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 import SideNav from '../../components/settings/side_nav/SideNav';
 import Basic from '../../components/settings/basic/Basic';
 import About from '../../components/settings/about/About';
-import Photo from '../../components/settings/Photo';
+import Photo from '../../components/settings/photo/Photo';
 import Account from '../../components/settings/Account';
 
 import StyledSettings from './Styled_Settings';

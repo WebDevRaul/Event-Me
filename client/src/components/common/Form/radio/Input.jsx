@@ -14,7 +14,8 @@ Input.propTypes = {
   value: PropTypes.string.isRequired,
   radio: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
+  onFocus: PropTypes.func.isRequired
 }
 
 export default Input

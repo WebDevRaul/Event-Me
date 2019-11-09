@@ -5,6 +5,7 @@ import Status from '../../common/Form/radio/Status';
 import TextArea from '../../common/Form/textarea/Textarea';
 import Input from '../../common/Form/input/Input';
 import MultiSelect from '../../common/Form/multi_select/Multi_Select';
+import validateAbout from '../utils/ValidateAbout';
 
 const Form = () => {
   const [state, setState] = useState({ status: '', bio: '', select: [], ocupation: '', country: '' });
@@ -12,8 +13,13 @@ const Form = () => {
 
   const { status, bio, select, ocupation, country } = state;
 
-  const onChange = e => setState({...state , [e.target.name]: e.target.value });
-  const onChangeSelect = val => setState({ ...state, select: val })
+  const onChange = e => {
+    setState({...state , [e.target.name]: e.target.value });
+  }
+  const onChangeSelect = val => {
+    if(!!!val) return setState({ ...state, select: [] })
+    setState({ ...state, select: [val] })
+  }
   const onFocus = e => {
     if(status || bio || select || ocupation || country !== undefined) {
       const field = Object.keys(error).filter(i => i === e.target.name )[0];
@@ -21,17 +27,21 @@ const Form = () => {
     }
   };
 
+
   const onSubmit = e => {
     e.preventDefault();
+    const { errors, isValid } = validateAbout(state);
+    if(!isValid) { setErrors({ ...error, ...errors }) }
+    else {  }
   }
-
+  
   return (
     <form noValidate onSubmit={onSubmit}>
       <div className='form'>
         <p>Lorem ipsum dolor sit amet consectetur.</p>
         <Status 
-          value={status}
           name='status'
+          value={status}
           onClick={onChange} 
           onFocus={onFocus} 
           error={error.status}
@@ -51,6 +61,7 @@ const Form = () => {
           value={select}
           label='Hobbies'
           onChange={onChangeSelect}
+          onFocus={e => {}}
           error={error.select}
         />
         <Input

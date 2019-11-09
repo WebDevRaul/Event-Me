@@ -42,7 +42,7 @@ const Label = ({ label, value, error, onSetFocus, err }) => {
 
   return (
     <StyledLabel err={err}>
-      <label onClick={onClick} className={classnames('label', { 'shrink': value || error || focus })} >
+      <label onClick={onClick} className={classnames('label', { 'shrink': !isEmpty(value) || !isEmpty(error) || focus })} >
         {error ? error : label}
       </label>
     </StyledLabel>

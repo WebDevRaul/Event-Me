@@ -6,7 +6,7 @@ import Input from './Input';
 
 import StyledRadio from './Styled_Radio';
 
-const Gender = ({ value, name, onClick, error, onFocus }) => {
+const Gender = ({ value, name, onClick, onFocus, error }) => {
   const [radio, setRadio] = useState({gender_male: false, gender_female: false});
   const { gender_male, gender_female } = radio;
   const err = error ? 1 : 0;
@@ -42,6 +42,7 @@ Gender.propTypes = {
   value: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
+  onFocus: PropTypes.func.isRequired,
   error: PropTypes.string
 }
 

@@ -1,39 +1,32 @@
 import React, { useState, useEffect, forwardRef, useImperativeHandle } from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
-
-import StyledLabel from './Styled_Label';
 import isEmpty from '../../utils/isEmpty/isEmpty';
 
-const LabelDate = forwardRef(({ label, value, error, onSetFocus, err }, ref) => {
+import StyledLabel from './Styled_Label';
+
+const LabelMulti = forwardRef(({ label, value, error, onSetFocus, err }, ref) => {
   const [focus, setFocus] = useState(false);
 
-  useImperativeHandle(ref, () => ({
-    setFocusFromDate() {
-      if(focus) return null;
-      setFocus(true);
-    }
-  }))
-
-  // Reset focus CDU
   useEffect(() => {
-    if(!isEmpty(error)) {
-      if(!focus) setFocus(true);
-    }
-    // eslint-disable-next-line
-  }, [error]);
-  
+    if(focus && isEmpty(value)) setFocus(false);
+  },[value])
 
   // Create Event CDM && CDUM
   useEffect(() => {
     document.addEventListener("mousedown", onClickOutside);
     return () => document.removeEventListener("mousedown", onClickOutside);
   });
-  
-  const onClickOutside = e => {
-    const { className } = e.target;
+
+  useImperativeHandle(ref, () => ({
+    setFocusFromMultiSelect() {
+      if(focus) return null;
+      setFocus(true);
+    }
+  }))
+
+  const onClickOutside = () => {
     if(!focus) return null;
-    if(String(className).includes('datepicker')) return null;
     setFocus(false);
   };
 
@@ -43,21 +36,22 @@ const LabelDate = forwardRef(({ label, value, error, onSetFocus, err }, ref) => 
     onSetFocus();
   };
 
+
   return (
     <StyledLabel err={err}>
-      <label onClick={onClick} className={classnames('label', { 'shrink': !isEmpty(value) || !isEmpty(error) || focus })} >
+      <label onClick={onClick} className={classnames('label', { 'shrink': !isEmpty(value) || focus || !isEmpty(error) })} >
         {error ? error : label}
       </label>
     </StyledLabel>
   )
 })
 
-LabelDate.propTypes = {
+LabelMulti.propTypes = {
   label: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.array.isRequired,
   error: PropTypes.string,
   onSetFocus: PropTypes.func.isRequired,
   err: PropTypes.number.isRequired
 }
 
-export default LabelDate;
+export default LabelMulti;

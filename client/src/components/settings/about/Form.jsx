@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { update_about } from '../../../redux/actions/profile';
+import { createStructuredSelector } from 'reselect';
+import {  } from '../../../redux/selectors/user';
 import ButtonOne from '../../common/buttonOne/ButtonOne';
 import Status from '../../common/Form/radio/Status';
 import TextArea from '../../common/Form/textarea/Textarea';
@@ -8,7 +12,7 @@ import MultiSelect from '../../common/Form/multi_select/Multi_Select';
 import validateAbout from '../utils/ValidateAbout';
 import isEmpty from '../../common/utils/isEmpty/isEmpty';
 
-const Form = () => {
+const Form = ({ update_about }) => {
   const [state, setState] = useState({ status: '', bio: '', select: [], ocupation: '', country: '' });
   const [error, setErrors] = useState({ status: '', bio: '', select: '', ocupation: '', country: '' });
 
@@ -33,12 +37,13 @@ const Form = () => {
     }
   }
 
-
   const onSubmit = e => {
     e.preventDefault();
     const { errors, isValid } = validateAbout(state);
-    if(!isValid) { setErrors({ ...error, ...errors }) }
-    else {  }
+    if(!isValid) { 
+      setErrors({ ...error, ...errors })
+    }
+    else { update_about({...state}) }
   }
   
   return (
@@ -90,6 +95,14 @@ const Form = () => {
       <ButtonOne text='Update Profile' type='submit' isClass='green' />
     </form>
   )
+};
+
+Form.propTypes = {
+  update_about: PropTypes.func.isRequired
 }
 
-export default Form;
+const mapStateToProps = createStructuredSelector({
+
+})
+
+export default connect( mapStateToProps, { update_about } )(Form);

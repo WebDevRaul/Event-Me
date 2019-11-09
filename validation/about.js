@@ -1,7 +1,7 @@
-import Validator from 'validator';
-import isEmpty from '../../common/utils/isEmpty/isEmpty';
+const Validator = require('validator');
+const isEmpty = require('./isEmpty');
 
-const validateAbout = ({ status, bio, select, ocupation, country }) => {
+module.exports = function validateAbout({ status, bio, select, ocupation, country }) {
   let errors = {};
   
   // Check if Empty
@@ -45,5 +45,3 @@ const validateAbout = ({ status, bio, select, ocupation, country }) => {
     isValid: isEmpty(errors)
   };
 }
-
-export default validateAbout;

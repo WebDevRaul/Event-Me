@@ -8,7 +8,7 @@ const StyledDateInput = styled.div`
       width: 100%;
       padding: 10px;
       border: 1px solid;
-      border-color: ${({ err }) => !err ? 'var(--Shadow)' : 'var(--Error)'};
+      border-color: ${({ err }) => err ? 'var(--Error)' : 'var(--Shadow)'};
       border-radius: var(--BorderRadius);
     }
   }

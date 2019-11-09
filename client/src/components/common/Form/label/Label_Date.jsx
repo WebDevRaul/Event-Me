@@ -1,24 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, forwardRef, useImperativeHandle } from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
 import StyledLabel from './Styled_Label';
 import isEmpty from '../../utils/isEmpty/isEmpty';
 
-const Label = ({ label, value, error, onSetFocus, err }) => {
+const LabelDate = forwardRef(({ label, value, error, onSetFocus, err }, ref) => {
   const [focus, setFocus] = useState(false);
+
+  useImperativeHandle(ref, () => ({
+    setFocusFromDate() {
+      if(focus) return null;
+      setFocus(true);
+    }
+  }))
 
   // Reset focus CDU
   useEffect(() => {
-    if(focus) setFocus(false);
+    if(!isEmpty(error)) {
+      if(!focus) setFocus(true);
+    }
     // eslint-disable-next-line
   }, [error]);
   
-  // Reset focus CDU
-  useEffect(() => {
-    if(focus && (isEmpty(value) || isEmpty(error))) return setFocus(false);
-    // eslint-disable-next-line
-  },[focus])
 
   // Create Event CDM && CDUM
   useEffect(() => {
@@ -26,10 +30,10 @@ const Label = ({ label, value, error, onSetFocus, err }) => {
     return () => document.removeEventListener("mousedown", onClickOutside);
   });
   
-
-
-  const onClickOutside = () => {
+  const onClickOutside = e => {
+    const { className } = e.target;
     if(!focus) return null;
+    if(String(className).includes('datepicker')) return null;
     setFocus(false);
   };
 
@@ -39,7 +43,6 @@ const Label = ({ label, value, error, onSetFocus, err }) => {
     onSetFocus();
   };
 
-
   return (
     <StyledLabel err={err}>
       <label onClick={onClick} className={classnames('label', { 'shrink': value || error || focus })} >
@@ -47,9 +50,9 @@ const Label = ({ label, value, error, onSetFocus, err }) => {
       </label>
     </StyledLabel>
   )
-}
+})
 
-Label.propTypes = {
+LabelDate.propTypes = {
   label: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   error: PropTypes.string,
@@ -57,4 +60,4 @@ Label.propTypes = {
   err: PropTypes.number.isRequired
 }
 
-export default Label
+export default LabelDate;

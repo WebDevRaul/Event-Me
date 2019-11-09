@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import DatePicker from 'react-datepicker';
-import Label from '../label/Label';
+import LabelDate from '../label/Label_Date';
 import isEmpty from '../../utils/isEmpty/isEmpty';
 
 import 'react-datepicker/dist/react-datepicker.css';
@@ -11,15 +11,17 @@ const DateInput = ({
   name, value, label, onChange, onFocus, error, date, showTime, time, year, month, mode, maxDate 
 }) => {
   const input = useRef();
-  const val = !isEmpty(value) ? 1 : 0;
+  const child = useRef();
   const err = isEmpty(error) ? 0 : 1;
 
-  const onFocusDatePicker = e => onFocus(e);
-
+  const onFocusDatePicker = e => { 
+    onFocus(e);
+    child.current.setFocusFromDate();
+   }
   const onSetFocus = () => input.current.setFocus();
 
   return (
-    <StyledDateInput>
+    <StyledDateInput err={err}>
       <DatePicker
         name={name} 
         selected={value ? new Date(value) : null}
@@ -36,7 +38,15 @@ const DateInput = ({
         maxDate={maxDate}
         ref={input}
       />
-      <Label isClass='label' label={label} val={val} error={error} err={err} onSetFocus={onSetFocus} />
+      <LabelDate 
+        isClass='label' 
+        label={label} 
+        value={value} 
+        error={error} 
+        onSetFocus={onSetFocus} 
+        err={err}
+        ref={child}
+      />
     </StyledDateInput>
   )
 };

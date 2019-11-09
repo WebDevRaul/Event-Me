@@ -25,7 +25,7 @@ const Input = ({ name, label, value, onChange, onFocus, type, error }) => {
         ref={input}
       />
       <Label 
-        isClass='form-input-label' 
+        isClass='label' 
         label={label} 
         value={value} 
         error={error} 

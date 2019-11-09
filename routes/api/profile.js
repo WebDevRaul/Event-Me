@@ -44,7 +44,7 @@ router.post('/about', passport.authenticate('jwt'), (req, res) => {
   const { errors, isValid } = validateAbout(req.body);
   if (!isValid) return res.status(400).json(errors);
 
-  Profile.findOneAndUpdate({user_id: _id}, { status, bio, hobbies: select[0], ocupation, country }, { new: true })
+  Profile.findOneAndUpdate({user_id: _id}, { status, bio, hobbies: select, ocupation, country }, { new: true })
     .then(() => {
       User.findById(_id, 'first_name last_name email date')
         .populate('profile').exec((err, user) => {

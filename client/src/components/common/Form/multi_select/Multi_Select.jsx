@@ -29,13 +29,14 @@ const MultiSelect = ({ value, label, onChange, onFocus, error }) => {
     child.current.setFocusFromMultiSelect();
     onFocus()
   }
-
+ 
   return (
     <StyledMultiSelect err={err}>
       <div className='select'>
         <Select 
           options={options}
           styles={style}
+          value={value}
           closeMenuOnSelect={false}
           isMulti
           placeholder={false}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import isEmpty from '../../utils/isEmpty/isEmpty';
 
@@ -6,12 +6,18 @@ import Input from './Input';
 
 import StyledRadio from './Styled_Radio';
 
-const Status = ({ name, onClick, onFocus, error }) => {
+const Status = ({ name, value, onClick, onFocus, error }) => {
   const [radio, setRadio] = useState({ 
-    status_single: false, status_relationship: false, status_maried: false 
+    status_single: false, status_relationship: false, status_married: false 
   });
-  const { status_single, status_relationship, status_maried } = radio;
+  const { status_single, status_relationship, status_married } = radio;
   const err = isEmpty(error) ? 0 : 1;
+
+  // Update state CDU
+  useEffect(() => {
+    if(!isEmpty(value)) setRadio({ ...radio, [`status_${value}`]: true });
+    // eslint-disable-next-line
+  },[value])
 
   const onChange = e => {
     const { name, value } = e.target
@@ -46,8 +52,8 @@ const Status = ({ name, onClick, onFocus, error }) => {
         />
         <Input 
           name={name} 
-          radio={status_maried} 
-          value='maried' 
+          radio={status_married} 
+          value='married' 
           onChange={onChange} 
           onClick={onClick}
           onFocus={onFocus} 
@@ -59,6 +65,7 @@ const Status = ({ name, onClick, onFocus, error }) => {
 
 Status.propTypes = {
   name: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   onFocus: PropTypes.func.isRequired,
   error: PropTypes.string

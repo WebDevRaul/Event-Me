@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { update_about } from '../../../redux/actions/profile';
 import { createStructuredSelector } from 'reselect';
-import {  } from '../../../redux/selectors/user';
+import { state_user_profile } from '../../../redux/selectors/user';
 import ButtonOne from '../../common/buttonOne/ButtonOne';
 import Status from '../../common/Form/radio/Status';
 import TextArea from '../../common/Form/textarea/Textarea';
@@ -12,18 +12,24 @@ import MultiSelect from '../../common/Form/multi_select/Multi_Select';
 import validateAbout from '../utils/ValidateAbout';
 import isEmpty from '../../common/utils/isEmpty/isEmpty';
 
-const Form = ({ update_about }) => {
+const Form = ({ update_about, profile }) => {
   const [state, setState] = useState({ status: '', bio: '', select: [], ocupation: '', country: '' });
   const [error, setErrors] = useState({ status: '', bio: '', select: '', ocupation: '', country: '' });
-
   const { status, bio, select, ocupation, country } = state;
+
+  // Update state CDM
+  useEffect(() => {
+    const { status, bio, ocupation, hobbies, country } = profile;
+    if(!isEmpty(bio)) setState({ status, bio, ocupation, select: hobbies, country })
+    // eslint-disable-next-line
+  },[])
 
   const onChange = e => {
     setState({...state , [e.target.name]: e.target.value });
   }
   const onChangeSelect = val => {
-    if(!!!val) return setState({ ...state, select: [] })
-    setState({ ...state, select: [val] })
+    if(!!!val) return setState({ ...state, select: [] });
+    setState({ ...state, select: val })
   }
   const onFocus = e => {
     if(status || bio || ocupation || country !== undefined) {
@@ -32,20 +38,17 @@ const Form = ({ update_about }) => {
     }
   };
   const onFocusMulti = () => {
-    if(isEmpty(select)) {
-      setErrors({ ...error, select: '' });
-    }
+    if(isEmpty(select)) setErrors({ ...error, select: '' });
   }
 
   const onSubmit = e => {
     e.preventDefault();
     const { errors, isValid } = validateAbout(state);
-    if(!isValid) { 
-      setErrors({ ...error, ...errors })
-    }
+    if(!isValid) { setErrors({ ...error, ...errors }) }
     else { update_about({...state}) }
   }
-  
+
+
   return (
     <form noValidate onSubmit={onSubmit}>
       <div className='form'>
@@ -98,11 +101,12 @@ const Form = ({ update_about }) => {
 };
 
 Form.propTypes = {
-  update_about: PropTypes.func.isRequired
+  profile: PropTypes.object.isRequired,
+  update_about: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = createStructuredSelector({
-
+  profile: state_user_profile
 })
 
 export default connect( mapStateToProps, { update_about } )(Form);

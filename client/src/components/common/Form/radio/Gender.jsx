@@ -11,7 +11,7 @@ const Gender = ({ value, name, onClick, onFocus, error }) => {
   const { gender_male, gender_female } = radio;
   const err = error ? 1 : 0;
 
-  // CDU
+  // Update state CDU
   useEffect(() => {
     if(!isEmpty(value)) setRadio({ ...radio, [`gender_${value}`]: true });
     // eslint-disable-next-line

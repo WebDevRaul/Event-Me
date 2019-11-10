@@ -64,11 +64,34 @@ const StyledPhoto = styled.section`
     }
   }
   .step-tree {
+    display: flex;
+    flex-direction: column;
     .img-preview {
       height: ${innerHeight};
       width: ${innerWidth};
       border-radius: var(--BorderRadius);
       overflow: hidden;
+    }
+    .wrapper-box {
+      display: flex;
+      align-items: center;
+      margin: 15px 0;
+      i {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: 5px 0;
+        color: var(--Pcolor);
+        background-color: var(--Error);;
+        border-radius: var(--BorderRadius);
+        &:hover {
+          cursor: pointer;
+        }
+        &:nth-child(1) {
+          background-color: var(--Green);
+          margin-right: 10px;
+        }
+      }
     }
   }
 `

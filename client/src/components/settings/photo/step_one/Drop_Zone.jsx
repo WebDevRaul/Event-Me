@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { useDropzone } from 'react-dropzone';
-import Title from '../../common/title/Title';
+import Title from '../../../common/title/Title';
 
 const DropZone = ({ setFile }) => {
   const onDrop = useCallback(acceptedFiles => {

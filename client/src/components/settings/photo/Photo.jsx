@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+
+import StepOne from './step_one/Step_One';
+import StepTree from './step_tree/Step_Tree';
+import StepTwo from './step_two/Step_Two';
 import Title from '../../common/title/Title';
 
 import StyledPhoto from './Styled_Photo';
-import DropZone from './Drop_Zone';
-import CropperInput from './CropperInput';
 
 const Photo = () => {
   const [file, setFile] = useState([]);
@@ -23,34 +25,13 @@ const Photo = () => {
           <Title text='Photo Upload' />
         <div className='row no-gutters'>
           <div className='col-12 col-sm-4'>
-            <div className='step-one'>
-              <Title text='Step 1 - Add photo' />
-              <div className='box'>
-                <DropZone setFile={setFile} />
-              </div>
-            </div>
+            <StepOne setFile={setFile} />
           </div>
           <div className='col-12 col-sm-4'>
-            <div className='step-two'>
-              <Title text='Resize Image' />
-              <div className='box'>
-              {
-                file.length > 0 &&
-                <CropperInput  setImage={setImage} imgPreview={file[0].preview} />
-              }
-              </div>
-            </div>
+            <StepTwo setImage={setImage} file={file} />
           </div>
           <div className='col-12 col-sm-4'>
-            <div className='step-tree'>
-              <Title text='Step 3 - Preview & Upload' />
-              <div className='box'>
-              {
-                file.length > 0 && 
-                <div className='img-preview' />
-              }
-              </div>
-            </div>
+            <StepTree file={file} />
           </div>
         </div>
       </div>

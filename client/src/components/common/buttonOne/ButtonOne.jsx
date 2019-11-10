@@ -12,7 +12,7 @@ const ButtonOne = ({ text, isClass, onClick, type }) => {
 };
 
 ButtonOne.defaultProps = {
-  type: 'text'
+  type: 'button'
 }
 
 ButtonOne.propTypes = {

@@ -15,6 +15,7 @@ const user = (state=INITIAL_STATE, action) => {
       return { ...state, info: {}, isAuth: false };
     case PROFILE.BASIC:
     case PROFILE.ABOUT:
+    case PROFILE.PHOTO:
       return { ...state, info: payload }
     case USER.ERROR:
     case PROFILE.ERROR:

@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+const height = '200px';
+const width = '200px';
+const innerHeight = '180px';
+const innerWidth = '180px';
+
 const StyledPhoto = styled.section`
   margin: 0 20px;
   padding: 20px;
@@ -13,14 +18,12 @@ const StyledPhoto = styled.section`
       border-bottom: 1px solid var(--Shadow);
     }
   }
-  .step-one {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  .step-one, .step-two, .step-tree {
     h4 {
+      text-align: center;
       color: var(--Pcolor);
       padding: 0px;
+      border-bottom: none;
       &:nth-child(1) {
         font-size: 1.4em;
       }
@@ -29,32 +32,43 @@ const StyledPhoto = styled.section`
         padding-top: 10px;
       }
     }
-    .dropzone {
-      border: 3px dashed var(--Shadow);
+    .box {
+      width: ${width};
+      height: ${height};
+      margin: auto;
+      padding: 10px;
+      border: 1px solid var(--Shadow);
       border-radius: var(--BorderRadius);
-      padding: 20px;
-      text-align: center;
+      position: relative;
     }
-    .is-active {
-      border: 3px dashed var(--Green);
+  }
+  .step-one {
+    .box {
+      border: none;
+      display: flex;
+      align-items: center;
+      .dropzone {
+        border: 3px dashed var(--Shadow);
+        border-radius: var(--BorderRadius);
+        padding: 20px;
+        text-align: center;
+      }
+      .is-active {
+        border: 3px dashed var(--Green);
+      }
+    }
+  }
+  .step-two {
+    .box > div > div {
+    width: ${innerWidth}!important;
     }
   }
   .step-tree {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    h4 {
-      color: var(--Pcolor);
-      padding: 0px;
-      &:nth-child(1) {
-        font-size: 1.4em;
-      }
-    }
-    img {
-      min-height: 100px;
-      max-height: 100px;
+    .img-preview {
+      height: ${innerHeight};
+      width: ${innerWidth};
       border-radius: var(--BorderRadius);
+      overflow: hidden;
     }
   }
 `

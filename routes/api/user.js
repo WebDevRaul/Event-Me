@@ -29,7 +29,7 @@ router.post('/register', (req, res) => {
           newUser.password = hash;
           newUser.save()
             .then(({ _id }) => {
-              const newProfile = new Profile({ user_id: _id });
+              const newProfile = new Profile({ user: _id });
               newProfile.save()
                 .then(profile => {
                   User.findByIdAndUpdate(_id, { $addToSet: { profile: profile._id } }, { upsert: true, new: true } )

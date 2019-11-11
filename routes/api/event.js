@@ -9,24 +9,30 @@ const validateCreateEvent = require('../../validation/create_event');
 // @desc    Fetch events
 // @access  Public
 router.get('/home', (req, res) => {
-  Event.find({}).populate('author', 'first_name').exec((err, events) => res.json(events))
+  Event.find({})
+    .populate({ path:'user', model: 'user', select: 'first_name', 
+    populate: { path: 'profile', model: 'profile', select: 'image' }})
+    .exec((err, events) => res.json(events))
 });
 
 // @route   POST api/event/create-event
 // @desc    Create event
 // @access  Private
 router.post('/create-event', passport.authenticate('jwt'), (req, res) => {
-  const { title, date, city, location, description, author } = req.body;
-  const event = new Event({ title, date, city, location, description, author });
-  
+  const { title, date, city, location, description, id } = req.body;
+  const event = new Event({ title, date, city, location, description, user: id });
+
   const { errors, isValid } = validateCreateEvent(req.body);
   if (!isValid) return res.status(400).json(errors);
-
   event.save()
     .then(({ _id }) => {
-      Event.findById(_id).populate('author', 'first_name').exec((err, evt) => res.json(evt))
+      Event.findById(_id)
+        .populate({ path:'user', model: 'user', select: 'first_name', 
+          populate: { path: 'profile', model: 'profile', select: 'image' } 
+        })
+        .exec((err, evt) => res.json(evt))
     })
-    .catch(err => res.status(400).json({ error: 'Ooops' }));
+    .catch(err => console.log(err));
 });
 
 // @route   POST api/event/join-event

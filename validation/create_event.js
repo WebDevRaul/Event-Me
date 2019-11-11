@@ -1,7 +1,7 @@
 const Validator = require('validator');
 const isEmpty = require('./isEmpty');
 
-module.exports = function validateCreateEvent({ title, date, city, location, description, author }) {
+module.exports = function validateCreateEvent({ title, date, city, location, description, id }) {
   let errors = {};
 
   // Check if Empty
@@ -10,7 +10,7 @@ module.exports = function validateCreateEvent({ title, date, city, location, des
   city = !isEmpty(city) ? city : '';
   location = !isEmpty(location) ? location : '';
   description = !isEmpty(description) ? description : '';
-  author = !isEmpty(author) ? author : '';
+  id = !isEmpty(id) ? id : '';
 
   // Validate Fields
   if (!Validator.isLength(title, { min:2, max: 30 })) {
@@ -42,8 +42,8 @@ module.exports = function validateCreateEvent({ title, date, city, location, des
   if (Validator.isEmpty(description)) {
     errors.description = 'Description field is required!'
   }
-  if (Validator.isEmpty(author)) {
-    errors.author = 'Author field is required!'
+  if (Validator.isEmpty(id)) {
+    errors.id = 'ID field is required!'
   }
 
   return {

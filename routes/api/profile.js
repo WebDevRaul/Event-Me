@@ -22,7 +22,7 @@ router.post('/basic', passport.authenticate('jwt'), (req, res) => {
   if (!isValid) return res.status(400).json(errors);
 
   const user = User.findByIdAndUpdate(_id, { first_name, last_name }, { new: true });
-  const profile = Profile.findOneAndUpdate({user_id: _id}, { gender, birthday, town }, { new: true });
+  const profile = Profile.findOneAndUpdate({user: _id}, { gender, birthday, town }, { new: true });
 
   Promise.all([user, profile])
     .then(() => 
@@ -47,7 +47,7 @@ router.post('/about', passport.authenticate('jwt'), (req, res) => {
   const { errors, isValid } = validateAbout(req.body);
   if (!isValid) return res.status(400).json(errors);
 
-  Profile.findOneAndUpdate({user_id: _id}, { status, bio, hobbies: select, ocupation, country }, { new: true })
+  Profile.findOneAndUpdate({user: _id}, { status, bio, hobbies: select, ocupation, country }, { new: true })
     .then(() => {
       User.findById(_id, 'first_name last_name email date')
         .populate('profile').exec((err, user) => {
@@ -70,7 +70,7 @@ router.post('/photo/:id', passport.authenticate('jwt'), upload.single('file'), (
   const { id } = req.params;
   // Validation here
   cloudinary.uploader.upload(path, ({ public_id, secure_url }) => {
-    Profile.findOneAndUpdate({user_id: id}, { image: { secure_url, public_id } }, { new: true })
+    Profile.findOneAndUpdate({user: id}, { image: { secure_url, public_id } }, { new: true })
     .then(() => {
       User.findById(id, 'first_name last_name email date').populate('profile')
         .exec((err, user) => {

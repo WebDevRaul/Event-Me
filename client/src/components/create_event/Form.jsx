@@ -59,7 +59,7 @@ const Form = ({ user, events, history, errors, create_event, update_event }) => 
   }
   const onSubmit = e => {
     e.preventDefault();
-    let event = { title, date, city, location, description , author: user._id};
+    let event = { title, date, city, location, description , id: user._id};
     const { errors, isValid } = validateEvent(event);
     if(!isValid) return setErrors({ ...error, ...errors });
     if(isEmpty(_id)) return create_event({ event, history });

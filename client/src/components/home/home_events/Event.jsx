@@ -7,12 +7,12 @@ import EventLocation from './Event_Location';
 import EventMembers from './Event_Members';
 import EventDescription from './Event_Description';
 
-const Event = ({ event: { author, title, date, city, location, members, description, _id } }) => {
+const Event = ({ event: { user, title, date, city, location, members, description, _id } }) => {
   const day = format(parseISO(date), 'EEEE do LLL');
   const time = format(parseISO(date), 'h:mm a');
   return (
     <div className='event'>
-      <EventTitle  author={author} title={title} />
+      <EventTitle  author={user} title={title} />
       <EventLocation date={{ day, time }} location={location} city={city} />
       <EventMembers members={members} />
       <EventDescription description={description} title={title} _id={_id} />

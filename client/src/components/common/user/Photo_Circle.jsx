@@ -17,7 +17,7 @@ const PhotoCircle = ({ photo, width, height, alt }) => {
 }
 
 PhotoCircle.propTypes = {
-  photo: PropTypes.object,
+  photo: PropTypes.string,
   width: PropTypes.string.isRequired,
   height: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired

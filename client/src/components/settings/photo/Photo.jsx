@@ -31,7 +31,7 @@ const Photo = () => {
             <StepTwo setImage={setImage} file={file} />
           </div>
           <div className='col-12 col-sm-4'>
-            <StepTree file={file} />
+            <StepTree file={file} image={image} setFile={setFile} setImage={setImage} />
           </div>
         </div>
       </div>

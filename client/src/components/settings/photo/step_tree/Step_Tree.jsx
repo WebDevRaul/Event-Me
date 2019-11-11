@@ -4,15 +4,19 @@ import { connect } from 'react-redux';
 import { upload_photo } from '../../../../redux/actions/profile';
 import Title from '../../../common/title/Title';
 
-const StepTree = ({ file, upload_photo }) => {
+const StepTree = ({ file, image, setFile, setImage, upload_photo }) => {
 
   const onSubmit = () => {
-
+    upload_photo({ image });
+    onClearState();
   }
 
-  const onCancel = () => {
-
+  const onClearState = () => {
+    setFile([]);
+    setImage(null);
   }
+
+  const onCancel = () => onClearState();
 
   return (
     <div className='step-tree'>
@@ -35,6 +39,9 @@ const StepTree = ({ file, upload_photo }) => {
 
 StepTree.propTypes = {
   file: PropTypes.array.isRequired,
+  image: PropTypes.object,
+  setFile: PropTypes.func.isRequired,
+  setImage: PropTypes.func.isRequired,
   upload_photo: PropTypes.func.isRequired
 }
 

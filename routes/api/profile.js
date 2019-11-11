@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
+const cloudinary = require('cloudinary');
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
 const { SECRET_OR_KEY } = require('../../config/Keys');
 const User = require('../../models/User');
 const Profile = require('../../models/Profile');
@@ -57,6 +60,22 @@ router.post('/about', passport.authenticate('jwt'), (req, res) => {
         })
     })
     .catch(err => res.status(400).json({ error: 'Ooops'}))
+});
+
+// @route   POST /api/profile/photo
+// @desc    Upload photo
+// @access  Private
+router.post('/photo', passport.authenticate('jwt'), upload.single('file'), (req, res) => {
+  console.log(req.file);
+  const { path } = req.file;
+  // Validation here
+  cloudinary.uploader.upload(path, (res) => {
+    console.log(res)
+  }, {
+    public_id: `${Date.now()}`,
+    resource_type: 'auto'
+  })
+
 });
 
 module.exports = router;

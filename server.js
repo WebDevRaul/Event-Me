@@ -5,7 +5,8 @@ const path = require('path');
 const passport = require('passport');
 const User = require('./models/User');
 require('dotenv').config();
-const { MONGO_DB } = require('./config/Keys');
+const cloudinary = require('cloudinary');
+const { MONGO_DB, CLOUD_NAME, CLOUD_API_KEY, CLOUD_API_SECRET } = require('./config/Keys');
 
 const user = require('./routes/api/user');
 const profile = require('./routes/api/profile');
@@ -18,6 +19,14 @@ const app = express();
 // Body-Parser Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+
+// Cloudinary Config
+cloudinary.config({
+  cloud_name: CLOUD_NAME,
+  api_key: CLOUD_API_KEY,
+  api_secret: CLOUD_API_SECRET
+})
 
 
 // Connect to DB

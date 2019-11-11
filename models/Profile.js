@@ -8,10 +8,10 @@ const ProfileSchema = new Schema({
   town: { type: String },
   status: { type: String },
   bio: { type: Array, default: [] },
-  hobbies: { type: Array },
+  hobbies: { type: Array, default: [] },
   ocupation: { type: String },
   country: { type: String },
-  images: { type: Array, default: [] },
+  image: { type: Object, default: {} },
 }, { timestamps: true });
 
 module.exports = Profile = mongoose.model('profile', ProfileSchema);

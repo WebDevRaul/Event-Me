@@ -65,17 +65,28 @@ router.post('/about', passport.authenticate('jwt'), (req, res) => {
 // @route   POST /api/profile/photo
 // @desc    Upload photo
 // @access  Private
-router.post('/photo', passport.authenticate('jwt'), upload.single('file'), (req, res) => {
-  console.log(req.file);
+router.post('/photo/:id', passport.authenticate('jwt'), upload.single('file'), (req, res) => {
   const { path } = req.file;
+  const { id } = req.params;
   // Validation here
-  cloudinary.uploader.upload(path, (res) => {
-    console.log(res)
+  cloudinary.uploader.upload(path, ({ public_id, secure_url }) => {
+    Profile.findOneAndUpdate({user_id: id}, { image: { secure_url, public_id } }, { new: true })
+    .then(() => {
+      User.findById(id, 'first_name last_name email date').populate('profile')
+        .exec((err, user) => {
+          if(err) return res.status(400).json({ error: 'Ooops'});
+          // Create a new Token
+          const payload = { user, isAuth: true };
+          jwt.sign(payload, SECRET_OR_KEY, { expiresIn: 3600 }, (err, token) => {
+            res.json({ token: 'Bearer ' + token, user });
+          });
+        })
+    })
+    .catch(err => res.status(400).json({ error: 'Ooops'}))
   }, {
     public_id: `${Date.now()}`,
     resource_type: 'auto'
   })
-
 });
 
 module.exports = router;

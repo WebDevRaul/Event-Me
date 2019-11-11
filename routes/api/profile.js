@@ -27,7 +27,7 @@ router.post('/basic', passport.authenticate('jwt'), (req, res) => {
   Promise.all([user, profile])
     .then(() => 
       User.findById(_id, 'first_name last_name email date')
-      .populate('profile').exec((err, user) => {
+      .populate('profile', { user: 0, createdAt: 0, updatedAt: 0, __v: 0 }).exec((err, user) => {
         if(err) return res.status(400).json({ error: 'Ooops'});
         // Create a new Token
         const payload = { user, isAuth: true };
@@ -50,7 +50,7 @@ router.post('/about', passport.authenticate('jwt'), (req, res) => {
   Profile.findOneAndUpdate({user: _id}, { status, bio, hobbies: select, ocupation, country }, { new: true })
     .then(() => {
       User.findById(_id, 'first_name last_name email date')
-        .populate('profile').exec((err, user) => {
+        .populate('profile', { user: 0, createdAt: 0, updatedAt: 0, __v: 0 }).exec((err, user) => {
           if(err) return res.status(400).json({ error: 'Ooops'});
           // Create a new Token
           const payload = { user, isAuth: true };
@@ -72,7 +72,8 @@ router.post('/photo/:id', passport.authenticate('jwt'), upload.single('file'), (
   cloudinary.uploader.upload(path, ({ public_id, secure_url }) => {
     Profile.findOneAndUpdate({user: id}, { image: { secure_url, public_id } }, { new: true })
     .then(() => {
-      User.findById(id, 'first_name last_name email date').populate('profile')
+      User.findById(id, 'first_name last_name email date')
+        .populate('profile', { user: 0, createdAt: 0, updatedAt: 0, __v: 0 })
         .exec((err, user) => {
           if(err) return res.status(400).json({ error: 'Ooops'});
           // Create a new Token

@@ -5,7 +5,7 @@ import Photo from '../../common/user/Photo';
 const EventMembers = ({ members }) => {
   return (
     <div className='event-members'>
-      {members && members.map(({ _id, photo, first_name }) => <Photo key={_id} photo={undefined} width='40px' height='40px' alt={first_name} isBgk={1} isClr={1} /> )}
+      {members && members.map(({ _id, secure_url, first_name }) => <Photo key={_id} photo={secure_url} width='40px' height='40px' alt={first_name} isBgk={1} isClr={1} /> )}
     </div>
   )
 }

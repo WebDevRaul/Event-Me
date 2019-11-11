@@ -23,7 +23,7 @@ const Card = ({ state, user, isAuth, update, history, join_event, leave_event, d
   
   const onJoinEvt = () => {
     if(!isAuth) return setAlert('Sign In to join this event');
-    const { first_name, _id, image: secure_url } = user;
+    const { _id, first_name, profile: { image: { secure_url } } } = user;
     join_event({ evt_id, _id, first_name, secure_url });
   }
   const onLeaveEvt = () => {

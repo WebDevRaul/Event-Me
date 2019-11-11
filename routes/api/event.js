@@ -32,19 +32,19 @@ router.post('/create-event', passport.authenticate('jwt'), (req, res) => {
         })
         .exec((err, evt) => res.json(evt))
     })
-    .catch(err => console.log(err));
+    .catch(err => res.status(400).json({ error: 'Ooops' }));
 });
 
 // @route   POST api/event/join-event
 // @desc    Join Event
 // @access  Private
 router.post('/join-event', passport.authenticate('jwt'), (req, res) => {
-  const { evt_id, _id, secure_url } = req.body;
+  const { evt_id, _id, first_name, secure_url } = req.body;
   Event.findByIdAndUpdate(evt_id, 
     { $addToSet: { members: { _id, first_name, secure_url } } }, 
     { upsert: true, new: true })
     .populate({ path:'user', model: 'user', select: 'first_name', 
-      populate: { path: 'profile', model: 'profile', select: 'image' } 
+    populate: { path: 'profile', model: 'profile', select: 'image' } 
     })
     .exec((err, evt) => {
       if(err) return res.status(400).json({ error: 'Ooops' });

@@ -23,9 +23,13 @@ const Card = ({ state, user, isAuth, update, history, join_event, leave_event, d
   
   const onJoinEvt = () => {
     if(!isAuth) return setAlert('Sign In to join this event');
-    join_event({ evt_id, user });
+    const { first_name, _id, image: secure_url } = user;
+    join_event({ evt_id, _id, first_name, secure_url });
   }
-  const onLeaveEvt = () => leave_event({ evt_id, user });
+  const onLeaveEvt = () => {
+    const { _id } = user;
+    leave_event({ evt_id, _id });
+  };
   const onMenageEvt = () => {
     if(root) return history.push(`/my-events/${evt_id}-${title_name}/manage-event`);
     history.push(`/home/${evt_id}-${title_name}/manage-event`);

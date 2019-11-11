@@ -39,11 +39,14 @@ router.post('/create-event', passport.authenticate('jwt'), (req, res) => {
 // @desc    Join Event
 // @access  Private
 router.post('/join-event', passport.authenticate('jwt'), (req, res) => {
-  const { evt_id, user } = req.body;
+  const { evt_id, _id, secure_url } = req.body;
   Event.findByIdAndUpdate(evt_id, 
-    { $addToSet: { members: user } }, 
+    { $addToSet: { members: { _id, first_name, secure_url } } }, 
     { upsert: true, new: true })
-    .populate('author', 'first_name').exec((err, evt) => {
+    .populate({ path:'user', model: 'user', select: 'first_name', 
+      populate: { path: 'profile', model: 'profile', select: 'image' } 
+    })
+    .exec((err, evt) => {
       if(err) return res.status(400).json({ error: 'Ooops' });
       res.json(evt)
     })
@@ -53,11 +56,14 @@ router.post('/join-event', passport.authenticate('jwt'), (req, res) => {
 // @desc    Leave Event
 // @access  Private
 router.post('/leave-event', passport.authenticate('jwt'), (req, res) => {
-  const { evt_id, user: { user_id } } = req.body;
+  const { evt_id, _id } = req.body;
   Event.findByIdAndUpdate(evt_id, 
-    { $pull: { members: { user_id } } }, 
+    { $pull: { members: { _id } } }, 
     { upsert: true, new: true })
-    .populate('author', 'first_name').exec((err, evt) => {
+    .populate({ path:'user', model: 'user', select: 'first_name', 
+      populate: { path: 'profile', model: 'profile', select: 'image' } 
+    })
+    .exec((err, evt) => {
       if(err) return res.status(400).json({ error: 'Ooops' });
       res.json(evt)
     })

@@ -65,14 +65,15 @@ router.post('/about', passport.authenticate('jwt'), (req, res) => {
 // @route   POST /api/profile/photo
 // @desc    Upload photo
 // @access  Private
-router.post('/photo/:id', passport.authenticate('jwt'), upload.single('file'), (req, res) => {
+router.post('/photo', passport.authenticate('jwt'), upload.single('file'), (req, res) => {
   const { path } = req.file;
-  const { id } = req.params;
+  const { main } = req.body;
+  const { _id } = req.user;
   // Validation here
   cloudinary.uploader.upload(path, ({ public_id, secure_url }) => {
-    Profile.findOneAndUpdate({user: id}, { image: { secure_url, public_id } }, { new: true })
+    Profile.findOneAndUpdate({user: _id}, {$push: { image: { secure_url, public_id, main }} }, { new: true })
     .then(() => {
-      User.findById(id, 'first_name last_name email date')
+      User.findById(_id, 'first_name last_name email date')
         .populate('profile', { user: 0, createdAt: 0, updatedAt: 0, __v: 0 })
         .exec((err, user) => {
           if(err) return res.status(400).json({ error: 'Ooops'});

@@ -2,14 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { upload_photo } from '../../../../redux/actions/profile';
-import { createStructuredSelector } from 'reselect';
-import { state_user } from '../../../../redux/selectors/user';
 import Title from '../../../common/title/Title';
 
-const StepTree = ({ file, image, setFile, setImage, upload_photo, user: { _id } }) => {
+const StepTree = ({ file, image, setFile, setImage, upload_photo }) => {
 
   const onSubmit = () => {
-    upload_photo({ image, _id });
+    upload_photo({ image, main: false });
     onClearState();
   }
 
@@ -48,8 +46,4 @@ StepTree.propTypes = {
   user: PropTypes.object.isRequired
 }
 
-const mapStateToProps = createStructuredSelector({
-  user: state_user
-})
-
-export default connect(mapStateToProps, { upload_photo })(StepTree);
+export default connect(null, { upload_photo })(StepTree);

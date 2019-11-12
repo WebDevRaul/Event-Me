@@ -40,11 +40,12 @@ export const update_about = obj => dispatch => {
     });
 }
 
-export const upload_photo = ({ image, _id }) => dispatch => {
+export const upload_photo = ({ image, main }) => dispatch => {
   var form = new FormData();
   form.append('file', image);
+  form.append('main', main);
 
-  axios.post(`${URL.profile}/photo/${_id}`, form)
+  axios.post(`${URL.profile}/photo/`, form)
     .then(({ data: { user, token } }) => {
       dispatch({ type: PROFILE.PHOTO, payload: user });
       // remove old Token

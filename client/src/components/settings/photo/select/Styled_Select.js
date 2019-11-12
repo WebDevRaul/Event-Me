@@ -8,17 +8,33 @@ const StyledSelect = styled.div`
     width: 200px;
     border: 1px solid var(--Shadow);
     border-radius: var(--BorderRadius);
-    background-color: var(--Shadow);
+    background-color: var(--mainWhite);
     .photo {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 200px;
-      height: 200px;
+      width: 180px;
+      height: 180px;
+      margin: 10px;
+      background-color: var(--Shadow);
        i {
          font-size: 10em;
          color: var(--Pcolor);
        }
+    }
+    .main-photo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 35.5px;
+      padding: 5px 0;
+      color: var(--Pcolor);
+      background-color: var(--Green);
+      font-weight: 600;
+      &:hover {
+          cursor: pointer;
+        }
     }
     .wrapper-box {
         display: flex;

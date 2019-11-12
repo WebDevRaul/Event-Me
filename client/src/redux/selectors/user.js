@@ -23,6 +23,11 @@ export const state_user_profile = createSelector(
   state => state.profile
 );
 
+export const state_user_photo = createSelector(
+  [select_user_state],
+  state => state.profile.image
+)
+
 export const state_user_error = createSelector(
   [select_error_state],
   state => state

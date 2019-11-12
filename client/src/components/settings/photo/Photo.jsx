@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { state_user_photo } from '../../../redux/selectors/user';
 
 import StepOne from './step_one/Step_One';
 import StepTree from './step_tree/Step_Tree';
@@ -8,7 +12,7 @@ import Select from './select/Select';
 
 import StyledPhoto from './Styled_Photo';
 
-const Photo = () => {
+const Photo = ({ photo }) => {
   const [file, setFile] = useState([]);
   const [image, setImage] = useState(null);
 
@@ -36,13 +40,21 @@ const Photo = () => {
           </div>
         </div>
         <div className='row no-gutters'>
-          <div className='col-12'>
-            <Select />
-          </div>
+          {
+            ['',''].map((i, index) => <Select key={index} url={i} index={index} />)
+          }
         </div>
       </div>
     </StyledPhoto>
   )
+};
+
+Photo.propTypes = {
+  photo: PropTypes.object.isRequired
 }
 
-export default Photo;
+const mapStateToProps = createStructuredSelector({
+  photo: state_user_photo
+});
+
+export default connect( mapStateToProps, {  } )(Photo);

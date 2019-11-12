@@ -9,12 +9,15 @@ import StepTree from './step_tree/Step_Tree';
 import StepTwo from './step_two/Step_Two';
 import Title from '../../common/title/Title';
 import Select from './select/Select';
+import isEmpty from '../../common/utils/isEmpty/isEmpty';
 
 import StyledPhoto from './Styled_Photo';
 
-const Photo = ({ photo : { secure_url, main }, rest }) => {
+const Photo = ({ photo , rest }) => {
   const [file, setFile] = useState([]);
   const [image, setImage] = useState(null);
+  const secure_url = isEmpty(photo) ? '' : photo.secure_url;
+  const main = isEmpty(photo) ? 'true' : photo.main;
 
   // Clear URL CDU
   useEffect(() => {
@@ -43,7 +46,7 @@ const Photo = ({ photo : { secure_url, main }, rest }) => {
           <Select url={secure_url} main={main} />
           {
             rest &&
-            rest.map(({ secure_url, main  }, i) => <Select key={i} url={secure_url} main={main} />)
+            rest.map(({ secure_url, main, public_id  }, i) => <Select key={i} url={secure_url} main={main} public_id={public_id} />)
           }
         </div>
       </div>
@@ -52,7 +55,7 @@ const Photo = ({ photo : { secure_url, main }, rest }) => {
 };
 
 Photo.propTypes = {
-  photo: PropTypes.object.isRequired,
+  photo: PropTypes.object,
   rest: PropTypes.array.isRequired
 }
 

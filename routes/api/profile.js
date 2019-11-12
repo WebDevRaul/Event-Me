@@ -91,4 +91,31 @@ router.post('/photo', passport.authenticate('jwt'), upload.single('file'), (req,
   })
 });
 
+// @route   POST /api/profile/photo/set
+// @desc    Set Main photo
+// @access  Private
+router.post('/photo/set', passport.authenticate('jwt'), (req, res) => {
+  const { _id } = req.user;
+  const { secure_url, public_id, main } = req.body;
+
+  const reset = Profile.findOneAndUpdate({user:_id,'image.main':'true'}, {$set: {'image.$.main': 'false'} });
+  const update = Profile.findOneAndUpdate({user:_id,'image.public_id': public_id}, {$set: {'image.$.main': 'true'} });
+
+  Promise.all([reset, update])
+    .then(() => {
+      User.findById(_id, 'first_name last_name email date')
+        .populate('profile', { user: 0, createdAt: 0, updatedAt: 0, __v: 0 }).exec((err, user) => {
+          if(err) return res.status(400).json({ error: 'Ooops'});
+          // Create a new Token
+          const payload = { user, isAuth: true };
+          jwt.sign(payload, SECRET_OR_KEY, { expiresIn: 3600 }, (err, token) => {
+            res.json({ token: 'Bearer ' + token, user });
+          });
+        })
+    })
+    .catch(err => console.log(err));
+});
+
+
+
 module.exports = router;

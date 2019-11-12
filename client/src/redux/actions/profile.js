@@ -61,3 +61,22 @@ export const upload_photo = ({ image, main }) => dispatch => {
       toastr.error('Oops!', 'Something went wrong');
     });
 }
+
+export const set_main = obj => dispatch => {
+
+  axios.post(`${URL.profile}/photo/set`, obj)
+    .then(({ data: { user, token } }) => {
+      dispatch({ type: PROFILE.SET_PHOTO, payload: user });
+      // remove old Token
+      localStorage.removeItem('jwToken');
+      // Set new Token
+      localStorage.setItem('jwToken', token);
+      // Set Auth Token
+      setAuthToken(token);
+      toastr.success('Success!', 'Profile updated');
+    })
+    .catch(err => {
+      dispatch({ type: PROFILE.ERROR, payload: err.response.data });
+      toastr.error('Oops!', 'Something went wrong');
+    });
+}

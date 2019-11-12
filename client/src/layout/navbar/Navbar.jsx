@@ -63,8 +63,8 @@ const Navbar = ({ isAuth, sign_out, photo, name, history }) => {
 Navbar.propTypes = {
   isAuth: PropTypes.bool.isRequired,
   sign_out: PropTypes.func.isRequired,
-  photo: PropTypes.object.isRequired,
-  name: PropTypes.string.isRequired
+  photo: PropTypes.object,
+  name: PropTypes.string
 };
 
 const mapStateToProps = createStructuredSelector({

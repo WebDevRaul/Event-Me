@@ -7,7 +7,7 @@ const Photo = ({ url }) => {
     <>
       {
         !isEmpty(url)
-        ?  <img src={url} alt='select-photo' />
+        ?  <img src={url} alt='select' />
         :  <i className='fas fa-user fa-5x'></i>
       }
     </>

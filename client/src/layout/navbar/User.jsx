@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Photo from '../../components/common/user/Photo';
 
-const User = ({ onClick, onSignOut, user: { name, profile: { image: { secure_url } } } }) => {
+const User = ({ onClick, onSignOut, photo: { secure_url }, name }) => {
   return (
     <div className='user' onClick={onClick}>
       <div className='info'>
@@ -27,7 +27,8 @@ const User = ({ onClick, onSignOut, user: { name, profile: { image: { secure_url
 User.propTypes = {
   onClick: PropTypes.func.isRequired,
   onSignOut: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired
+  photo: PropTypes.object.isRequired,
+  name: PropTypes.string.isRequired,
 }
 
 export default User;

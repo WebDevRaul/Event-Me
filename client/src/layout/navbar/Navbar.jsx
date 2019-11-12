@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { sign_out } from '../../redux/actions/user';
 import { createStructuredSelector } from 'reselect';
-import { state_isAuth, state_user} from '../../redux/selectors/user';
+import { state_isAuth, state_user_main_photo, state_user_name } from '../../redux/selectors/user';
 import classnames  from 'classnames';
 import { Link } from 'react-router-dom';
 
@@ -14,7 +14,7 @@ import ButtonOne from '../../components/common/buttonOne/ButtonOne';
 
 import StyledNavbar from './Styled_Navbar';
 
-const Navbar = ({ isAuth, sign_out, user, history }) => {
+const Navbar = ({ isAuth, sign_out, photo, name, history }) => {
   const [isOpen, setOpen] = useState(false);
   const [show, setShow] = useState(false);
   const plus18px = history.location.pathname === '/settings/basic' ? 1 : 0;
@@ -51,7 +51,7 @@ const Navbar = ({ isAuth, sign_out, user, history }) => {
               <li><Link to='/create-event'><ButtonOne text='Create Event' isClass='green box' /></Link></li>
             </div>
             <div className='pages'>
-              {isAuth ? <User onClick={onClick} onSignOut={onSignOut} user={user} /> : <Guest />}
+              {isAuth ? <User onClick={onClick} onSignOut={onSignOut} photo={photo} name={name} /> : <Guest />}
             </div>
           </ul>
         </div>
@@ -63,12 +63,14 @@ const Navbar = ({ isAuth, sign_out, user, history }) => {
 Navbar.propTypes = {
   isAuth: PropTypes.bool.isRequired,
   sign_out: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired
+  photo: PropTypes.object.isRequired,
+  name: PropTypes.string.isRequired
 };
 
 const mapStateToProps = createStructuredSelector({
   isAuth: state_isAuth,
-  user: state_user
+  photo: state_user_main_photo,
+  name: state_user_name
 });
 
 export default connect( mapStateToProps, { sign_out } )(withRouter(Navbar));

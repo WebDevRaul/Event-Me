@@ -17,6 +17,10 @@ const StyledSelect = styled.div`
       height: 180px;
       margin: 10px;
       background-color: var(--Shadow);
+        img {
+          width: 100%;
+          height: 100%;
+        }
        i {
          font-size: 10em;
          color: var(--Pcolor);

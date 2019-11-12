@@ -7,7 +7,7 @@ import Title from '../../../common/title/Title';
 const StepTree = ({ file, image, setFile, setImage, upload_photo }) => {
 
   const onSubmit = () => {
-    upload_photo({ image, main: false });
+    upload_photo({ image, main: true });
     onClearState();
   }
 
@@ -42,8 +42,7 @@ StepTree.propTypes = {
   image: PropTypes.object,
   setFile: PropTypes.func.isRequired,
   setImage: PropTypes.func.isRequired,
-  upload_photo: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired
+  upload_photo: PropTypes.func.isRequired
 }
 
 export default connect(null, { upload_photo })(StepTree);

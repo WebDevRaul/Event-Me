@@ -77,7 +77,9 @@ router.post('/home/:id/manage-event/update', passport.authenticate('jwt'), (req,
   Event.findByIdAndUpdate(_id,
     { title, date, city, location, description },
     { upsert: true, new: true })
-    .populate('author', 'first_name').exec((err, evt) => {
+    .populate({ path:'user', model: 'user', select: 'first_name', 
+      populate: { path: 'profile', model: 'profile', select: 'image' }})
+    .exec((err, evt) => {
       if(err) return res.status(400).json({ error: 'Ooops' });
       res.json(evt)
     })

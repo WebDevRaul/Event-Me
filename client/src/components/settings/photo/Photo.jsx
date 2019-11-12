@@ -4,6 +4,7 @@ import StepOne from './step_one/Step_One';
 import StepTree from './step_tree/Step_Tree';
 import StepTwo from './step_two/Step_Two';
 import Title from '../../common/title/Title';
+import Select from './select/Select';
 
 import StyledPhoto from './Styled_Photo';
 
@@ -32,6 +33,11 @@ const Photo = () => {
           </div>
           <div className='col-12 col-sm-4'>
             <StepTree file={file} image={image} setFile={setFile} setImage={setImage} />
+          </div>
+        </div>
+        <div className='row no-gutters'>
+          <div className='col-12'>
+            <Select />
           </div>
         </div>
       </div>

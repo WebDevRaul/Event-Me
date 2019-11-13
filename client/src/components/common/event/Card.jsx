@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { join_event, leave_event, delete_event } from '../../../redux/actions/event';
 import { createStructuredSelector } from 'reselect';
-import { state_isAuth, state_user } from '../../../redux/selectors/user';
+import { state_isAuth, state_user, state_user_main_photo } from '../../../redux/selectors/user';
 import { isJoined } from './utils/isJoined';
 
 import Title from '../title/Title';
@@ -13,7 +13,7 @@ import UpdateAndDelete from './UpdateAndDelete';
 import ManageEvt from './ManageEvt';
 
 
-const Card = ({ state, user, isAuth, update, history, join_event, leave_event, delete_event }) => {
+const Card = ({ state, user, photo: { secure_url }, isAuth, update, history, join_event, leave_event, delete_event }) => {
   const [alert, setAlert] = useState(undefined);
   const { pathname } = history.location;
   const { title, date: { day, time }, author: { first_name, _id }, evt_id, members } = state;
@@ -23,7 +23,7 @@ const Card = ({ state, user, isAuth, update, history, join_event, leave_event, d
   
   const onJoinEvt = () => {
     if(!isAuth) return setAlert('Sign In to join this event');
-    const { _id, first_name, profile: { image: { secure_url } } } = user;
+    const { _id, first_name } = user;
     join_event({ evt_id, _id, first_name, secure_url });
   }
   const onLeaveEvt = () => {
@@ -72,7 +72,8 @@ Card.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   isAuth: state_isAuth,
-  user: state_user
+  user: state_user,
+  photo: state_user_main_photo
 });
 
 export default connect(mapStateToProps, { join_event, leave_event, delete_event })(withRouter(Card));

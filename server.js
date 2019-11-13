@@ -28,6 +28,7 @@ cloudinary.config({
   api_secret: CLOUD_API_SECRET
 })
 
+// mongoose.set('debug', true);
 
 // Connect to DB
 // DeprecationWarning useUnifiedTopology: true 

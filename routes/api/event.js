@@ -11,7 +11,7 @@ const validateCreateEvent = require('../../validation/create_event');
 router.get('/home', (req, res) => {
   Event.find({})
     .populate({ path:'user', model: 'user', select: 'first_name', 
-    populate: { path: 'profile', model: 'profile', select: 'image' }})
+      populate: { path: 'profile', model: 'profile', select: 'image' }})
     .exec((err, events) => res.json(events))
 });
 
@@ -25,13 +25,7 @@ router.post('/create-event', passport.authenticate('jwt'), (req, res) => {
   const { errors, isValid } = validateCreateEvent(req.body);
   if (!isValid) return res.status(400).json(errors);
   event.save()
-    .then(({ _id }) => {
-      Event.findById(_id)
-        .populate({ path:'user', model: 'user', select: 'first_name', 
-          populate: { path: 'profile', model: 'profile', select: 'image' } 
-        })
-        .exec((err, evt) => res.json(evt))
-    })
+    .then(() => res.json({ success: true }))
     .catch(err => res.status(400).json({ error: 'Ooops' }));
 });
 
@@ -74,15 +68,9 @@ router.post('/leave-event', passport.authenticate('jwt'), (req, res) => {
 // @access  Private
 router.post('/home/:id/manage-event/update', passport.authenticate('jwt'), (req, res) => {
   const { _id, title, date, city, location, description } = req.body;
-  Event.findByIdAndUpdate(_id,
-    { title, date, city, location, description },
-    { upsert: true, new: true })
-    .populate({ path:'user', model: 'user', select: 'first_name', 
-      populate: { path: 'profile', model: 'profile', select: 'image' }})
-    .exec((err, evt) => {
-      if(err) return res.status(400).json({ error: 'Ooops' });
-      res.json(evt)
-    })
+  Event.findByIdAndUpdate(_id, { title, date, city, location, description },{ upsert: true, new: true })
+    .then(() => res.json({ success: true }))
+    .catch(err => res.status(400).json({ error: 'Ooops' }))
 })
 
 // @route   Delete api/event/home/:id/manage-event
@@ -92,7 +80,7 @@ router.post('/home/:id/manage-event', passport.authenticate('jwt'), (req, res) =
   const { _id } = req.body;
   Event.findByIdAndDelete(_id, (err, evt) =>{
     if(err) return res.status(400).json({ error: 'Ooops' });
-    res.json(evt)
+    res.json({ success: true })
   });
 });
 

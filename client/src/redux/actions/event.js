@@ -11,8 +11,8 @@ export const update_events = () => dispatch => {
 
 export const create_event = ({ event, history }) => dispatch => {
   axios.post(`${URL.event}/create-event`, event)
-    .then(({ data }) => {
-      dispatch({ type: EVENTS.CREATE_EVENT, payload: data });
+    .then(() => {
+      dispatch({ type: EVENTS.CREATE_EVENT });
       history.push('/home');
       toastr.success('Success!', 'Your event has been created');
     })
@@ -48,8 +48,8 @@ export const leave_event = obj => dispatch => {
 
 export const update_event = ({ event, history }) => dispatch => {
   axios.post(`${URL.event}/home/:id/manage-event/update`, event)
-    .then(({ data }) => {
-      dispatch({ type: EVENTS.UPDATE_EVENT, payload: data });
+    .then(() => {
+      dispatch({ type: EVENTS.UPDATE_EVENT });
       history.push('/home');
       toastr.success('Success!', 'You have updated the event');
     })
@@ -61,8 +61,8 @@ export const update_event = ({ event, history }) => dispatch => {
 
 export const delete_event = ({ _id, history }) => dispatch => {
   axios.post(`${URL.event}/home/:id/manage-event`, {_id})
-    .then(evt => {
-      dispatch({ type: EVENTS.DELETE_EVENT, payload: evt });
+    .then(() => {
+      dispatch({ type: EVENTS.DELETE_EVENT });
       history.push('/home');
       toastr.success('Success', 'You have deleted your event');
     })

@@ -67,11 +67,10 @@ router.post('/about', passport.authenticate('jwt'), (req, res) => {
 // @access  Private
 router.post('/photo', passport.authenticate('jwt'), upload.single('file'), (req, res) => {
   const { path } = req.file;
-  const { main } = req.body;
   const { _id } = req.user;
   // Validation here
   cloudinary.uploader.upload(path, ({ public_id, secure_url }) => {
-    Profile.findOneAndUpdate({user: _id}, {$push: { image: { secure_url, public_id, main }} }, { new: true })
+    Profile.findOneAndUpdate({user: _id}, {$push: { image: { secure_url, public_id }} }, { new: true })
     .then(() => {
       User.findById(_id, 'first_name last_name email date')
         .populate('profile', { user: 0, createdAt: 0, updatedAt: 0, __v: 0 })
@@ -96,13 +95,12 @@ router.post('/photo', passport.authenticate('jwt'), upload.single('file'), (req,
 // @access  Private
 router.post('/photo/set', passport.authenticate('jwt'), (req, res) => {
   const { _id } = req.user;
-  const { secure_url, public_id, main } = req.body;
+  const { secure_url } = req.body;
 
-  const reset = Profile.findOneAndUpdate({user:_id,'image.main':'true'}, {$set: {'image.$.main': 'false'} });
-  const update = Profile.findOneAndUpdate({user:_id,'image.public_id': public_id}, {$set: {'image.$.main': 'true'} });
-
-  Promise.all([reset, update])
-    .then(() => {
+  Profile.findOneAndUpdate({user : _id, 'image.public_id': 0},
+    {$set: { 'image.$.secure_url': secure_url }},
+    (err, data) => {
+      if(err) return res.status(400).json({ error: 'Ooops'})
       User.findById(_id, 'first_name last_name email date')
         .populate('profile', { user: 0, createdAt: 0, updatedAt: 0, __v: 0 }).exec((err, user) => {
           if(err) return res.status(400).json({ error: 'Ooops'});
@@ -112,10 +110,9 @@ router.post('/photo/set', passport.authenticate('jwt'), (req, res) => {
             res.json({ token: 'Bearer ' + token, user });
           });
         })
-    })
-    .catch(err => console.log(err));
+    }
+  )
 });
-
 
 
 module.exports = router;

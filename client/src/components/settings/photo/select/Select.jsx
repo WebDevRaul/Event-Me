@@ -7,9 +7,9 @@ import Photo from './Photo';
 
 import StyledSelect from './Styled_Select';
 
-const Select = ({ url, main, public_id, set_main }) => {
+const Select = ({ data: { secure_url, public_id }, set_main }) => {
 
-  const onMain = () => set_main({ secure_url: url, main: 'true', public_id });
+  const onMain = () => set_main({ secure_url });
 
   const onDelete = () => {}
   return (
@@ -17,10 +17,10 @@ const Select = ({ url, main, public_id, set_main }) => {
       <StyledSelect>
         <div className='select'>
           <div className='photo'>
-            <Photo url={url} />
+            <Photo secure_url={secure_url} />
           </div>
           {
-            main === 'true'
+            public_id === 0
             ? <div className='main-photo'>Main Photo</div>
             : <div className='wrapper-box'>
                 <i className='fa fa-check fa-2x' onClick={onMain}></i>
@@ -34,9 +34,8 @@ const Select = ({ url, main, public_id, set_main }) => {
 }
 
 Select.propTypes = {
-  url: PropTypes.string.isRequired,
-  main: PropTypes.string.isRequired,
-  public_id: PropTypes.string,
+  secure_url: PropTypes.string,
+  public_id: PropTypes.number,
   set_main: PropTypes.func.isRequired
 }
 

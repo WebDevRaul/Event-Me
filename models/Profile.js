@@ -11,7 +11,7 @@ const ProfileSchema = new Schema({
   hobbies: { type: Array, default: [] },
   ocupation: { type: String },
   country: { type: String },
-  image: { type: Array, default: [] },
+  image: { type: Array, default: [{ secure_url: '', public_id: 0 }] },
 }, { timestamps: true });
 
 module.exports = Profile = mongoose.model('profile', ProfileSchema);

@@ -2,14 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Photo from '../../components/common/user/Photo';
-import isEmpty from '../../components/common/utils/isEmpty/isEmpty';
 
-const User = ({ onClick, onSignOut, photo, name }) => {
-  const URL = isEmpty(photo) ? undefined : photo.secure_url
+const User = ({ onClick, onSignOut, photo: { secure_url }, name }) => {
   return (
     <div className='user' onClick={onClick}>
       <div className='info'>
-        <Photo photo={URL} width='25px' height='25px' alt='user' />
+        <Photo photo={secure_url} width='25px' height='25px' alt='user' />
         <p className='mb-0'>{name}</p>
       </div>
       <div className='wrapper'>

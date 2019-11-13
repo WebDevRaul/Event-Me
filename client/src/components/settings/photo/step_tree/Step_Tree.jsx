@@ -7,7 +7,7 @@ import Title from '../../../common/title/Title';
 const StepTree = ({ file, image, setFile, setImage, upload_photo }) => {
 
   const onSubmit = () => {
-    upload_photo({ image, main: false });
+    upload_photo({ image });
     onClearState();
   }
 

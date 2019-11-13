@@ -45,7 +45,7 @@ export const upload_photo = ({ image, main }) => dispatch => {
   form.append('file', image);
   form.append('main', main);
 
-  axios.post(`${URL.profile}/photo/`, form)
+  axios.post(`${URL.profile}/photo`, form)
     .then(({ data: { user, token } }) => {
       dispatch({ type: PROFILE.PHOTO, payload: user });
       // remove old Token

@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { set_main } from '../../../../redux/actions/profile';
+import { set_main, delete_photo } from '../../../../redux/actions/profile';
 
 import Photo from './Photo';
 
 import StyledSelect from './Styled_Select';
 
-const Select = ({ data: { secure_url, public_id }, set_main }) => {
+const Select = ({ data: { secure_url, public_id }, set_main, delete_photo }) => {
 
   const onMain = () => set_main({ secure_url });
 
-  const onDelete = () => {}
+  const onDelete = () => delete_photo({ public_id });
   return (
     <div className='col-4'>
       <StyledSelect>
@@ -36,7 +36,8 @@ const Select = ({ data: { secure_url, public_id }, set_main }) => {
 Select.propTypes = {
   secure_url: PropTypes.string,
   public_id: PropTypes.number,
-  set_main: PropTypes.func.isRequired
+  set_main: PropTypes.func.isRequired,
+  delete_photo: PropTypes.func.isRequired
 }
 
-export default connect(null, { set_main })(Select);
+export default connect(null, { set_main, delete_photo })(Select);

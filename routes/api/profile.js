@@ -114,5 +114,32 @@ router.post('/photo/set', passport.authenticate('jwt'), (req, res) => {
   )
 });
 
+// @route   POST /api/profile/photo/delete
+// @desc    Delete photo
+// @access  Private
+router.post('/photo/delete', passport.authenticate('jwt'), (req, res) => {
+  const { _id } = req.user;
+  const { public_id } = req.body;
+  // Validation here
+  
+  cloudinary.v2.uploader.destroy(public_id, (err, success) => {
+    if(err) return res.status(400).json({ error: 'Ooops'});
+    Profile.findOneAndUpdate({user:_id}, { $pull: { image: { public_id } } })
+      .then(() => {
+        User.findById(_id, 'first_name last_name email date')
+        .populate('profile', { user: 0, createdAt: 0, updatedAt: 0, __v: 0 })
+        .exec((err, user) => {
+          if(err) return res.status(400).json({ error: 'Ooops'});
+          // Create a new Token
+          const payload = { user, isAuth: true };
+          jwt.sign(payload, SECRET_OR_KEY, { expiresIn: 3600 }, (err, token) => {
+            res.json({ token: 'Bearer ' + token, user });
+          });
+        })
+      })
+      .catch(err => res.status(400).json({ error: 'Ooops'}))
+  })
+});
+
 
 module.exports = router;

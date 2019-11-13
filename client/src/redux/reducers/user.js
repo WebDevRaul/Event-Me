@@ -20,6 +20,7 @@ const user = (state=INITIAL_STATE, action) => {
     case PROFILE.BASIC:
     case PROFILE.ABOUT:
     case PROFILE.PHOTO:
+    case PROFILE.DELETE_PHOTO:
     case PROFILE.SET_PHOTO:
       return { ...state, info: payload }
     case USER.ERROR:

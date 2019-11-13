@@ -11,6 +11,7 @@ import Title from '../../common/title/Title';
 import Select from './select/Select';
 
 import StyledPhoto from './Styled_Photo';
+import isEmpty from '../../common/utils/isEmpty/isEmpty';
 
 const Photo = ({ photo , rest }) => {
   const [file, setFile] = useState([]);
@@ -45,6 +46,7 @@ const Photo = ({ photo , rest }) => {
             rest &&
             rest.map((i, index) => <Select key={index} data={i} />)
           }
+          { (isEmpty(rest) && !isEmpty(photo.secure_url)) ? <Select data={{ secure_url: '', public_id: '1' }} /> : null}
         </div>
       </div>
     </StyledPhoto>

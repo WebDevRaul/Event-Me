@@ -97,7 +97,7 @@ router.post('/photo/set', passport.authenticate('jwt'), (req, res) => {
   const { _id } = req.user;
   const { secure_url } = req.body;
 
-  Profile.findOneAndUpdate({user : _id, 'image.public_id': 0},
+  Profile.findOneAndUpdate({user : _id, 'image.public_id': '0'},
     {$set: { 'image.$.secure_url': secure_url }},
     (err, data) => {
       if(err) return res.status(400).json({ error: 'Ooops'})

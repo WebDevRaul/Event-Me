@@ -12,7 +12,7 @@ import Events from './Events';
 import StyledAccount from './Styled_Account';
 
 const Account = ({ profile, name }) => {
-  const { ocupation, country, birthday, image } = profile;
+  const { ocupation, country, birthday, bio, hobbies, image, } = profile;
   return (
     <StyledAccount>
       <div className='account'>
@@ -24,7 +24,13 @@ const Account = ({ profile, name }) => {
           country={country} 
           birthday={birthday}
         />
-        <Info />
+        <Info 
+          name={name}
+          ocupation={ocupation}
+          country={country}
+          bio={bio}
+          hobbies={hobbies}
+        />
         <Events />
       </div>
     </StyledAccount>

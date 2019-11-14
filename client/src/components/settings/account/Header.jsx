@@ -26,6 +26,8 @@ Header.propTypes = {
   photo: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   ocupation: PropTypes.string.isRequired,
+  country: PropTypes.string.isRequired,
+  birthday: PropTypes.string.isRequired,
 }
 
 export default Header

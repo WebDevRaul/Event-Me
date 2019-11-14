@@ -15,6 +15,7 @@ const StyledAccount = styled.section`
     .header {
       display: flex;
       height: 120px;
+      margin-bottom: 20px;
       .photo {
         display: flex;
         align-items: center;
@@ -35,6 +36,9 @@ const StyledAccount = styled.section`
           }
         }
       }
+    }
+    .info {
+      
     }
   }
 `

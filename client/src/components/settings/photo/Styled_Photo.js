@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 
-const height = '200px';
-const width = '200px';
-const innerHeight = '180px';
-const innerWidth = '180px';
+const height = '180px';
+const width = '180px';
 
 const StyledPhoto = styled.section`
   margin: 0 20px;
@@ -35,7 +33,6 @@ const StyledPhoto = styled.section`
     .box {
       width: ${width};
       height: ${height};
-      margin: auto;
       padding: 10px;
       border: 1px solid var(--Shadow);
       border-radius: var(--BorderRadius);
@@ -58,17 +55,12 @@ const StyledPhoto = styled.section`
       }
     }
   }
-  .step-two {
-    .box > div > div {
-    width: ${innerWidth}!important;
-    }
-  }
   .step-tree {
     display: flex;
     flex-direction: column;
     .img-preview {
-      height: ${innerHeight};
-      width: ${innerWidth};
+      height: ${height};
+      width: ${width};
       border-radius: var(--BorderRadius);
       overflow: hidden;
     }

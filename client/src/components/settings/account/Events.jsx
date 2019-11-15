@@ -1,10 +1,11 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
+import Event from './Event';
 
-const Events = props => {
+const Events = () => {
   return (
-    <div>
-      events
+    <div className='events'>
+      <Event />
     </div>
   )
 }

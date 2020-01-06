@@ -11,7 +11,7 @@ const error = ( state=INITIAL_STATE, action ) => {
   switch(action.type) {
     case USER.ERROR:
       return { ...state, user: { ...state.user, error: payload } }
-    case USER.CLEAR_ERRORS:
+    case USER.CLEAR_ERROR:
       return { ...state, user: { ...state.user, error: {} } }
     default:
       return state;

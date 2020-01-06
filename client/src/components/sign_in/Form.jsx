@@ -21,8 +21,9 @@ const Form = ({ sign_in, isAuth, errors, clearUserErrors }) => {
     // eslint-disable-next-line
   },[errors])
 
-  // Clear Errors CDUM
+  // Clear Errors CDM & CDUM
   useEffect(() => {
+    setErrors({ email: undefined, password: undefined });
     return () => clearUserErrors();
     // eslint-disable-next-line
   },[]);
@@ -38,14 +39,14 @@ const Form = ({ sign_in, isAuth, errors, clearUserErrors }) => {
 
   const onSubmit = e => {
     e.preventDefault();
-    // Validate form
     const { errors, isValid } = validateSignIn({ email, password });
-    if(!isValid) { setErrors({ ...error, ...errors }) } 
-    else { sign_in({ email, password }); }
+    if(!isValid) return setErrors({ ...error, ...errors });
+    sign_in({ email, password });
   };
 
-  // Redirect on Dashboard
+  // Redirect to Dashboard
   if(isAuth) return <Redirect to='/home' />;
+
   return (
     <form noValidate onSubmit={onSubmit} >
       <FormInput

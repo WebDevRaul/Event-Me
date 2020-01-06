@@ -4,36 +4,23 @@ import { USER } from './types';
 import jwt_decode from 'jwt-decode';
 import URL from './URL';
 
-// Async/await
-// export const register = ({ user, history }) => {
-//   return async dispatch => {
-//     const onSuccess = data => {
-//       dispatch({ type: USER.REGISTER, payload: data })
-//       history.push('/sign-in')
-//     };
-//     const onError = err => {
-//       dispatch({ type: USER.ERROR, payload: err })
-//     };
-//     try {
-//       const res = await axios.post(`${URL.user}/register`, user);
-//       return onSuccess(res.data);
-//     } catch (err) {
-//       return onError(err)
-//     }
-//   }
-// }
-
 export const register = ({ user, history }) => dispatch => {
+  dispatch({ type: USER.LOADING });
   axios.post(`${URL.user}/register`, user)
     .then(res => {
       dispatch({ type: USER.REGISTER, payload: res.data });
+      dispatch({ type: USER.LOADED });
       history.push('/sign-in');
       toastr.success('Success!', 'Registered successfully');
     })
-    .catch(err => dispatch({ type: USER.ERROR, payload: err.response.data }))
+    .catch(err => {
+      dispatch({ type: USER.ERROR, payload: err.response.data })
+      dispatch({ type: USER.LOADED });
+    });
 }
 
 export const sign_in = obj => dispatch => {
+  dispatch({ type: USER.LOADING });
   axios.post(`${URL.user}/sign-in`, obj)
     .then(({ data: { token } }) => {
       // Save to LocalStorage
@@ -42,9 +29,13 @@ export const sign_in = obj => dispatch => {
       setAuthToken(token);
       // Set User
       dispatch(setCurrentUser(token));
+      dispatch({ type: USER.LOADED });
       toastr.success('Success!', 'Signed In successfully');
     })
-    .catch(err => dispatch({ type: USER.ERROR, payload: err.response.data }))
+    .catch(err => {
+      dispatch({ type: USER.ERROR, payload: err.response.data })
+      dispatch({ type: USER.LOADED });
+    })
 }
 
 export const sign_out = () => dispatch => {

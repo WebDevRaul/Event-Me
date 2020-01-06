@@ -21,10 +21,10 @@ const Form = ({ register, history, errors, clearUserErrors }) => {
     // eslint-disable-next-line
   },[errors]);
 
-  // Clear Errors CDUM
+  // Clear Errors CDM & CDUM
   useEffect(() => {
-    const clear = () => clearUserErrors();
-    return clear;
+    setErrors({ email: undefined, password: undefined });
+    return () => clearUserErrors();
     // eslint-disable-next-line
   },[]);
 

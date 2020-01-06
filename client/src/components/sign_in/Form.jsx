@@ -7,7 +7,7 @@ import { createStructuredSelector } from 'reselect';
 import { state_isAuth, state_user_error } from '../../redux/selectors/user';
 import validateSignIn from './utils/Validate';
 
-import Input from '../common/Form/input/Input';
+import FormInput from '../common/Form/input/FormInput';
 import ButtonOne from '../common/buttonOne/ButtonOne';
 
 const Form = ({ sign_in, isAuth, errors, clearUserErrors }) => {
@@ -23,8 +23,7 @@ const Form = ({ sign_in, isAuth, errors, clearUserErrors }) => {
 
   // Clear Errors CDUM
   useEffect(() => {
-    const clear = () => clearUserErrors();
-    return clear;
+    return () => clearUserErrors();
     // eslint-disable-next-line
   },[]);
 
@@ -49,16 +48,16 @@ const Form = ({ sign_in, isAuth, errors, clearUserErrors }) => {
   if(isAuth) return <Redirect to='/home' />;
   return (
     <form noValidate onSubmit={onSubmit} >
-      <Input 
+      <FormInput
         name='email'
         label='email'
         value={email}
         onChange={onChange}
         onFocus={onFocus}
-        type='email'
         error={error.email}
+        type='email'
       />
-      <Input 
+      <FormInput 
         name='password'
         label='password'
         value={password}

@@ -13,6 +13,17 @@
   --Spacing: 1px;
   --BorderRadius: 4px;
   --Transition: all 0.3s linear;
+
+  --primary: rgb(127, 0, 31);
+  --white: rgb(255, 255, 255);
+  --darkWhite: rgb(135, 135, 135);
+  --black: rgb(40, 40, 45);
+  --lightDark: rgb(50, 50, 60);
+  --green: rgb(100, 210, 90);
+  --red: rgb(255, 70, 70);
+  --transition: all .3s linear;
+  --spacing: 2px;
+  --border: 4px;
 }
 
 * {

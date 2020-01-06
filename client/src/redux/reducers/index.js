@@ -3,8 +3,10 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { reducer as ToastrReducer } from 'react-redux-toastr';
 
-import user from './user';
 import eventMe from './event';
+import user from './user';
+import error from './error';
+import loading from './loading';
 
 const persistConfig = {
   key: 'root',
@@ -16,6 +18,8 @@ const persistConfig = {
 const rootReducer =  combineReducers({
   eventMe,
   user,
+  error,
+  loading,
   toastr: ToastrReducer
 });
 
